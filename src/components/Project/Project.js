@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {getProject, getUser2} from '../../ducks/reducer';
+import Nav from '../Nav/Nav';
 
 class Project extends Component {
     constructor(props) {
@@ -20,6 +21,7 @@ class Project extends Component {
         var percentage = this.props.project.percentdone * 100
         return ( 
             <div>
+                <Nav />
                 <h1>{percentage}%</h1>
                <h1>{this.props.project.name}</h1>
                <h2>{this.props.project.location}</h2>
