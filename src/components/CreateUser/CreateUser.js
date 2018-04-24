@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {finishCreation, getUser} from '../../ducks/reducer';
+import {finishCreation, getUser2} from '../../ducks/reducer';
 import {Link} from 'react-router-dom';
 
 class CreateUser extends Component {
@@ -13,7 +13,7 @@ class CreateUser extends Component {
     }
 
     componentDidMount(){
-        this.props.getUser()
+        this.props.getUser2()
     }
 
     updateAdmin(){
@@ -35,7 +35,6 @@ class CreateUser extends Component {
     }
 
     finishCreationFn(){
-        console.log(this.props.user)
         const {id, user_id, displayname} = this.props.user
         const {company, role} = this.state
         this.props.finishCreation(company, role, id, user_id, displayname)
@@ -62,4 +61,4 @@ function mapStateToProps(state){
         user: state.user
     }
 }
-export default connect(mapStateToProps, {finishCreation, getUser})(CreateUser);
+export default connect(mapStateToProps, {finishCreation, getUser2})(CreateUser);

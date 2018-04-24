@@ -17,11 +17,10 @@ class Projects extends Component {
     }
 
     render() { 
-        console.log(this.props.projects)
         var mappedProjects = this.props.projects.map((project, i) => {
            return(
             <div key = {i}>
-                <Link to = {`/project/:${project.project_id}`}><h1>{project.name}</h1></Link>
+                <Link to = {`/project/${project.project_id}`}><h1>{project.name}</h1></Link>
                 <h2>{project.location}</h2>
             </div>
            ) 

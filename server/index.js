@@ -95,6 +95,13 @@ app.get('/userprojects', function(req, res, next){
     }).catch( () => res.status(500).send())
 })
 
+app.post('/clickedproject', function (req, res, next){
+    const {project_id, user_id} = req.body;
+    const db = app.get('db');
+    db.get_project([user_id, project_id]).then( project => {
+        res.status(200).send(project[0])
+    }).catch( () => res.status(500).send())
+})
 
 
 

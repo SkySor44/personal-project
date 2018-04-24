@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Nav from '../Nav/Nav';
 import {connect} from 'react-redux';
-import {getUser} from '../../ducks/reducer';
+import {getUser2} from '../../ducks/reducer';
 import {Link} from 'react-router-dom';
 
 class AdminHome extends Component {
@@ -13,7 +13,7 @@ class AdminHome extends Component {
     }
 
     componentDidMount(){
-        this.props.getUser();
+        this.props.getUser2();
     }
 
     render() { 
@@ -32,4 +32,4 @@ function mapStateToProps(state){
         user: state.user
     }
 }
-export default connect(mapStateToProps, {getUser})(AdminHome);
+export default connect(mapStateToProps, {getUser2})(AdminHome);
