@@ -1,29 +1,22 @@
 import React, { Component } from 'react';
-import Nav from '../Nav/Nav';
 import {connect} from 'react-redux';
 import {getUser} from '../../ducks/reducer';
-import CreateUser from '../CreateUser/CreateUser';
+import CreateUser from '../CreateUser/CreateUser'
 
-class Home extends Component {
+class Loading extends Component {
     constructor(props) {
         super(props);
-        this.state = { 
-
-         }
+        this.state = {  }
     }
-    
+
     componentDidMount(){
-        
         this.props.getUser();
-        
     }
 
     render() { 
-       var info = this.props.user.company && this.props.user.role ? <div>
-       <Nav />
-       <img /> 
-       <h2>PROJECTS</h2>
-       <p>3 Random Projects this User is a part of</p>
+        console.log(this.props.user)
+        var info = this.props.user.company && this.props.user.role ? <div>
+       Loading...
    </div> : 
             <div>
             <CreateUser />
@@ -43,4 +36,4 @@ function mapStateToProps(state){
         user: state.user
     }
 }
-export default connect(mapStateToProps, {getUser})(Home);
+export default connect(mapStateToProps, {getUser})(Loading);

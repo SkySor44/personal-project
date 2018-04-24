@@ -5,6 +5,7 @@ const massive = require('massive');
 const session = require('express-session');
 const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
+const cors = require('cors')
 
 
 const app =  express();
@@ -22,7 +23,7 @@ const {
 massive(CONNECTION_STRING).then(db => {
     app.set('db', db);
 })
-
+app.use(cors());
 app.use(bodyParser.json());
 app.use(session({
     secret: SESSION_SECRET,
@@ -65,7 +66,7 @@ passport.deserializeUser( (id, done) => {
 
 app.get('/auth', passport.authenticate('auth0'));
 app.get('/auth/callback', passport.authenticate('auth0', {
-    successRedirect: 'http://localhost:3000/#/home',
+    successRedirect: `http://localhost:3000/#/loading`,
     failureRedirect: 'http://localhost:3000/#/'
 }));
 
@@ -75,6 +76,16 @@ app.get('/auth/me', function(req, res, next){
     } else {
         res.status(401).send('Nice Try Sucka')
     }
+})
+
+app.post('/finishprofile', function(req, res, next){
+    const {company, role, id} = req.body;
+    const db = app.get('db')
+
+    db.finish_profile([company, role, id]).then( user => {
+        res.status(200).send(user)
+    }).catch(() => res.status(500).send())
+    
 })
 
 

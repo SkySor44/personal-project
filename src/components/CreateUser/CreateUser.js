@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import {finishCreation, getUser} from '../../ducks/reducer';
+import {Link} from 'react-router-dom';
 
 class CreateUser extends Component {
     constructor(props) {
@@ -9,15 +12,19 @@ class CreateUser extends Component {
          }
     }
 
+    componentDidMount(){
+        this.props.getUser()
+    }
+
     updateAdmin(){
         this.setState({
-            role: 'Admin'
+            role: 'admin'
         })
     }
 
     updateEmployee(){
         this.setState({
-            role: 'Employee'
+            role: 'employee'
         })
     }
 
@@ -25,6 +32,13 @@ class CreateUser extends Component {
         this.setState({
             company: e
         })
+    }
+
+    finishCreationFn(){
+        console.log(this.props.user)
+        const {id, user_id, displayname} = this.props.user
+        const {company, role} = this.state
+        this.props.finishCreation(company, role, id, user_id, displayname)
     }
 
     render() { 
@@ -36,10 +50,16 @@ class CreateUser extends Component {
                 <label>Role: </label>
                 <button onClick = {() => this.updateAdmin()}>Admin</button>
                 <button onClick = {() => this.updateEmployee()}>Employee</button>
-                <button>SUBMIT</button>
+                <Link to = {`/home/${this.state.role}`}><button onClick = {() => this.finishCreationFn()}>SUBMIT</button></Link>
             </div>
          )
     }
 }
  
-export default CreateUser;
+
+function mapStateToProps(state){
+    return {
+        user: state.user
+    }
+}
+export default connect(mapStateToProps, {finishCreation, getUser})(CreateUser);
