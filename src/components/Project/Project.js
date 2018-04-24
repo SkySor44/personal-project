@@ -7,7 +7,7 @@ class Project extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-
+            
          }
     }
 
@@ -17,7 +17,10 @@ class Project extends Component {
     }
 
     render() { 
-        console.log(this.props.project)
+        var phases = []
+        for (var i = 1; i <= this.props.project.phases; i++){
+           phases.push(<p key = {i}>Phase: {i}</p>) 
+        }
         var percentage = this.props.project.percentdone * 100
         return ( 
             <div>
@@ -25,6 +28,7 @@ class Project extends Component {
                 <h1>{percentage}%</h1>
                <h1>{this.props.project.name}</h1>
                <h2>{this.props.project.location}</h2>
+               {phases}
             </div>
          )
     }
