@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Nav from '../Nav/Nav';
 import {connect} from 'react-redux';
 import {getUser} from '../../ducks/reducer';
+import {Link} from 'react-router-dom';
 
 class AdminHome extends Component {
     constructor(props) {
@@ -20,7 +21,7 @@ class AdminHome extends Component {
             <div>
                 <Nav />
                 <h1>Welcome {this.props.user.displayname}!</h1>
-                
+                <Link to = '/projects'><button>Projects</button></Link>
             </div>
          )
     }

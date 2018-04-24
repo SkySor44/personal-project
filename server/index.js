@@ -88,6 +88,13 @@ app.post('/finishprofile', function(req, res, next){
     
 })
 
+app.get('/userprojects', function(req, res, next){
+    const db = app.get('db');
+    db.get_user_projects([req.user.id]).then( projects => {
+        res.status(200).send(projects)
+    }).catch( () => res.status(500).send())
+})
+
 
 
 

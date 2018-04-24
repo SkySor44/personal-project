@@ -14,7 +14,6 @@ class Loading extends Component {
     }
 
     render() { 
-        console.log(this.props.user)
         var info = this.props.user.company && this.props.user.role ? <div>
        Loading...
    </div> : 

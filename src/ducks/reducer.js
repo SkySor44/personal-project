@@ -1,11 +1,24 @@
 import axios from 'axios';
 
 const initialState = {
-    user: {}
+    user: {},
+    projects: []
 }
 
 const GET_USER = 'GET_USER';
 const FINISH_CREATION = 'FINISH_CREATION';
+const GET_USER_PROJECTS = 'GET_USER_PROJECTS';
+
+export function getProjects(){
+    let projectData = axios.get('/userprojects').then(res => {
+        console.log(res.data)
+        return res.data
+    })
+    return {
+        type: GET_USER_PROJECTS,
+        payload: projectData
+    }
+}
 
 export function getUser(){
     let userData = axios.get('/auth/me').then(res => {
@@ -46,6 +59,9 @@ export default function reducer(state = initialState, action){
 
         case FINISH_CREATION + '_FULFILLED':
             return Object.assign({}, state, {user: action.payload})
+
+        case GET_USER_PROJECTS + '_FULFILLED':
+            return Object.assign({}, state, {projects: action.payload})
 
         default:
         return state;
