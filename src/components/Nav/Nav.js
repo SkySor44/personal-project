@@ -3,7 +3,14 @@ import React from 'react';
 export default function Nav(props){
     return(
         <div>
-            <h1>HELLO</h1>
+            <img alt = 'logo'/>
+            <nav>
+                <ul>
+                    <a>Home</a>
+                    <a>Projects</a>
+                    <a>Logout</a>
+                </ul>
+            </nav>
         </div>
     )
 }

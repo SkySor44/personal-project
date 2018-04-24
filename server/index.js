@@ -40,24 +40,42 @@ passport.use(new Auth0Strategy({
     callbackURL: CALLBACK_URL,
     scope: "openid email profile"
 }, function(accessToken, refreshToken, extraParams, profile, done){
-    done(null, profile)
+    const db = app.get('db');
+    const {id, displayName, picture} = profile;
+    db.find_user([id]).then(users => {
+        if(users[0]){
+            return done(null, users[0].id)
+        } else {
+            db.create_user([id, displayName]).then(createdUser => {
+                return done(null, createdUser[0].id)
+            })
+        }
+    })
 }));
+
+passport.serializeUser( (id, done) => {
+    done(null, id);
+});
+
+passport.deserializeUser( (id, done) => {
+    app.get('db').find_session_user([id]).then(user => {
+        done(null, user[0]);
+    })
+});
 
 app.get('/auth', passport.authenticate('auth0'));
 app.get('/auth/callback', passport.authenticate('auth0', {
     successRedirect: 'http://localhost:3000/#/home',
-    failureRedirect: 'http://localhost:3006/auth'
+    failureRedirect: 'http://localhost:3000/#/'
 }));
 
-passport.serializeUser( (user, done) => {
-    done(null, user);
-});
-
-passport.deserializeUser( (user, done) => {
-    done(null, user);
-});
-
-
+app.get('/auth/me', function(req, res, next){
+    if (req.user){
+        res.status(200).send(req.user)
+    } else {
+        res.status(401).send('Nice Try Sucka')
+    }
+})
 
 
 
