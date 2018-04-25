@@ -21,7 +21,6 @@ class AdminHome extends Component {
             <div>
                 <Nav />
                 <h1>Welcome {this.props.user.displayname}!</h1>
-                <Link to = '/projects'><button>Projects</button></Link>
             </div>
          )
     }

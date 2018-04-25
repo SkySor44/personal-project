@@ -138,6 +138,7 @@ class Project extends Component {
             <p>{this.state.currTime}</p>
             <h6>{this.state.currName}</h6>
             <button onClick = {() => this.updateLogFn()}>Save</button>
+            <button onClick = {() => this.updateToProgress()}>Cancel</button>
         </div> : null
 
         return ( 
