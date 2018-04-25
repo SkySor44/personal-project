@@ -147,5 +147,10 @@ app.post('/updatelog', function(req, res, next){
     })
 })
 
+app.get('/logout', function(req, res, next) {       //===How to logout===//
+    req.logOut();
+    res.redirect('http://localhost:3000/#/');
+})
+
 
 app.listen(SERVER_PORT, () => console.log(`I'm listening on port ${SERVER_PORT}`));

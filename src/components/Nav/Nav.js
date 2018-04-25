@@ -1,16 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 
-export default function Nav(props){
-    return(
-        <div>
+
+class Nav extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { 
+
+         }
+    }
+    render() { 
+        return ( 
+            <div>
             <img alt = 'logo'/>
             <nav>
                 <ul>
-                    <a>Home</a>
-                    <a>Projects</a>
-                    <a>Logout</a>
+                    <Link to = {`/home/${this.props.user.role}`}>Home</Link>
+                    <Link to = '/projects'>Projects</Link>
+                    <a href = 'http://localhost:3006/logout'>Logout</a>
                 </ul>
             </nav>
         </div>
-    )
+         )
+    }
 }
+ 
+
+function mapStateToProps(state){
+    return {
+        user: state.user
+    }
+}
+export default connect(mapStateToProps)(Nav);
