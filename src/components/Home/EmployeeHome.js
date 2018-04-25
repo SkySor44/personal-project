@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {getUser2} from '../../ducks/reducer';
 import Nav from '../Nav/Nav';
-import {Link} from 'react-router-dom';
 
 class EmployeeHome extends Component {
     constructor(props) {

@@ -137,7 +137,7 @@ app.post('/newlog', function(req, res, next){
     })
 })
 
-app.post('/updatelog', function(req, res, next){
+app.put('/updatelog', function(req, res, next){
     const {content, progress_id, project_id} = req.body;
     const db = app.get('db');
     db.update_log([content, progress_id]).then( () => {

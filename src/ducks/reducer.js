@@ -23,7 +23,7 @@ export function updateLog(content, progress_id, project_id){
         project_id: project_id
     }
 
-    let updateAnswer = axios.post('http://localhost:3006/updatelog', updateObj).then(res => {
+    let updateAnswer = axios.put('http://localhost:3006/updatelog', updateObj).then(res => {
         return res.data
     })
 

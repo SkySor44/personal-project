@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Nav from '../Nav/Nav';
 import {connect} from 'react-redux';
 import {getUser2} from '../../ducks/reducer';
-import {Link} from 'react-router-dom';
 
 class AdminHome extends Component {
     constructor(props) {
