@@ -103,6 +103,13 @@ app.post('/clickedproject', function (req, res, next){
     }).catch( () => res.status(500).send())
 })
 
+app.post('/progress', function(req, res, next){
+    const {project_id} = req.body;
+    const db = app.get('db');
+    db.get_progress([project_id]).then( progress => {
+        res.status(200).send(progress)
+    }).catch ( () => res.status(500).send())
+})
 
 
 app.listen(SERVER_PORT, () => console.log(`I'm listening on port ${SERVER_PORT}`));

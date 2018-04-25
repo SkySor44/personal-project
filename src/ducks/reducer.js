@@ -3,13 +3,29 @@ import axios from 'axios';
 const initialState = {
     user: {},
     projects: [],
-    project: {}
+    project: {},
+    progress: []
 }
 
 const GET_USER = 'GET_USER';
 const FINISH_CREATION = 'FINISH_CREATION';
 const GET_USER_PROJECTS = 'GET_USER_PROJECTS';
 const GET_PROJECT = 'GET_PROJECT';
+const GET_PROGRESS = 'GET_PROGRESS';
+
+export function getProgress(project_id){
+    let progObj = {
+        project_id: project_id
+    }
+    let projectProgress = axios.post('/progress', progObj).then(res => {
+        return res.data
+    })
+    
+    return {
+        type: GET_PROGRESS,
+        payload: projectProgress
+    }
+}
 
 export function getProject(project_id, user_id){
     let newObj = {
@@ -93,6 +109,9 @@ export default function reducer(state = initialState, action){
 
         case GET_PROJECT + '_FULFILLED':
             return Object.assign({}, state, {project: action.payload})
+
+        case GET_PROGRESS + '_FULFILLED':
+            return Object.assign({}, state, {progress: action.payload})
 
         default:
         return state;
