@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {getProject, getUser2, getProgress} from '../../ducks/reducer';
+import {getProject, getUser2, getProgress, deleteProgress} from '../../ducks/reducer';
 import Nav from '../Nav/Nav';
 
 class Project extends Component {
@@ -42,7 +42,7 @@ class Project extends Component {
             <div key = {i}>
                 <p>{value.content}</p>
                 <h6>{value.displayname}</h6>
-                <button>Delete</button>
+                <button onClick = {() => this.props.deleteProgress(value.id, value.project_id)}>Delete</button>
             </div>
           ) 
        })
@@ -80,4 +80,4 @@ function mapStateToProps(state){
         progress: state.progress
     }
 }
-export default connect(mapStateToProps, {getUser2, getProject, getProgress})(Project);
+export default connect(mapStateToProps, {getUser2, getProject, getProgress, deleteProgress})(Project);

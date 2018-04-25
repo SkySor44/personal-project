@@ -111,5 +111,20 @@ app.post('/progress', function(req, res, next){
     }).catch ( () => res.status(500).send())
 })
 
+app.post('/deleteprogress', function(req, res, next){
+    const {progress_id, project_id} = req.body;
+    console.log('progress', progress_id)
+    console.log('project', project_id)
+    const db = app.get('db');
+    db.delete_project_progress([progress_id, project_id]).then( () => {
+        db.delete_progress([progress_id]).then( () => {
+            db.get_progress([project_id]).then( progress => {
+                res.status(200).send(progress)
+            }).catch( () => res.status(500).send())
+        })
+    })
+    
+})
+
 
 app.listen(SERVER_PORT, () => console.log(`I'm listening on port ${SERVER_PORT}`));

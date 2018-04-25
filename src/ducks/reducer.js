@@ -12,6 +12,22 @@ const FINISH_CREATION = 'FINISH_CREATION';
 const GET_USER_PROJECTS = 'GET_USER_PROJECTS';
 const GET_PROJECT = 'GET_PROJECT';
 const GET_PROGRESS = 'GET_PROGRESS';
+const DELETE_PROGRESS = 'DELETE_PROGRESS';
+
+export function deleteProgress(progress_id, project_id){
+    let delObj = {
+        progress_id: progress_id,
+        project_id: project_id
+    }
+    let delprogress = axios.post('http://localhost:3006/deleteprogress', delObj).then(res => {
+        return res.data
+    })
+
+    return {
+        type: DELETE_PROGRESS,
+        payload: delprogress
+    }
+}
 
 export function getProgress(project_id){
     let progObj = {
@@ -111,6 +127,9 @@ export default function reducer(state = initialState, action){
             return Object.assign({}, state, {project: action.payload})
 
         case GET_PROGRESS + '_FULFILLED':
+            return Object.assign({}, state, {progress: action.payload})
+
+        case DELETE_PROGRESS + '_FULFILLED':
             return Object.assign({}, state, {progress: action.payload})
 
         default:
