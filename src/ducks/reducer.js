@@ -13,6 +13,43 @@ const GET_USER_PROJECTS = 'GET_USER_PROJECTS';
 const GET_PROJECT = 'GET_PROJECT';
 const GET_PROGRESS = 'GET_PROGRESS';
 const DELETE_PROGRESS = 'DELETE_PROGRESS';
+const NEW_LOG = 'NEW_LOG';
+const UPDATE_LOG = 'UPDATE_LOG'
+
+export function updateLog(content, progress_id, project_id){
+    let updateObj = {
+        content: content,
+        progress_id: progress_id,
+        project_id: project_id
+    }
+
+    let updateAnswer = axios.post('http://localhost:3006/updatelog', updateObj).then(res => {
+        return res.data
+    })
+
+    return {
+        type: UPDATE_LOG,
+        payload: updateAnswer
+    }
+}
+
+export function newLog(content, user_id, project_id, time_stamp){
+    let logObj = {
+        content: content,
+        user_id: user_id,
+        project_id: project_id,
+        time_stamp: time_stamp
+    }
+
+    let newLogAnswer = axios.post('http://localhost:3006/newlog', logObj).then(res => {
+        return res.data
+    })
+
+    return {
+        type: NEW_LOG,
+        payload: newLogAnswer
+    }
+}
 
 export function deleteProgress(progress_id, project_id){
     let delObj = {
@@ -130,6 +167,12 @@ export default function reducer(state = initialState, action){
             return Object.assign({}, state, {progress: action.payload})
 
         case DELETE_PROGRESS + '_FULFILLED':
+            return Object.assign({}, state, {progress: action.payload})
+
+        case NEW_LOG + '_FULFILLED':
+            return Object.assign({}, state, {progress: action.payload})
+
+        case UPDATE_LOG + '_FULFILLED':
             return Object.assign({}, state, {progress: action.payload})
 
         default:
