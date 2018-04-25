@@ -8,7 +8,8 @@ class CreateUser extends Component {
         super(props);
         this.state = { 
             company: '',
-            role: ''
+            role: '',
+            employee: null
          }
     }
 
@@ -18,7 +19,8 @@ class CreateUser extends Component {
 
     updateAdmin(){
         this.setState({
-            role: 'admin'
+            role: 'admin',
+            employee: false
         })
     }
 
@@ -41,15 +43,31 @@ class CreateUser extends Component {
     }
 
     render() { 
-        return ( 
-            <div>
-                <h1>Almost Done...</h1>
-                <label>Company Name: </label>
-                <input type = 'text' value = {this.state.company} onChange = {(e) => this.updateCompany(e.target.value)}/>
+      var rendering =  
+      
+      this.state.role === 'employee' ? <div>
+            <label>Company Code (given to you by your employer): </label>
+            <input type = 'text' value = {this.state.company} onChange = {(e) => this.updateCompany(e.target.value)}/>
+            <Link to = {`/home/${this.state.role}`}><button onClick = {() => this.finishCreationFn()}>SUBMIT</button></Link>
+        </div> : 
+
+        this.state.role === 'admin' ?
+        <div> 
+            <label>Company Name: </label>
+            <input type = 'text' value = {this.state.company} onChange = {(e) => this.updateCompany(e.target.value)}/>
+            <Link to = {`/home/${this.state.role}`}><button onClick = {() => this.finishCreationFn()}>SUBMIT</button></Link>
+        </div> : 
+        
+        this.state.role === '' ? 
+        <div>
+            <h1>Almost Done...</h1>
                 <label>Role: </label>
                 <button onClick = {() => this.updateAdmin()}>Admin</button>
                 <button onClick = {() => this.updateEmployee()}>Employee</button>
-                <Link to = {`/home/${this.state.role}`}><button onClick = {() => this.finishCreationFn()}>SUBMIT</button></Link>
+        </div> : null
+        return ( 
+            <div>
+               {rendering}
             </div>
          )
     }

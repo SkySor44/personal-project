@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import {getUser2} from '../../ducks/reducer';
+import Nav from '../Nav/Nav';
+import {Link} from 'react-router-dom';
 
 class EmployeeHome extends Component {
     constructor(props) {
@@ -7,13 +11,26 @@ class EmployeeHome extends Component {
 
          }
     }
+
+    componentDidMount(){
+        this.props.getUser2();
+    }
+
     render() { 
         return ( 
             <div>
-                EmployeeHome
+                <Nav />
+                <h1>Welcome {this.props.user.displayname}!</h1>
+                <Link to = '/projects'><button>Projects</button></Link>
             </div>
          )
     }
 }
  
-export default EmployeeHome;
+
+function mapStateToProps(state){
+    return {
+        user: state.user
+    }
+}
+export default connect(mapStateToProps, {getUser2})(EmployeeHome);
