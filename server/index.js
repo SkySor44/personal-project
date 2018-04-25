@@ -111,7 +111,7 @@ app.post('/progress', function(req, res, next){
     }).catch ( () => res.status(500).send())
 })
 
-app.post('/deleteprogress', function(req, res, next){
+app.delete('/deleteprogress', function(req, res, next){
     const {progress_id, project_id} = req.body;
     const db = app.get('db');
     db.delete_project_progress([progress_id, project_id]).then( () => {

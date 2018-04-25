@@ -56,7 +56,7 @@ export function deleteProgress(progress_id, project_id){
         progress_id: progress_id,
         project_id: project_id
     }
-    let delprogress = axios.post('http://localhost:3006/deleteprogress', delObj).then(res => {
+    let delprogress = axios.delete('http://localhost:3006/deleteprogress', {data: delObj}).then(res => {
         return res.data
     })
 
