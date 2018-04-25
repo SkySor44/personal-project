@@ -47,11 +47,11 @@ class Project extends Component {
     updateLogFn(){
         this.props.updateLog(this.state.currContent, this.state.progress_id, this.props.match.params.id);
         this.setState({
-            page: 'progress'
-            // currContent: '',
-            // progress_id: 0,
-            // currTime: '',
-            // currName: ''
+            page: 'progress',
+            currContent: '',
+            progress_id: 0,
+            currTime: '',
+            currName: ''
         })
     }
 
@@ -87,7 +87,10 @@ class Project extends Component {
     render() { 
         var phases = []
         for (var i = 1; i <= this.props.project.phases; i++){
-           phases.push(<p key = {i}>Phase: {i}</p>) 
+           phases.push(<div key = {i}>
+               <input type = 'checkbox' />
+               <label>Phase: {i}</label>
+           </div>) 
         }
 
        var progression = this.props.progress.map( (value, i) => {
