@@ -19,6 +19,26 @@ const UPDATE_LOG = 'UPDATE_LOG';
 const GET_PHASES = 'GET_PHASES';
 const TOGGLE_DROPDOWN = 'TOGGLE_DROPDOWN';
 const TOGGLE_DONE = 'TOGGLE_DONE';
+const UPDATE_PHASE = 'UPDATE_PHASE';
+
+export function updatePhase(phase_name, due_date, description, phase_id, project_id){
+    let upPhaseBody = {
+        phase_name: phase_name,
+        due_date: due_date,
+        description: description,
+        phase_id: phase_id,
+        project_id: project_id
+    }
+
+    let upPhaseAnswer = axios.put('http://localhost:3006/update_phase', upPhaseBody).then( res => {
+        return res.data
+    })
+
+    return {
+        type: UPDATE_PHASE,
+        payload: upPhaseAnswer
+    }
+}
 
 export function toggleDone(phase_id, project_id){
     let doneBody = {
@@ -233,6 +253,9 @@ export default function reducer(state = initialState, action){
             return Object.assign({}, state, {phases: action.payload})
 
         case TOGGLE_DONE + '_FULFILLED':
+            return Object.assign({}, state, {phases: action.payload})
+
+        case UPDATE_PHASE + '_FULFILLED':
             return Object.assign({}, state, {phases: action.payload})
 
         default:

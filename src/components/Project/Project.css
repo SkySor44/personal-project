@@ -1,5 +1,5 @@
 .phase-not-done {
-    height: 40px;
+    height: auto;
     margin: 20px;
     background: lightgray;
     opacity: 1;
@@ -9,20 +9,11 @@
 }
 
 .phase-done {
-    height: 40px;
+    height: auto;
     margin: 20px;
     background: lightgray;
     opacity: .5;
     border-radius: 3px;
     padding: 10px;
     border: 2px dashed black
-}
-
-.phase-dropdown {
-    height: auto;
-    
-}
-
-.phase-no-dropdown {
-   
 }

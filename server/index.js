@@ -175,6 +175,26 @@ app.post('/toggle_done', function(req, res, next){
     })
 })
 
+app.put('/update_phase', function(req, res, next){
+    const {phase_id, project_id, phase_name, due_date, description} = req.body;
+    const db = app.get('db');
+    db.update_phase([ phase_name, due_date, description, phase_id]).then( () => {
+        db.get_phases([project_id]).then( phases => {
+            res.status(200).send(phases)
+        }).catch( () => res.status(500).send())
+    })
+})
+
+app.post('/create_phase', function(req, res, next){
+    const {project_id, phase_name, due_date, description} = req.body;
+    const db = app.get('db');
+    db.create_phase([project_id, phase_name, due_date, description]).then( () => {
+        db.get_phases([project_id]).then( phases => {
+            res.status(200).send(phases)
+        }).catch( () => res.status(500).send())
+    })
+})
+
 app.get('/logout', function(req, res, next) {       //===How to logout===//
     req.logOut();
     res.redirect('http://localhost:3000/#/');
