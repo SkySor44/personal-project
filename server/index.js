@@ -211,5 +211,13 @@ app.get('/logout', function(req, res, next) {       //===How to logout===//
     res.redirect('http://localhost:3000/#/');
 })
 
+app.post('/get_employees', function(req, res, next){
+    const {user_id} = req.body;
+    const db = app.get('db');
+    db.get_employees([user_id]).then( employees => {
+        res.status(200).send(employees)
+    }).catch( () => res.status(500).send())
+})
+
 
 app.listen(SERVER_PORT, () => console.log(`I'm listening on port ${SERVER_PORT}`));

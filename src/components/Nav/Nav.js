@@ -18,6 +18,7 @@ class Nav extends Component {
                 <ul className = 'links'>
                     <Link to = {`/home/${this.props.user.role}`}>Home</Link>
                     <Link to = '/projects'>Projects</Link>
+                    <Link to = '/employees' >Employees</Link>
                     <a href = 'http://localhost:3006/logout'>Logout</a>
                 </ul>
             </nav>

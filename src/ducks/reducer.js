@@ -5,7 +5,8 @@ const initialState = {
     projects: [],
     project: {},
     progress: [],
-    phases: []
+    phases: [],
+    employees: []
 }
 
 const GET_USER = 'GET_USER';
@@ -22,6 +23,22 @@ const TOGGLE_DONE = 'TOGGLE_DONE';
 const UPDATE_PHASE = 'UPDATE_PHASE';
 const CREATE_PHASE = 'CREATE_PHASE';
 const DELETE_PHASE = 'DELETE_PHASE';
+const GET_EMPLOYEES = 'GET_EMPLOYEES';
+
+export function getEmployees(user_id){
+    let employeesBody = {
+        user_id: user_id
+    }
+
+   let employeesAnswer = axios.post('http://localhost:3006/get_employees', employeesBody).then( res => {
+        return res.data
+    })
+
+    return {
+        type: GET_EMPLOYEES,
+        payload: employeesAnswer
+    }
+}
 
 export function deletePhase(phase_id, project_id){
     let delPhaseBody ={
@@ -299,6 +316,9 @@ export default function reducer(state = initialState, action){
 
         case DELETE_PHASE + '_FULFILLED':
             return Object.assign({}, state, {phases: action.payload})
+
+        case GET_EMPLOYEES + '_FULFILLED':
+            return Object.assign({}, state, {employees: action.payload})
 
         default:
         return state;

@@ -173,7 +173,6 @@ class Project extends Component {
                                         //================//
                                         //=====PHASES=====/ 
                                         //================//
-        
         var phases = this.props.phases.map((value, i) => {
         return (
 
