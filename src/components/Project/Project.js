@@ -274,11 +274,12 @@ class Project extends Component {
 var total = 1;
 var complete =0;
         this.props.phases.map((value, i) => {
-        value.done ? total++ && complete ++ : total++;  
+     return   value.done ? total++ && complete ++ : total++;  
 })
 
 
 var percentage = complete / (total- 1) * 100;
+percentage = percentage.toFixed(2);
        var progression = this.props.progress.map( (value, i) => {
           return(
             <div key = {i}>
