@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {getProject, getUser2, getProgress, deleteProgress, newLog, updateLog} from '../../ducks/reducer';
+import {getProject, getUser2, getProgress, deleteProgress, newLog, updateLog, getPhases, toggleDropdown, toggleDone} from '../../ducks/reducer';
 import Nav from '../Nav/Nav';
+import './Project.css'
 
 class Project extends Component {
     constructor(props) {
@@ -19,7 +20,8 @@ class Project extends Component {
     componentDidMount(){
         this.props.getUser2();
         this.props.getProject(this.props.match.params.id, this.props.user.id);
-        this.props.getProgress(this.props.match.params.id)
+        this.props.getProgress(this.props.match.params.id);
+        this.props.getPhases(this.props.match.params.id)
     }
 
     updateToPhases(){
@@ -85,13 +87,96 @@ class Project extends Component {
 
 
     render() { 
-        var phases = []
-        for (var i = 1; i <= this.props.project.phases; i++){
-           phases.push(<div key = {i}>
-               <input type = 'checkbox' />
-               <label>Phase: {i}</label>
-           </div>) 
-        }
+
+                                        //================//
+                                        //=====PHASES=====/ 
+                                        //================//
+        
+        var phases = this.props.phases.map((value, i) => {
+        return(
+
+                                //EMPLOYEE: SHOW DROPDOWN BUT NOT FINISHED PHASE//
+
+            value.show_dropdown && value.done === false ? <div className = 'phase-not-done phase-dropdown' key = {i}>
+            <label>{i +1}.{value.phase_name}</label>
+            <button onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}>Dropdown Toggle</button>
+            <button onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}>Mark as complete</button>
+            <label>Assigned To Phase: {value.displayname}</label>
+            <label>With: {value.company}</label>
+            <p>Description: {value.description}</p>
+       </div> 
+
+                                //EMPLOYEE: SHOW DROPDOWN AND FINSIHED PHASE//
+
+       : value.show_dropdown && value.done ? <div className = 'phase-done phase-dropdown' key = {i}>
+            <label>{i +1}.{value.phase_name}</label>
+            <button onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}>Dropdown Toggle</button>
+            <button onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}>Mark as Incomplete</button>
+            <label>Assigned To Phase: {value.displayname}</label>
+            <label>With: {value.company}</label>
+            <p>Description: {value.description}</p>
+       </div>
+
+                                //EMPLOYEE: NOT SHOWING DROPDOWN AND NOT FINISHED PHASE//
+
+       : value.show_dropdown === false && value.done === false ?
+       <div className = 'phase-not-done phase-no-dropdown' key = {i}>
+            <label>{i +1}.{value.phase_name}</label>
+            <button onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}>Dropdown Toggle</button>
+            <button onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}>Mark as complete</button>
+       </div>
+       
+                                //EMPLOYEE: NOT SHOWING DROPDOWN AND FINISHED PHASE//
+
+       : value.show_dropdown === false && value.done === true ?
+       <div className = 'phase-done  phase-no-dropdown' key = {i}>
+            <label>{i +1}.{value.phase_name}</label>
+            <button onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}>Dropdown Toggle</button>
+            <button onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}>Mark as Incomplete</button>
+        </div> 
+        :                          //ADMIN: SHOW DROPDOWN BUT NOT FINISHED PHASE//
+
+        value.show_dropdown && value.done === false ? 
+    <div className = 'phase-not-done phase-dropdown' key = {i}>
+        <label>{i +1}.{value.phase_name}</label>
+        <button onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}>Dropdown Toggle</button>
+        <button onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}>Mark as complete</button>
+        <label>Assigned To Phase: {value.displayname}</label>
+        <label>With: {value.company}</label>
+        <p>Description: {value.description}</p>
+   </div> 
+
+                            //ADMIN: SHOW DROPDOWN AND FINSIHED PHASE//
+
+   : value.show_dropdown && value.done && this.props.user.role === 'admin' ? 
+   <div className = 'phase-done phase-dropdown' key = {i}>
+        <label>{i +1}.{value.phase_name}</label>
+        <button onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}>Dropdown Toggle</button>
+        <button onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}>Mark as Incomplete</button>
+        <label>Assigned To Phase: {value.displayname}</label>
+        <label>With: {value.company}</label>
+        <p>Description: {value.description}</p>
+   </div>
+
+                            //ADMIN: NOT SHOWING DROPDOWN AND NOT FINISHED PHASE//
+
+   : value.show_dropdown === false && value.done === false && this.props.user.role === 'admin' ?
+   <div className = 'phase-not-done phase-no-dropdown' key = {i}>
+        <label>{i +1}.{value.phase_name}</label>
+        <button onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}>Dropdown Toggle</button>
+        <button onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}>Mark as complete</button>
+   </div>
+   
+                            //ADMIN: NOT SHOWING DROPDOWN AND FINISHED PHASE//
+
+   : value.show_dropdown === false && value.done === true && this.props.user.role === 'admin' ?
+   <div className = 'phase-done  phase-no-dropdown' key = {i}>
+        <label>{i +1}.{value.phase_name}</label>
+        <button onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}>Dropdown Toggle</button>
+        <button onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}>Mark as Incomplete</button>
+    </div> : null
+        )   
+        })
 
        var progression = this.props.progress.map( (value, i) => {
           return(
@@ -154,7 +239,8 @@ function mapStateToProps(state){
     return {
         project: state.project,
         user: state.user,
-        progress: state.progress
+        progress: state.progress,
+        phases: state.phases
     }
 }
-export default connect(mapStateToProps, {getUser2, getProject, getProgress, deleteProgress, newLog, updateLog})(Project);
+export default connect(mapStateToProps, {getUser2, getProject, getProgress, deleteProgress, newLog, updateLog, getPhases, toggleDropdown, toggleDone})(Project);

@@ -4,7 +4,8 @@ const initialState = {
     user: {},
     projects: [],
     project: {},
-    progress: []
+    progress: [],
+    phases: []
 }
 
 const GET_USER = 'GET_USER';
@@ -14,7 +15,57 @@ const GET_PROJECT = 'GET_PROJECT';
 const GET_PROGRESS = 'GET_PROGRESS';
 const DELETE_PROGRESS = 'DELETE_PROGRESS';
 const NEW_LOG = 'NEW_LOG';
-const UPDATE_LOG = 'UPDATE_LOG'
+const UPDATE_LOG = 'UPDATE_LOG';
+const GET_PHASES = 'GET_PHASES';
+const TOGGLE_DROPDOWN = 'TOGGLE_DROPDOWN';
+const TOGGLE_DONE = 'TOGGLE_DONE';
+
+export function toggleDone(phase_id, project_id){
+    let doneBody = {
+        id: phase_id,
+        project_id: project_id
+    }
+
+    let doneAnswer = axios.post('http://localhost:3006/toggle_done', doneBody).then(res => {
+        return res.data
+    })
+
+    return {
+        type: TOGGLE_DONE,
+        payload: doneAnswer
+    }
+}
+
+export function toggleDropdown(phase_id, project_id){
+    let toggleBody = {
+        id: phase_id,
+        project_id: project_id
+    }
+
+   let toggleAnswer = axios.post('http://localhost:3006/toggle_dropdown', toggleBody).then(res => {
+        return res.data
+    })
+
+    return {
+        type: TOGGLE_DROPDOWN,
+        payload: toggleAnswer
+    }
+}
+
+export function getPhases(project_id){
+    let reqBody = {
+        project_id: project_id
+    }
+
+   let phase = axios.post('http://localhost:3006/phases', reqBody).then(res => {
+        return res.data
+    })
+
+    return {
+        type: GET_PHASES,
+        payload: phase
+    }
+}
 
 export function updateLog(content, progress_id, project_id){
     let updateObj = {
@@ -174,6 +225,15 @@ export default function reducer(state = initialState, action){
 
         case UPDATE_LOG + '_FULFILLED':
             return Object.assign({}, state, {progress: action.payload})
+
+        case GET_PHASES + '_FULFILLED':
+            return Object.assign({}, state, {phases: action.payload})
+
+        case TOGGLE_DROPDOWN + '_FULFILLED':
+            return Object.assign({}, state, {phases: action.payload})
+
+        case TOGGLE_DONE + '_FULFILLED':
+            return Object.assign({}, state, {phases: action.payload})
 
         default:
         return state;

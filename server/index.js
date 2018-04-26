@@ -147,6 +147,34 @@ app.put('/updatelog', function(req, res, next){
     })
 })
 
+app.post('/phases', function (req, res, next){
+    const {project_id} = req.body;
+    const db = app.get('db');
+    db.get_phases([project_id]).then( phases => {
+        res.status(200).send(phases)
+    }).catch( () => res.status(500).send())
+})
+
+app.post('/toggle_dropdown', function(req, res, next){
+    const {id, project_id} = req.body;
+    const db = app.get('db');
+    db.toggle_dropdown([id]).then( () => {
+        db.get_phases([project_id]).then( phases => {
+            res.status(200).send(phases)
+        }).catch( () => res.status(500).send())
+    })
+})
+
+app.post('/toggle_done', function(req, res, next){
+    const {id, project_id} = req.body;
+    const db = app.get('db');
+    db.toggle_done([id]).then( () => {
+        db.get_phases([project_id]).then(phases => {
+            res.status(200).send(phases)
+        }).catch( () => res.status(500).send())
+    })
+})
+
 app.get('/logout', function(req, res, next) {       //===How to logout===//
     req.logOut();
     res.redirect('http://localhost:3000/#/');

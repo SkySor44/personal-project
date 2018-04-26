@@ -1,0 +1,28 @@
+.phase-not-done {
+    height: 40px;
+    margin: 20px;
+    background: lightgray;
+    opacity: 1;
+    border-radius: 3px;
+    padding: 10px;
+    border: 1px solid black
+}
+
+.phase-done {
+    height: 40px;
+    margin: 20px;
+    background: lightgray;
+    opacity: .5;
+    border-radius: 3px;
+    padding: 10px;
+    border: 2px dashed black
+}
+
+.phase-dropdown {
+    height: auto;
+    
+}
+
+.phase-no-dropdown {
+   
+}
