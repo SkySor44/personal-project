@@ -20,6 +20,42 @@ const GET_PHASES = 'GET_PHASES';
 const TOGGLE_DROPDOWN = 'TOGGLE_DROPDOWN';
 const TOGGLE_DONE = 'TOGGLE_DONE';
 const UPDATE_PHASE = 'UPDATE_PHASE';
+const CREATE_PHASE = 'CREATE_PHASE';
+const DELETE_PHASE = 'DELETE_PHASE';
+
+export function deletePhase(phase_id, project_id){
+    let delPhaseBody ={
+        phase_id: phase_id,
+        project_id: project_id
+    }
+
+    let delPhaseAnswer = axios.delete('http://localhost:3006/delete_phase', {data: delPhaseBody}).then(res => {
+        return res.data
+    })
+
+    return {
+        type: DELETE_PHASE,
+        payload: delPhaseAnswer
+    }
+}
+
+export function createPhase(project_id, phase_name, due_date, description){
+    let createBody = {
+        project_id: project_id,
+        phase_name: phase_name,
+        due_date: due_date,
+        description: description
+    }
+
+    let createPhaseAnswer = axios.post('http://localhost:3006/create_phase', createBody).then( res => {
+        return res.data
+    })
+
+    return {
+        type: CREATE_PHASE,
+        payload: createPhaseAnswer
+    }
+}
 
 export function updatePhase(phase_name, due_date, description, phase_id, project_id){
     let upPhaseBody = {
@@ -256,6 +292,12 @@ export default function reducer(state = initialState, action){
             return Object.assign({}, state, {phases: action.payload})
 
         case UPDATE_PHASE + '_FULFILLED':
+            return Object.assign({}, state, {phases: action.payload})
+
+        case CREATE_PHASE + '_FULFILLED':
+            return Object.assign({}, state, {phases: action.payload})
+
+        case DELETE_PHASE + '_FULFILLED':
             return Object.assign({}, state, {phases: action.payload})
 
         default:

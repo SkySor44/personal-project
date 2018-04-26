@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {getProject, getUser2, getProgress, deleteProgress, newLog, updateLog, getPhases, toggleDropdown, toggleDone, updatePhase} from '../../ducks/reducer';
+import {getProject, getUser2, getProgress, deleteProgress, newLog, updateLog, getPhases, toggleDropdown, toggleDone, updatePhase, createPhase, deletePhase} from '../../ducks/reducer';
 import Nav from '../Nav/Nav';
 import './Project.css'
 
@@ -17,7 +17,10 @@ class Project extends Component {
             currPhaseName: '',
             currPhaseDesc: '',
             currPhaseDueDate: '',
-            currPhaseId: 0
+            currPhaseId: 0,
+            newPhaseName: '',
+            newPhaseDueDate: '',
+            newPhaseDesc: ''
          }
     }
 
@@ -129,6 +132,41 @@ class Project extends Component {
         })
     }
 
+    updateToCreatePhase(){
+        this.setState({
+            page: 'create_phase'
+        })
+    }
+
+    updateNewPhaseName(e){
+        this.setState({
+            newPhaseName: e
+        })
+    }
+
+    updateNewPhaseDesc(e){
+        this.setState({
+            newPhaseDesc: e
+        })
+    }
+
+    updateNewPhaseDueDate(e){
+        this.setState({
+            newPhaseDueDate: e
+        })
+    }
+
+    createPhaseFn(){
+        const {newPhaseName, newPhaseDesc, newPhaseDueDate} = this.state;
+        const {id} = this.props.match.params;
+        this.props.createPhase(id, newPhaseName, newPhaseDueDate, newPhaseDesc)
+        this.setState({
+            page: 'phases',
+            newPhaseName: '',
+            newPhaseDesc: '',
+            newPhaseDueDate: ''
+        })
+    }
 
 
     render() { 
@@ -137,7 +175,7 @@ class Project extends Component {
                                         //================//
         
         var phases = this.props.phases.map((value, i) => {
-        return(
+        return (
 
                                 //EMPLOYEE: SHOW DROPDOWN BUT NOT FINISHED PHASE//
 
@@ -146,8 +184,8 @@ class Project extends Component {
             <p>Due: {value.due_date}</p>
             <button onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}>Dropdown Toggle</button>
             <button onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}>Mark as complete</button>
-            <label>Assigned To Phase: {value.displayname}</label>
-            <label>With: {value.company}</label>
+            <label>Assigned To Phase: {value.assigned_employee_id !== 17 ? value.displayname : <p>No Assignment Made</p>}</label>
+            <label>{value.assigned_employee_id !== 17 ? <p>With: {value.company}</p> : <p></p>}</label>
             <p>Description: {value.description}</p>
        </div> 
 
@@ -158,8 +196,8 @@ class Project extends Component {
             <p>Due: {value.due_date}</p>
             <button onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}>Dropdown Toggle</button>
             <button onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}>Mark as Incomplete</button>
-            <label>Assigned To Phase: {value.displayname}</label>
-            <label>With: {value.company}</label>
+            <label>Assigned To Phase: {value.assigned_employee_id !== 17 ? value.displayname : <p>No Assignment Made</p>}</label>
+            <label>{value.assigned_employee_id !== 17 ? <p>With: {value.company}</p> : <p></p>}</label>
             <p>Description: {value.description}</p>
        </div>
 
@@ -190,10 +228,11 @@ class Project extends Component {
         <p>Due: {value.due_date}</p>
         <button onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}>Dropdown Toggle</button>
         <button onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}>Mark as complete</button>
-        <label>Assigned To Phase: {value.displayname}</label>
-        <label>With: {value.company}</label>
+        <label>Assigned To Phase: {value.assigned_employee_id !== 17 ? value.displayname : <button>Go To Employees To Assign</button>}</label>
+        <label>{value.assigned_employee_id !== 17 ? <p>With: {value.company}</p> : <p></p>}</label>
         <p>Description: {value.description}</p>
         <button onClick = {() => this.updateToPhaseUpdate(value.phase_name, value.due_date, value.description, value.id)}>Update Phase</button>
+        <button onClick = {() => this.props.deletePhase(value.id, this.props.match.params.id)}>Delete Phase</button>
    </div> 
 
                             //ADMIN: SHOW DROPDOWN AND FINSIHED PHASE//
@@ -204,10 +243,10 @@ class Project extends Component {
         <p>Due: {value.due_date} </p>
         <button onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}>Dropdown Toggle</button>
         <button onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}>Mark as Incomplete</button>
-        <label>Assigned To Phase: {value.displayname ? value.displayname : <button>Go To Employees To Assign</button>} </label>
-        <label>With: {value.company} </label>
+        <label>Assigned To Phase: {value.assigned_employee_id !== 17 ? value.displayname : <button>Go To Employees To Assign</button>} </label>
+        <label>{value.assigned_employee_id !== 17 ? <p>With: {value.company}</p> : <p></p>}</label>
         <p>Description: {value.description}</p>
-    
+        <button onClick = {() => this.props.deletePhase(value.id, this.props.match.params.id)}>Delete Phase</button>
    </div>
 
                             //ADMIN: NOT SHOWING DROPDOWN AND NOT FINISHED PHASE//
@@ -232,6 +271,14 @@ class Project extends Component {
         )   
         })
 
+var total = 1;
+var complete =0;
+        this.props.phases.map((value, i) => {
+        value.done ? total++ && complete ++ : total++;  
+})
+
+
+var percentage = complete / (total- 1) * 100;
        var progression = this.props.progress.map( (value, i) => {
           return(
             <div key = {i}>
@@ -244,7 +291,7 @@ class Project extends Component {
           )
           
        })
-        var percentage = this.props.project.percentdone * 100;
+       
 
         var renders = this.state.page === 'phases' && this.props.user.role === 'employee'? 
         <div>
@@ -261,7 +308,7 @@ class Project extends Component {
             <h1>{percentage}%</h1>
             <h1>{this.props.project.name}</h1>
             <h2>{this.props.project.location}</h2>
-            <button>Add Phase</button>
+            <button onClick = {() =>  this.updateToCreatePhase()}>Add Phase</button>
             {phases}
         </div> : 
         this.state.page === 'progress' ?
@@ -289,7 +336,7 @@ class Project extends Component {
             <button onClick = {() => this.updateToProgress()}>Cancel</button>
         </div> 
         
-        : this.state.page === 'update_phase' ?
+        : this.state.page === 'update_phase' && this.props.user.role === 'admin' ?
         <div>
             <Nav />
             <label>Enter New Phase Name: </label>
@@ -300,6 +347,18 @@ class Project extends Component {
             <input type = 'text' placeholder = {this.state.currPhaseDesc} onChange = {(e) => this.updateCurrPhaseDesc(e.target.value)}/>
             <button onClick = {() =>  this.updateToPhases()}>Cancel</button>
             <button onClick = {() => this.updatePhaseFn()}>Save</button>
+        </div> 
+        : this.state.page === 'create_phase' && this.props.user.role === 'admin' ?
+        <div>
+            <Nav />
+            <label>Enter New Phase Name: </label>
+            <input type = 'text' onChange = {(e) => this.updateNewPhaseName(e.target.value)}/>
+            <label>Description: </label>
+            <input type = 'text' onChange = {(e) => this.updateNewPhaseDesc(e.target.value)}/>
+            <label>Due Date (yyyy-mm-dd): </label>
+            <input type = 'text' placeholder = 'yyyy-mm-dd' onChange = {(e) => this.updateNewPhaseDueDate(e.target.value)}/>
+            <button onClick = {() =>  this.updateToPhases()}>Cancel</button>
+            <button onClick = {() => this.createPhaseFn()}>Save</button>
         </div> : null
 
         return ( 
@@ -319,4 +378,4 @@ function mapStateToProps(state){
         phases: state.phases
     }
 }
-export default connect(mapStateToProps, {getUser2, getProject, getProgress, deleteProgress, newLog, updateLog, getPhases, toggleDropdown, toggleDone, updatePhase})(Project);
+export default connect(mapStateToProps, {getUser2, getProject, getProgress, deleteProgress, newLog, updateLog, getPhases, toggleDropdown, toggleDone, updatePhase, createPhase, deletePhase})(Project);

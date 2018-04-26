@@ -187,8 +187,19 @@ app.put('/update_phase', function(req, res, next){
 
 app.post('/create_phase', function(req, res, next){
     const {project_id, phase_name, due_date, description} = req.body;
+    console.log(project_id)
     const db = app.get('db');
-    db.create_phase([project_id, phase_name, due_date, description]).then( () => {
+    db.create_phase([phase_name, description, project_id, due_date]).then( () => {
+        db.get_phases([project_id]).then( phases => {
+            res.status(200).send(phases)
+        }).catch( () => res.status(500).send())
+    })
+})
+
+app.delete('/delete_phase', function(req, res, next){
+    const {phase_id, project_id} = req.body;
+    const db = app.get('db');
+    db.delete_phase([phase_id]).then( () => {
         db.get_phases([project_id]).then( phases => {
             res.status(200).send(phases)
         }).catch( () => res.status(500).send())
