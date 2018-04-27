@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {finishCreation, getUser2} from '../../ducks/reducer';
+import {finishCreation, getUser2, finishEmployee} from '../../ducks/reducer';
 import {Link} from 'react-router-dom';
 
 class CreateUser extends Component {
@@ -9,7 +9,8 @@ class CreateUser extends Component {
         this.state = { 
             company: '',
             role: '',
-            employee: null
+            employee: null,
+            supervisor: ''
          }
     }
 
@@ -36,26 +37,51 @@ class CreateUser extends Component {
         })
     }
 
-    finishCreationFn(){
+    updateSupervisor(e){
+        this.setState({
+            supervisor: e
+        })
+    }
+
+
+    finishCreationAdmin(){
         const {id, user_id, displayname} = this.props.user
         const {company, role} = this.state
         this.props.finishCreation(company, role, id, user_id, displayname)
+        this.setState({
+            company: '',
+            role: '',
+            supervisor: ''
+        })
+    }
+
+    finishCreationEmp(){
+        const {id} = this.props.user;
+        const {company, role, supervisor} = this.state;
+        this.props.finishEmployee(company, role, supervisor, id)
+        this.setState({
+            company: '',
+            role: '',
+            supervisor: ''
+        })
     }
 
     render() { 
       var rendering =  
       
       this.state.role === 'employee' ? <div>
-            <label>Company Code (given to you by your employer): </label>
-            <input type = 'text' value = {this.state.company} onChange = {(e) => this.updateCompany(e.target.value)}/>
-            <Link to = {`/home/${this.state.role}`}><button onClick = {() => this.finishCreationFn()}>SUBMIT</button></Link>
+            <label>Company: </label>
+            <input type = '' value = {this.state.company} onChange = {(e) => this.updateCompany(e.target.value)}/>
+            <label>Supervisor Code (given to you by your employer): </label>
+            <input type = 'text' value = {this.state.supervisor} onChange = {(e) => this.updateSupervisor(e.target.value)}/>
+            <Link to = {`/home/${this.state.role}`}><button onClick = {() => this.finishCreationEmp()}>SUBMIT</button></Link>
         </div> : 
 
         this.state.role === 'admin' ?
         <div> 
             <label>Company Name: </label>
             <input type = 'text' value = {this.state.company} onChange = {(e) => this.updateCompany(e.target.value)}/>
-            <Link to = {`/home/${this.state.role}`}><button onClick = {() => this.finishCreationFn()}>SUBMIT</button></Link>
+            <Link to = {`/home/${this.state.role}`}><button onClick = {() => this.finishCreationAdmin()}>SUBMIT</button></Link>
         </div> : 
         
         this.state.role === '' ? 
@@ -79,4 +105,4 @@ function mapStateToProps(state){
         user: state.user
     }
 }
-export default connect(mapStateToProps, {finishCreation, getUser2})(CreateUser);
+export default connect(mapStateToProps, {finishCreation, getUser2, finishEmployee})(CreateUser);

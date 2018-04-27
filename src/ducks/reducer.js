@@ -6,11 +6,14 @@ const initialState = {
     project: {},
     progress: [],
     phases: [],
-    employees: []
+    employees: [],
+    employee: {},
+    employee_projects: []
 }
 
 const GET_USER = 'GET_USER';
 const FINISH_CREATION = 'FINISH_CREATION';
+const FINISH_EMPLOYEE = 'FINISH_EMPLOYEE';
 const GET_USER_PROJECTS = 'GET_USER_PROJECTS';
 const GET_PROJECT = 'GET_PROJECT';
 const GET_PROGRESS = 'GET_PROGRESS';
@@ -24,6 +27,72 @@ const UPDATE_PHASE = 'UPDATE_PHASE';
 const CREATE_PHASE = 'CREATE_PHASE';
 const DELETE_PHASE = 'DELETE_PHASE';
 const GET_EMPLOYEES = 'GET_EMPLOYEES';
+const GET_EMPLOYEE_PROJECTS = 'GET_EMPLOYEE_PROJECTS';
+const GET_EMPLOYEE = 'GET_EMPLOYEE';
+const ASSIGN_PROJECT = 'ASSIGN_PROJECT';
+const ASSIGN_PHASE = 'ASSIGN_PHASE';
+
+export function assignProject(employee_id, project_id){
+    let assignProjBod = {
+        employee_id: employee_id,
+        phase_id: project_id
+    }
+
+   let assignProjAnswer = axios.post('http://localhost:3006/assign_project', assignProjBod).then(res => {
+       return res.data
+   })
+
+   return {
+       type: ASSIGN_PROJECT,
+       payload: assignProjAnswer
+   }
+}
+
+export function assignPhase(employee_id, phase_id){
+    let assignPhaseBod = {
+        employee_id: employee_id,
+        phase_id: phase_id
+    }
+
+    let assignPhaseAnswer = axios.post('http://localhost:3006/assign_phase', assignPhaseBod).then( res => {
+        return res.data
+    })
+
+    return {
+        type: ASSIGN_PHASE,
+        payload: assignPhaseAnswer
+    }
+}
+
+export function getEmployee(employee_id){
+    let empBody = {
+        employee_id: employee_id
+    }
+
+    let empAnswer = axios.post('http://localhost:3006/get_employee', empBody).then( res => {
+        return res.data
+    })
+
+    return {
+        type: GET_EMPLOYEE,
+        payload: empAnswer
+    }
+}
+
+export function getEmployeeProjects(employee_id){
+    let empProjBody = {
+        employee_id: employee_id
+    }
+
+    let empProjAnswer = axios.post('http://localhost:3006/get_employee_projects', empProjBody).then(res => {
+        return res.data
+    })
+
+    return {
+        type: GET_EMPLOYEE_PROJECTS,
+        payload: empProjAnswer
+    }
+}
 
 export function getEmployees(user_id){
     let employeesBody = {
@@ -256,6 +325,24 @@ export function getUser2(){
     }
 }
 
+export function finishEmployee(company, role, supervisor, id){
+    let finBody = {
+        company: company,
+        role: role,
+        supervisor: supervisor,
+        id: id
+    }
+
+    axios.post('http://localhost:3006/finish_employee', finBody).then( res => {
+        return res.data
+    })
+
+    return {
+        type: FINISH_EMPLOYEE,
+        payload: finBody
+    }
+}
+
 export function finishCreation(company, role, id, user_id, displayname){
     const obj = {
         company: company,
@@ -319,6 +406,21 @@ export default function reducer(state = initialState, action){
 
         case GET_EMPLOYEES + '_FULFILLED':
             return Object.assign({}, state, {employees: action.payload})
+
+        case FINISH_EMPLOYEE + '_FULFILLED':
+            return Object.assign({}, state, {user: action.payload})
+
+        case GET_EMPLOYEE_PROJECTS + '_FULFILLED':
+            return Object.assign({}, state, {employee_projects: action.payload})
+
+        case GET_EMPLOYEE + '_FULFILLED':
+            return Object.assign({}, state, {employee: action.payload})
+
+        case ASSIGN_PROJECT + '_FULFILLED':
+            return Object.assign({}, state, {employee_projects: action.payload})
+
+        case ASSIGN_PHASE + '_FULFILLED':
+            return Object.assign({}, state, {employee_projects: action.payload})
 
         default:
         return state;

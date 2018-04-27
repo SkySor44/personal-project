@@ -88,6 +88,15 @@ app.post('/finishprofile', function(req, res, next){
     
 })
 
+app.post('/finish_employee', function(req, res, next){
+    const {company, role, id, supervisor} = req.body;
+    const db = app.get('db')
+
+    db.finish_employee([company, role, supervisor, id]).then( user => {
+        res.status(200).send(user)
+    }).catch( () => res.status(500).send())
+})
+
 app.get('/userprojects', function(req, res, next){
     const db = app.get('db');
     db.get_user_projects([req.user.id]).then( projects => {
@@ -219,5 +228,40 @@ app.post('/get_employees', function(req, res, next){
     }).catch( () => res.status(500).send())
 })
 
+app.post('/get_employee_projects', function(req, res, next){
+    const {employee_id} = req.body;
+    const db = app.get('db');
+    db.get_employee_projects([employee_id]).then( projects => {
+        res.status(200).send(projects)
+    }).catch( () => res.status(500).send())
+})
+
+app.post('/get_employee', function(req, res, next){
+    const {employee_id} = req.body;
+    const db = app.get('db');
+    db.get_employee([employee_id]).then( employee => {
+        res.status(200).send(employee[0])
+    }).catch( () => res.status(500).send())
+})
+
+app.post('/assign_project', function(req, res, next){
+    const {employee_id, project_id} = req.body;
+    const {db} = app.get('db');
+    db.assign_project([project_id, employee_id]).then( () => {
+        db.get_employee_projects([employee_id]).then( projects => {
+            res.status(200).send(projects)
+        }).catch( () => res.status(500).send())
+    })
+})
+
+app.post('/assign_phase', function(req, res, next){
+    const {employee_id, phase_id} = req.body;
+    const {db} = app.get('db');
+    db.assign_phase([employee_id, phase_id]).then( () => {
+        db.get_employee_projects([employee_id]).then( projects => {
+            res.status(200).send(projects)
+        }).catch(() => res.status(500).send())
+    })
+})
 
 app.listen(SERVER_PORT, () => console.log(`I'm listening on port ${SERVER_PORT}`));

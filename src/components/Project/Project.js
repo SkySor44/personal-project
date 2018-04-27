@@ -277,8 +277,7 @@ var complete =0;
 })
 
 
-var percentage = complete / (total- 1) * 100;
-percentage = percentage.toFixed(2);
+var percentage = Math.round(complete / (total- 1) * 100);
        var progression = this.props.progress.map( (value, i) => {
           return(
             <div key = {i}>

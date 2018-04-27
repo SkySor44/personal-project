@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {getEmployees} from '../../ducks/reducer';
 import Nav from '../Nav/Nav';
+import {Link} from 'react-router-dom';
 
 class Employees extends Component {
     constructor(props) {
@@ -12,14 +13,16 @@ class Employees extends Component {
     }
 
     componentDidMount(){
-        this.props.getEmployees(this.props.user.id)
+        this.props.getEmployees(this.props.user.id);
     }
 
     render() { 
         var renders = this.props.employees.map((value, i) => {
             return (
                 <div key = {i}>
-                    <h1>{value.displayname}</h1>
+                    <h2>{value.displayname}</h2>
+                    <h4>{value.company}</h4>
+                    <Link to = {`/employee/${value.id}`}><button>View/Add Assigned Projects</button></Link>
                 </div>
             )
         })
@@ -36,7 +39,8 @@ class Employees extends Component {
 function mapStateToProps(state){
     return {
         employees: state.employees,
-        user: state.user
+        user: state.user,
+        projects: state.projects
     }
 }
 export default connect(mapStateToProps, {getEmployees})(Employees);
