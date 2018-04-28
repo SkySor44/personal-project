@@ -1,11 +1,86 @@
 .nav-bar {
     display: flex;
-    justify-content: space-evenly;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
+    width: 100%;
+}
+
+.nav-bar-open {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+}
+
+.open-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
 }
 
 .logo-menu {
-    height: 20px;
-    width: auto;
+   width: 170px;
+   margin: 20px;
+}
+
+.menu-bars {
+    color: white;
+    font-size: 20px;
+    margin: 20px;
+}
+
+nav {
+    margin: 20px;
+    
+}
+
+
+
+.invisible {
+    color: #222629;
+    margin: 20px;
+    font-size: 20px;
+}
+
+.invisible-btn {
     background: #222629;
+    border: none;
+}
+
+.invisible-btn:focus {
+    outline: 0
+}
+
+.links {
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    flex-direction: column;
+    margin-top: -40px;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.link {
+    color: white;
+    text-decoration: none;
+    
+}
+
+.link-contain {
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 2px solid #e9ba00;
+}
+.nav-2 {
+    display: flex;
+    justify-content: space-around;
 }

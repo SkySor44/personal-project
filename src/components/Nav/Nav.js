@@ -2,21 +2,29 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import './Nav.css'
-import Logo from '../Login/Job-Oversight-logo.png'
+import Logo from './Job-Oversight-logo-2.png'
+import FaBars from 'react-icons/lib/fa/bars'
 
 
 class Nav extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-
+            open: false
          }
     }
+
+    toggle_menu(){
+        this.setState({
+            open: !this.state.open
+        })
+    }
+
     render() { 
 
-     var renders =   this.props.user.role === 'employee' ? 
-    <div className = 'nav-bar'>
-        <img className = 'logo-menu' src = {require("/Users/skylersorensen/src/personal-project/personal-project/src/components/Login/Job-Oversight-logo.png")} alt = 'img'/>
+     var renders =   this.props.user.role === 'employee' && this.state.open === true ? 
+    <div className = 'nav-bar-open'>
+        <img className = 'logo-menu' src = {Logo} alt = 'img'/>
         <nav>
             <ul className = 'links'>
                 <Link to = {`/home/${this.props.user.role}`}>Home</Link>
@@ -24,20 +32,50 @@ class Nav extends Component {
                 <a href = 'http://localhost:3006/logout'>Logout</a>
             </ul>
         </nav>
-    </div> :
-    <div className = 'nav-bar'>
-        <img alt = 'logo'/>
-        <nav>
+    </div> 
+    : this.props.user.role === 'admin' && this.state.open === true ?
+    <div className = 'nav-bar-open'>
+        <div className = 'open-menu'>
+            <FaBars className = 'invisible'/>
+            <img className = 'logo-menu' src = {Logo} alt = 'img'/>
+            <button className = 'invisible-btn' onClick = {() => this.toggle_menu()}><FaBars className = 'menu-bars'/></button>
+        </div>
+        
+        <nav className = 'nav-2'>
             <ul className = 'links'>
-                <Link to = {`/home/${this.props.user.role}`}>Home</Link>
-                <Link to = '/projects'>Projects</Link>
-                <Link to = '/employees'>Employees</Link>
-                <a href = 'http://localhost:3006/logout'>Logout</a>
+                <div className = 'link-contain'>
+                    <Link className = 'link' to = {`/home/${this.props.user.role}`}><p>Home</p></Link>
+                </div>
+                <div className = 'link-contain'>
+                    <Link className = 'link' to = '/projects'><p>Projects</p></Link>
+                </div>
+                <div className = 'link-contain'>
+                    <Link className = 'link' to = '/employees'><p>Employees</p></Link>
+                </div>
+                <div className = 'link-contain'>
+                    <a className = 'link' href = 'http://localhost:3006/logout'>Logout</a>
+                </div>
+                
             </ul>
         </nav>
-    </div>
+    </div> 
+    : this.props.user.role === 'employee' && this.state.open === false ?
+    <div className = 'nav-bar'>
+        <FaBars className = 'invisible'/>
+        <img className = 'logo-menu' src = {Logo} alt = 'img'/>
+        <nav>
+            <button className = 'invisible-btn' onClick = {() => this.toggle_menu()}><FaBars className = 'menu-bars'/></button>
+        </nav> 
+    </div> : this.props.user.role === 'admin' && this.state.open === false ?
+    <div className = 'nav-bar'>
+        <FaBars className = 'invisible'/>
+        <img className = 'logo-menu' src = {Logo} alt = 'img'/>
+        <nav>
+            <button className = 'invisible-btn' onClick = {() => this.toggle_menu()}><FaBars className = 'menu-bars'/></button>
+        </nav> 
+    </div> : null
         return ( 
-            <div className = 'nav-bar'>
+            <div className = 'nav-bar-1 '>
                 {renders}
             </div>
          )
