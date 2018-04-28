@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css?family=Gugi');
+
+.outer-login {
+    background: #222629;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo {
+    height: 110px;
+    width: auto;
+    margin-top: calc(50vh - 100px);
+}
+
+.login-btn {
+    background: transparent;
+    border: 2px solid #e9ba00;
+    border-radius: 3px;
+    color: #e9ba00;
+    font-family: 'Gugi', cursive;
+    padding: 10px 20px;
+    font-size: 17px;
+    margin: 30px;
+    
+}
+
+.login-btn:hover {
+    background: #e9ba00;
+    color: #222629;
+
+
+}
+
+.login-btn:focus {
+    outline: 0;
+}

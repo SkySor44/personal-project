@@ -10,7 +10,6 @@ class Employee extends Component {
             page: 'profile',
             phases: [],
          }
-         this.componentDidMount = this.componentDidMount.bind(this)
     }
 
     componentDidMount(){
@@ -40,7 +39,6 @@ class Employee extends Component {
             page: 'profile',
             phases: []
         })
-        this.componentDidMount()
     }
 
     render() { 

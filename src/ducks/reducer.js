@@ -34,8 +34,8 @@ const ASSIGN_PHASE = 'ASSIGN_PHASE';
 
 export function assignProject(employee_id, project_id){
     let assignProjBod = {
-        employee_id: employee_id,
-        phase_id: project_id
+       project_id: project_id,
+       employee_id: employee_id
     }
 
    let assignProjAnswer = axios.post('http://localhost:3006/assign_project', assignProjBod).then(res => {
@@ -54,7 +54,7 @@ export function assignPhase(employee_id, phase_id){
         phase_id: phase_id
     }
 
-    let assignPhaseAnswer = axios.post('http://localhost:3006/assign_phase', assignPhaseBod).then( res => {
+    let assignPhaseAnswer = axios.put('http://localhost:3006/assign_phase', assignPhaseBod).then( res => {
         return res.data
     })
 

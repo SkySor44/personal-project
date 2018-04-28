@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import './Nav.css'
+import Logo from '../Login/Job-Oversight-logo.png'
 
 
 class Nav extends Component {
@@ -14,7 +16,7 @@ class Nav extends Component {
 
      var renders =   this.props.user.role === 'employee' ? 
     <div className = 'nav-bar'>
-        <img alt = 'logo'/>
+        <img className = 'logo-menu' src = {require("/Users/skylersorensen/src/personal-project/personal-project/src/components/Login/Job-Oversight-logo.png")} alt = 'img'/>
         <nav>
             <ul className = 'links'>
                 <Link to = {`/home/${this.props.user.role}`}>Home</Link>
@@ -35,7 +37,7 @@ class Nav extends Component {
         </nav>
     </div>
         return ( 
-            <div>
+            <div className = 'nav-bar'>
                 {renders}
             </div>
          )

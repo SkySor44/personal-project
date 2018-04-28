@@ -20,9 +20,7 @@ const {
     CALLBACK_URL
 } = process.env;
 
-massive(CONNECTION_STRING).then(db => {
-    app.set('db', db);
-})
+
 app.use(cors());
 app.use(bodyParser.json());
 app.use(session({
@@ -246,6 +244,7 @@ app.post('/get_employee', function(req, res, next){
 
 app.post('/assign_project', function(req, res, next){
     const {employee_id, project_id} = req.body;
+    console.log(employee_id, project_id)
     const {db} = app.get('db');
     db.assign_project([project_id, employee_id]).then( () => {
         db.get_employee_projects([employee_id]).then( projects => {
@@ -254,7 +253,7 @@ app.post('/assign_project', function(req, res, next){
     })
 })
 
-app.post('/assign_phase', function(req, res, next){
+app.put('/assign_phase', function(req, res, next){
     const {employee_id, phase_id} = req.body;
     const {db} = app.get('db');
     db.assign_phase([employee_id, phase_id]).then( () => {
@@ -264,4 +263,7 @@ app.post('/assign_phase', function(req, res, next){
     })
 })
 
-app.listen(SERVER_PORT, () => console.log(`I'm listening on port ${SERVER_PORT}`));
+massive(CONNECTION_STRING).then(db => {
+    app.set('db', db);
+    app.listen(SERVER_PORT, () => console.log(`I'm listening on port ${SERVER_PORT}`));
+})
