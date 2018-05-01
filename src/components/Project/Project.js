@@ -4,6 +4,11 @@ import {getProject, getUser2, getProgress, deleteProgress, newLog, updateLog, ge
 import Nav from '../Nav/Nav';
 import './Project.css';
 import FillHouse from './FillHouse';
+import {Link} from 'react-router-dom';
+import IoAndroidCheckboxOutline from 'react-icons/lib/io/android-checkbox-outline';
+import FaCaretSquareODown from 'react-icons/lib/fa/caret-square-o-down';
+import FaEdit from 'react-icons/lib/fa/edit';
+import FaTrashO from 'react-icons/lib/fa/trash-o'
 
 class Project extends Component {
     constructor(props) {
@@ -180,10 +185,14 @@ class Project extends Component {
                                 //EMPLOYEE: SHOW DROPDOWN BUT NOT FINISHED PHASE//
 
             value.show_dropdown && value.done === false  && this.props.user.role === 'employee'? <div className = 'phase-not-done phase-dropdown' key = {i}>
-            <label>{i +1}.{value.phase_name}</label>
+            <div className = 'check-div'>
+                <label>{i +1}.{value.phase_name}</label>
+                <div>
+                    <button onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}><IoAndroidCheckboxOutline className = 'check'/></button>
+                    <button onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}><FaCaretSquareODown className = 'dropdown-open'/></button>
+                </div>
+            </div>
             <p>Due: {value.due_date}</p>
-            <button onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}>Dropdown Toggle</button>
-            <button onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}>Mark as complete</button>
             <label>Assigned To Phase: {value.assigned_employee_id !== 17 ? value.displayname : <p>No Assignment Made</p>}</label>
             <label>{value.assigned_employee_id !== 17 ? <p>With: {value.company}</p> : <p></p>}</label>
             <p>Description: {value.description}</p>
@@ -192,10 +201,14 @@ class Project extends Component {
                                 //EMPLOYEE: SHOW DROPDOWN AND FINSIHED PHASE//
 
        : value.show_dropdown && value.done  && this.props.user.role === 'employee' ? <div className = 'phase-done phase-dropdown' key = {i}>
-            <label>{i +1}.{value.phase_name}</label>
+            <div className = 'check-div'>
+                <label>{i +1}.{value.phase_name}</label>
+                <div>
+                    <button onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}><IoAndroidCheckboxOutline className = 'check-done'/></button>
+                    <button onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}><FaCaretSquareODown className = 'dropdown-open'/></button>
+                </div>
+            </div>
             <p>Due: {value.due_date}</p>
-            <button onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}>Dropdown Toggle</button>
-            <button onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}>Mark as Incomplete</button>
             <label>Assigned To Phase: {value.assigned_employee_id !== 17 ? value.displayname : <p>No Assignment Made</p>}</label>
             <label>{value.assigned_employee_id !== 17 ? <p>With: {value.company}</p> : <p></p>}</label>
             <p>Description: {value.description}</p>
@@ -205,68 +218,93 @@ class Project extends Component {
 
        : value.show_dropdown === false && value.done === false  && this.props.user.role === 'employee'?
        <div className = 'phase-not-done phase-no-dropdown' key = {i}>
-            <label>{i +1}.{value.phase_name}</label>
-            <p>Due: {value.due_date}</p>
-            <button onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}>Dropdown Toggle</button>
-            <button onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}>Mark as complete</button>
+            <div className = 'check-div'>
+                <label>{i +1}.{value.phase_name}</label>
+                <div>
+                    <button onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}><IoAndroidCheckboxOutline className = 'check'/></button>
+                    <button onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}><FaCaretSquareODown className = 'dropdown'/></button>
+                </div>
+            </div>
+           
+            <p>Due: {value.due_date}</p>            
        </div>
        
                                 //EMPLOYEE: NOT SHOWING DROPDOWN AND FINISHED PHASE//
 
        : value.show_dropdown === false && value.done === true && this.props.user.role === 'employee' ?
        <div className = 'phase-done  phase-no-dropdown' key = {i}>
-            <label>{i +1}.{value.phase_name}</label>
+            <div className = 'check-div'>
+                <label>{i +1}.{value.phase_name}</label>
+                <div>
+                    <button onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}><IoAndroidCheckboxOutline className = 'check-done'/></button>
+                    <button onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}><FaCaretSquareODown className = 'dropdown'/></button>
+                </div>
+            </div>
             <p>Due: {value.due_date}</p>
-            <button onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}>Dropdown Toggle</button>
-            <button onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}>Mark as Incomplete</button>
         </div> 
         :                          //ADMIN: SHOW DROPDOWN BUT NOT FINISHED PHASE//
 
         value.show_dropdown && value.done === false && this.props.user.role === 'admin' ? 
     <div className = 'phase-not-done phase-dropdown' key = {i}>
-        <label>{i +1}.{value.phase_name}</label>
+        <div className = 'check-div'>
+            <label>{i +1}.{value.phase_name}</label>
+            <div>
+                <button onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}><IoAndroidCheckboxOutline className = 'check'/></button>
+                <button onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}><FaCaretSquareODown className = 'dropdown-open'/></button>
+            </div>
+        </div>
         <p>Due: {value.due_date}</p>
-        <button onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}>Dropdown Toggle</button>
-        <button onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}>Mark as complete</button>
         <label>Assigned To Phase: {value.assigned_employee_id !== 17 ? value.displayname : <button>Go To Employees To Assign</button>}</label>
         <label>{value.assigned_employee_id !== 17 ? <p>With: {value.company}</p> : <p></p>}</label>
         <p>Description: {value.description}</p>
-        <button onClick = {() => this.updateToPhaseUpdate(value.phase_name, value.due_date, value.description, value.id)}>Update Phase</button>
-        <button onClick = {() => this.props.deletePhase(value.id, this.props.match.params.id)}>Delete Phase</button>
+        <button onClick = {() => this.updateToPhaseUpdate(value.phase_name, value.due_date, value.description, value.id)}><FaEdit className = 'edit-btn'/></button>
+        <button onClick = {() => this.props.deletePhase(value.id, this.props.match.params.id)}><FaTrashO className = 'trash'/></button>
    </div> 
 
                             //ADMIN: SHOW DROPDOWN AND FINSIHED PHASE//
 
    : value.show_dropdown && value.done && this.props.user.role === 'admin' ? 
    <div className = 'phase-done phase-dropdown' key = {i}>
-        <label>{i +1}.{value.phase_name} </label>
+        <div className = 'check-div'>
+                <label>{i +1}.{value.phase_name}</label>
+                <div>
+                    <button onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}><IoAndroidCheckboxOutline className = 'check-done'/></button>
+                    <button onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}><FaCaretSquareODown className = 'dropdown-open'/></button>
+                </div>
+            </div>
         <p>Due: {value.due_date} </p>
-        <button onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}>Dropdown Toggle</button>
-        <button onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}>Mark as Incomplete</button>
         <label>Assigned To Phase: {value.assigned_employee_id !== 17 ? value.displayname : <button>Go To Employees To Assign</button>} </label>
         <label>{value.assigned_employee_id !== 17 ? <p>With: {value.company}</p> : <p></p>}</label>
         <p>Description: {value.description}</p>
-        <button onClick = {() => this.props.deletePhase(value.id, this.props.match.params.id)}>Delete Phase</button>
+        <button onClick = {() => this.props.deletePhase(value.id, this.props.match.params.id)}><FaTrashO className = 'trash' /></button>
    </div>
 
                             //ADMIN: NOT SHOWING DROPDOWN AND NOT FINISHED PHASE//
 
    : value.show_dropdown === false && value.done === false && this.props.user.role === 'admin' ?
    <div className = 'phase-not-done phase-no-dropdown' key = {i}>
-        <label>{i +1}.{value.phase_name}</label>
+        <div className = 'check-div'>
+            <label>{i +1}.{value.phase_name}</label>
+            <div>
+                <button onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}><IoAndroidCheckboxOutline className = 'check'/></button>
+                <button onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}><FaCaretSquareODown className = 'dropdown'/></button>
+            </div>
+        </div>
         <p>Due: {value.due_date}</p>
-        <button onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}>Dropdown Toggle</button>
-        <button onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}>Mark as complete</button>
    </div>
    
                             //ADMIN: NOT SHOWING DROPDOWN AND FINISHED PHASE//
 
    : value.show_dropdown === false && value.done === true && this.props.user.role === 'admin' ?
    <div className = 'phase-done  phase-no-dropdown' key = {i}>
-        <label>{i +1}.{value.phase_name}</label>
+       <div className = 'check-div'>
+                <label>{i +1}.{value.phase_name}</label>
+                <div>
+                    <button onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}><IoAndroidCheckboxOutline className = 'check-done'/></button>
+                    <button onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}><FaCaretSquareODown className = 'dropdown'/></button>
+                </div>
+            </div>
         <p>Due: {value.due_date}</p>
-        <button onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}>Dropdown Toggle</button>
-        <button onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}>Mark as Incomplete</button>
     </div> : null
         )   
         })
@@ -281,12 +319,14 @@ var complete =0;
 var percentage = Math.round(complete / (total- 1) * 100);
        var progression = this.props.progress.map( (value, i) => {
           return(
-            <div key = {i}>
-                <p>{value.content}</p>
-                <p>{value.time_stamp}</p>
-                <h6>{value.displayname}</h6>
-                <button onClick = {() => this.props.deleteProgress(value.id, value.project_id)}>Delete</button>
-                <button onClick = {() => this.updateToEdit(value.id, value.content, value.time_stamp, value.displayname)}>Edit Content</button>
+            <div classname = 'progression-contain' key = {i}>
+                <p className = 'content'>{value.content}</p>
+                <p className = 'time-stamp'>{value.time_stamp}</p>
+                <div className = 'log-btns'>
+                    <h6 className = 'name' >- {value.displayname}</h6>
+                    <button onClick = {() => this.props.deleteProgress(value.id, value.project_id)}><FaTrashO className = 'trash'/></button>
+                    <button onClick = {() => this.updateToEdit(value.id, value.content, value.time_stamp, value.displayname)}><FaEdit className = 'edit-btn'/></button>
+                </div>
             </div> 
           )
           
@@ -297,6 +337,7 @@ var percentage = Math.round(complete / (total- 1) * 100);
         <div>
             <Nav />
             <div className = 'phases-contain'>
+                <Link to = '/projects'><button>Back</button></Link>
                 <button onClick = {() => this.updateToProgress()}>View/Update Progress</button>
                 <FillHouse percentage = {percentage}/>
                 <h1>{percentage}%</h1>
@@ -309,12 +350,18 @@ var percentage = Math.round(complete / (total- 1) * 100);
         <div>
             <Nav />
             <div className = 'phases-contain'>
-                <button onClick = {() => this.updateToProgress()}>View/Update Progress Log</button>
-                <FillHouse percentage = {percentage}/>
-                <h1>{percentage}%</h1>
+                <div className = 'phase-btns'>
+                    <Link to = '/projects'><button className = 'two-btns'>Back</button></Link>
+                    <button  className = 'two-btns' onClick = {() => this.updateToProgress()}>Project Log</button>
+                </div>
+                <div className = 'percent-contain'>
+                    <FillHouse percentage = {percentage}/>
+                    <h1 className = 'percent'>{percentage}%</h1>
+                </div>
+                
                 <h1>{this.props.project.name}</h1>
                 <h2>{this.props.project.location}</h2>
-                <button onClick = {() =>  this.updateToCreatePhase()}>Add Phase</button>
+                <button className = 'two-btns' onClick = {() =>  this.updateToCreatePhase()}>Add Phase</button>
             </div>
             
             {phases}
@@ -322,9 +369,20 @@ var percentage = Math.round(complete / (total- 1) * 100);
         this.state.page === 'progress' ?
         <div>
             <Nav />
-            <button onClick = {() => this.updateToPhases()}>View Phases</button>
-            <button onClick = {() => this.setState({page: 'newlog'})}>New Entry</button>
-            {progression}
+            <div className = 'progress-contain'>
+            <button className = 'two-btns view-phases' onClick = {() => this.updateToPhases()}>View Phases</button>
+                <div className = 'percent-contain'>
+                    <FillHouse percentage = {percentage}/>
+                    <h1 className = 'percent'>{percentage}%</h1>
+                </div>
+                
+                <h1>{this.props.project.name}</h1>
+                <h2>{this.props.project.location}</h2>
+                
+                <button className = 'two-btns' onClick = {() => this.setState({page: 'newlog'})}>New Entry</button>
+                {progression}
+            </div>
+            
         </div> : this.state.page === 'newlog' ?
         <div>
             <Nav />

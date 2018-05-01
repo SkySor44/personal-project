@@ -1,21 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Gugi');
+
 .phase-not-done {
     height: auto;
     margin: 20px;
-    background: lightgray;
+    background: #474B4F;
     opacity: 1;
     border-radius: 3px;
     padding: 10px;
-    border: 1px solid black
+    border: 1px solid #e9ba00;
+    color: white;
 }
 
 .phase-done {
     height: auto;
     margin: 20px;
-    background: lightgray;
+    background: #474B4F;
     opacity: .5;
     border-radius: 3px;
     padding: 10px;
-    border: 2px dashed black
+    border: 2px dashed #e9ba00;
+    color: white;
 }
 
 .phases-contain {
@@ -28,4 +32,136 @@
     background: #222629;
     height: auto;
     width: 100%;
+}
+
+.home-icon-2 {
+    height: 125px;
+    width: auto;
+    margin-top: 30px;
+}
+
+.phase-btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.two-btns {
+    color: #6B6E70;
+    border: 2px solid #6B6E70;
+    background: #222629;
+    border-radius: 3px;
+    margin: 0px 50px;
+}
+
+.two-btns:hover {
+    color: #222629;
+    background: #6B6E70;
+}
+
+.percent-contain {
+    display: flex;
+    align-items: center;
+}
+
+.percent {
+    position: absolute;
+    margin-left: 50px;
+    color: white;
+}
+
+.phases-contain h1 {
+    color: white;
+}
+
+.phases-contain h2 {
+    color: #6B6E70;
+}
+
+.check {
+    color: lightgray;
+    font-size: 20px;
+    width: auto;
+}
+
+
+.check-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.check-done {
+    color: #e9ba00;
+    font-size: 20px;
+    width: auto;
+}
+
+.dropdown {
+    color: lightgray;
+    font-size: 20px;
+    width: auto;
+    margin: 5px;
+    font-weight: 100;
+}
+
+.dropdown-open {
+    color: #e9ba00;
+    font-size: 20px;
+    width: auto;
+    margin: 5px;
+    font-weight: 100;
+}
+
+.edit-btn {
+    color: #00aff5;
+    font-size: 20px;
+    width: auto;
+}
+
+.trash {
+    color: rgb(201, 3, 3);
+    font-size: 20px;
+}
+
+.progress-contain {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.progress-contain h1 {
+    color: white;
+}
+
+.progress-contain h2 {
+    color: #6B6E70;
+}
+
+.view-phases {
+    margin-left: 60px;
+}
+
+.content {
+    color: white;
+}
+
+.time-stamp {
+    color: #6B6E70;
+}
+
+.name {
+    color: #e9ba00;
+}
+
+.log-btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.progression-contain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

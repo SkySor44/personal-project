@@ -24,8 +24,8 @@ class Projects extends Component {
             <div key = {i} className = 'project-contain'>
                 <img className = 'home-icon' src = {home} alt = 'home'/>
                 <Link className = 'project-link' to = {`/project/${project.project_id}`}><h1>{project.name}</h1></Link>
-                <label>Location: </label>
-                <h2>{project.location}</h2>
+                <label className = 'location'>Location: </label>
+                <h2 className = 'location'>{project.location}</h2>
             </div>
            ) 
         })

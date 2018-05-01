@@ -10,6 +10,7 @@ import seventy from './Home70.png';
 import eighty from './Home80.png';
 import ninety from './Home90.png';
 import hundred from './Home100.png';
+import './Project.css'
 
 
 
@@ -25,34 +26,34 @@ class FillHouse extends Component {
         var nearestTenth = newPercent * 10;
       var render =  nearestTenth === 10 ?
         <div>
-            <img className = 'home-icon' src = {ten} alt = 'home'/>
+            <img className = 'home-icon-2' src = {ten} alt = 'home'/>
         </div> : nearestTenth === 20 ?
         <div>
-            <img className = 'home-icon' src = {twenty} alt = 'home'/>
+            <img className = 'home-icon-2' src = {twenty} alt = 'home'/>
         </div> : nearestTenth === 30 ?
         <div>
-            <img className = 'home-icon' src = {thirty} alt = 'home'/>
+            <img className = 'home-icon-2' src = {thirty} alt = 'home'/>
         </div> : nearestTenth === 40 ?
         <div>
-            <img className = 'home-icon' src = {forty} alt = 'home'/>
+            <img className = 'home-icon-2' src = {forty} alt = 'home'/>
         </div> : nearestTenth === 50 ?
         <div>
-            <img className = 'home-icon' src = {fifty} alt = 'home'/>
+            <img className = 'home-icon-2' src = {fifty} alt = 'home'/>
         </div> : nearestTenth === 60 ?
         <div>
-            <img className = 'home-icon' src = {sixty} alt = 'home'/>
+            <img className = 'home-icon-2' src = {sixty} alt = 'home'/>
         </div> : nearestTenth === 70 ?
         <div>
-            <img className = 'home-icon' src = {seventy} alt = 'home'/>
+            <img className = 'home-icon-2' src = {seventy} alt = 'home'/>
         </div> : nearestTenth === 80 ?
         <div>
-            <img className = 'home-icon' src = {eighty} alt = 'home'/>
+            <img className = 'home-icon-2' src = {eighty} alt = 'home'/>
         </div> : nearestTenth === 90 ?
         <div>
-            <img className = 'home-icon' src = {ninety} alt = 'home'/>
+            <img className = 'home-icon-2' src = {ninety} alt = 'home'/>
         </div> : nearestTenth === 100 ?
         <div>
-            <img className = 'home-icon' src = {hundred} alt = 'home'/>
+            <img className = 'home-icon-2' src = {hundred} alt = 'home'/>
         </div> : null
 
         return ( 
