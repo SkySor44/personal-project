@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {getProject, getUser2, getProgress, deleteProgress, newLog, updateLog, getPhases, toggleDropdown, toggleDone, updatePhase, createPhase, deletePhase} from '../../ducks/reducer';
 import Nav from '../Nav/Nav';
-import './Project.css'
+import './Project.css';
+import FillHouse from './FillHouse';
 
 class Project extends Component {
     constructor(props) {
@@ -295,19 +296,27 @@ var percentage = Math.round(complete / (total- 1) * 100);
         var renders = this.state.page === 'phases' && this.props.user.role === 'employee'? 
         <div>
             <Nav />
-            <button onClick = {() => this.updateToProgress()}>View/Update Progress</button>
-            <h1>{percentage}%</h1>
-            <h1>{this.props.project.name}</h1>
-            <h2>{this.props.project.location}</h2>
+            <div className = 'phases-contain'>
+                <button onClick = {() => this.updateToProgress()}>View/Update Progress</button>
+                <FillHouse percentage = {percentage}/>
+                <h1>{percentage}%</h1>
+                <h1>{this.props.project.name}</h1>
+                <h2>{this.props.project.location}</h2>
+                <button onClick = {() =>  this.updateToCreatePhase()}>Add Phase</button>
+            </div>
             {phases}
         </div> : this.state.page === 'phases' && this.props.user.role === 'admin'? 
         <div>
             <Nav />
-            <button onClick = {() => this.updateToProgress()}>View/Update Progress</button>
-            <h1>{percentage}%</h1>
-            <h1>{this.props.project.name}</h1>
-            <h2>{this.props.project.location}</h2>
-            <button onClick = {() =>  this.updateToCreatePhase()}>Add Phase</button>
+            <div className = 'phases-contain'>
+                <button onClick = {() => this.updateToProgress()}>View/Update Progress Log</button>
+                <FillHouse percentage = {percentage}/>
+                <h1>{percentage}%</h1>
+                <h1>{this.props.project.name}</h1>
+                <h2>{this.props.project.location}</h2>
+                <button onClick = {() =>  this.updateToCreatePhase()}>Add Phase</button>
+            </div>
+            
             {phases}
         </div> : 
         this.state.page === 'progress' ?
@@ -361,7 +370,7 @@ var percentage = Math.round(complete / (total- 1) * 100);
         </div> : null
 
         return ( 
-            <div>
+            <div className = 'project-page'>
                 {renders}
             </div>
          )

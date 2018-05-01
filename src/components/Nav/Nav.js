@@ -23,21 +23,33 @@ class Nav extends Component {
     render() { 
 
      var renders =   this.props.user.role === 'employee' && this.state.open === true ? 
-    <div className = 'nav-bar-open'>
-        <img className = 'logo-menu' src = {Logo} alt = 'img'/>
-        <nav>
-            <ul className = 'links'>
-                <Link to = {`/home/${this.props.user.role}`}>Home</Link>
-                <Link to = '/projects'>Projects</Link>
-                <a href = 'http://localhost:3006/logout'>Logout</a>
-            </ul>
-        </nav>
-    </div> 
+     <div className = 'nav-bar-open'>
+     <div className = 'open-menu'>
+         <FaBars className = 'invisible'/>
+         <Link to = '/home/employee'><img className = 'logo-menu' src = {Logo} alt = 'img'/></Link>
+         <button className = 'invisible-btn' onClick = {() => this.toggle_menu()}><FaBars className = 'menu-bars'/></button>
+     </div>
+     
+     <nav className = 'nav-2'>
+         <ul className = 'links'>
+             <div className = 'link-contain'>
+                 <Link className = 'link' to = {`/home/${this.props.user.role}`}><p>Home</p></Link>
+             </div>
+             <div className = 'link-contain'>
+                 <Link className = 'link' to = '/projects'><p>Projects</p></Link>
+             </div>
+             <div className = 'link-contain'>
+                 <a className = 'link' href = 'http://localhost:3006/logout'>Logout</a>
+             </div>
+             
+         </ul>
+     </nav>
+ </div> 
     : this.props.user.role === 'admin' && this.state.open === true ?
     <div className = 'nav-bar-open'>
         <div className = 'open-menu'>
             <FaBars className = 'invisible'/>
-            <img className = 'logo-menu' src = {Logo} alt = 'img'/>
+            <Link to = '/home/admin'><img className = 'logo-menu' src = {Logo} alt = 'img'/></Link>
             <button className = 'invisible-btn' onClick = {() => this.toggle_menu()}><FaBars className = 'menu-bars'/></button>
         </div>
         
@@ -62,14 +74,14 @@ class Nav extends Component {
     : this.props.user.role === 'employee' && this.state.open === false ?
     <div className = 'nav-bar'>
         <FaBars className = 'invisible'/>
-        <img className = 'logo-menu' src = {Logo} alt = 'img'/>
+        <Link to = '/home/employee'><img className = 'logo-menu' src = {Logo} alt = 'img'/></Link>
         <nav>
             <button className = 'invisible-btn' onClick = {() => this.toggle_menu()}><FaBars className = 'menu-bars'/></button>
         </nav> 
     </div> : this.props.user.role === 'admin' && this.state.open === false ?
     <div className = 'nav-bar'>
         <FaBars className = 'invisible'/>
-        <img className = 'logo-menu' src = {Logo} alt = 'img'/>
+        <Link to = '/home/admin'><img className = 'logo-menu' src = {Logo} alt = 'img'/></Link>
         <nav>
             <button className = 'invisible-btn' onClick = {() => this.toggle_menu()}><FaBars className = 'menu-bars'/></button>
         </nav> 

@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Gugi');
+
+.home-icon {
+    height: 100px;
+    width: auto;
+    margin-top: 20px;
+}
+
+.project-contain {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border: 2px solid #474B4F;
+}
+
+.projects-header{
+    height: 200px;
+    width: 100%;
+    color: #222629;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    background: #e9ba00;
+}
+
+.projects-wrap {
+    height: auto;
+    width: 100%;
+    background: #222629;
+}
+
+.project-link {
+    text-decoration: none;
+    color: white;
+}

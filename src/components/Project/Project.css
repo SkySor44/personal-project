@@ -17,3 +17,15 @@
     padding: 10px;
     border: 2px dashed black
 }
+
+.phases-contain {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.project-page {
+    background: #222629;
+    height: auto;
+    width: 100%;
+}
