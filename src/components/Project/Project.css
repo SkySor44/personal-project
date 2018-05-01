@@ -128,14 +128,18 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
 }
 
 .progress-contain h1 {
     color: white;
+    text-align: center;
 }
 
 .progress-contain h2 {
     color: #6B6E70;
+    text-align: center;
 }
 
 .view-phases {
@@ -144,14 +148,17 @@
 
 .content {
     color: white;
+    text-align: center;
 }
 
 .time-stamp {
     color: #6B6E70;
+    text-align: center;
 }
 
 .name {
     color: #e9ba00;
+    text-align: center;
 }
 
 .log-btns {
@@ -164,4 +171,44 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.newlog-contain {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.newlog-input {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+   margin: 25px 0px 30px 15px;
+}
+
+.newlog-input input {
+    border-radius: 6px;
+    background: lightgray;
+}
+
+.log-back {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.log-back p {
+    color: #222629;
+}
+
+.newlog-contain label {
+    color: lightgray;
+    margin: 20px 0px 0px 0px;
+
 }
