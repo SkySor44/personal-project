@@ -337,13 +337,14 @@ var percentage = Math.round(complete / (total- 1) * 100);
         <div>
             <Nav />
             <div className = 'phases-contain'>
-                <Link to = '/projects'><button>Back</button></Link>
-                <button onClick = {() => this.updateToProgress()}>View/Update Progress</button>
+                <div className = 'phase-btns'>
+                    <Link to = '/projects'><button className = 'two-btns'>Back</button></Link>
+                    <button  className = 'two-btns' onClick = {() => this.updateToProgress()}>Project Log</button>
+                </div>
                 <FillHouse percentage = {percentage}/>
                 <h1>{percentage}%</h1>
                 <h1>{this.props.project.name}</h1>
                 <h2>{this.props.project.location}</h2>
-                <button onClick = {() =>  this.updateToCreatePhase()}>Add Phase</button>
             </div>
             {phases}
         </div> : this.state.page === 'phases' && this.props.user.role === 'admin'? 
