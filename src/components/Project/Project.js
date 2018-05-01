@@ -392,44 +392,75 @@ var percentage = Math.round(complete / (total- 1) * 100);
             </div>
             <label>Enter New Entry Here: </label>
             <div className= 'newlog-input'>
-                <input type = '' value = {this.state.content} onChange = {(e) => this.updateContent(e.target.value)}/>
+                <input className = 'description' type = '' value = {this.state.content} onChange = {(e) => this.updateContent(e.target.value)}/>
                 <button className = 'two-btns' onClick = {() => this.newLogFn()}>Add Entry</button>
             </div>
             {progression}
         </div> : this.state.page === 'edit' ?
         <div>
             <Nav />
-            <label>Enter Updated Content: </label>
-            <input placeholder = {this.state.currContent} onChange = {(e) => this.updateCurrContent(e.target.value)}/>
-            <p>{this.state.currTime}</p>
-            <h6>{this.state.currName}</h6>
-            <button onClick = {() => this.updateLogFn()}>Save</button>
-            <button onClick = {() => this.updateToProgress()}>Cancel</button>
+            <div className = 'newphase-contain'>
+                <div className = 'newphase-section'>
+                    <label>Enter Updated Content: </label>
+                    <input className = 'description' placeholder = {this.state.currContent} onChange = {(e) => this.updateCurrContent(e.target.value)}/>
+                </div>
+                <p>{this.state.currTime}</p>
+                <h6>- {this.state.currName}</h6>
+                <div className = 'newphase-section'>
+                    <button className = 'two-btns' onClick = {() => this.updateToProgress()}>Cancel</button>
+                    <button className = 'two-btns-2' onClick = {() => this.updateLogFn()}>Save</button>
+                </div>
+                
+            </div>
+            
         </div> 
         
         : this.state.page === 'update_phase' && this.props.user.role === 'admin' ?
         <div>
             <Nav />
-            <label>Enter New Phase Name: </label>
-            <input type = 'text' placeholder = {this.state.currPhaseName} onChange = {(e) => this.updateCurrPhaseName(e.target.value)}/> 
-            <label>Enter New Due Date (yyyy-mm-dd): </label>
-            <input type = 'text' placeholder = 'yyyy-mm-dd' onChange = {(e) => this.updateCurrPhaseDueDate(e.target.value)}/>
-            <label>Enter New Description: </label>
-            <input type = 'text' placeholder = {this.state.currPhaseDesc} onChange = {(e) => this.updateCurrPhaseDesc(e.target.value)}/>
-            <button onClick = {() =>  this.updateToPhases()}>Cancel</button>
-            <button onClick = {() => this.updatePhaseFn()}>Save</button>
+            <div className = 'newphase-contain'>
+                <div className = 'newphase-section'>
+                    <label>Enter New Phase Name: </label>
+                    <input type = 'text' placeholder = {this.state.currPhaseName} onChange = {(e) => this.updateCurrPhaseName(e.target.value)}/>
+                </div>
+                 <div className = 'newphase-section'>
+                    <label>Enter New Due Date (yyyy-mm-dd): </label>
+                    <input type = 'text' placeholder = 'yyyy-mm-dd' onChange = {(e) => this.updateCurrPhaseDueDate(e.target.value)}/>
+                 </div>
+                <div className = 'newphase-section'>
+                    <label>Enter New Description: </label>
+                    <input className = 'description' type = 'text' placeholder = {this.state.currPhaseDesc} onChange = {(e) => this.updateCurrPhaseDesc(e.target.value)}/>
+                </div>
+                <div className = 'newphase-section'>
+                    <button className = 'two-btns' onClick = {() =>  this.updateToPhases()}>Cancel</button>
+                    <button className = 'two-btns-2' onClick = {() => this.updatePhaseFn()}>Save</button>
+                </div>
+            </div>
+            
         </div> 
         : this.state.page === 'create_phase' && this.props.user.role === 'admin' ?
         <div>
             <Nav />
-            <label>Enter New Phase Name: </label>
-            <input type = 'text' onChange = {(e) => this.updateNewPhaseName(e.target.value)}/>
-            <label>Description: </label>
-            <input type = 'text' onChange = {(e) => this.updateNewPhaseDesc(e.target.value)}/>
-            <label>Due Date (yyyy-mm-dd): </label>
-            <input type = 'text' placeholder = 'yyyy-mm-dd' onChange = {(e) => this.updateNewPhaseDueDate(e.target.value)}/>
-            <button onClick = {() =>  this.updateToPhases()}>Cancel</button>
-            <button onClick = {() => this.createPhaseFn()}>Save</button>
+            <div className = 'newphase-contain'>
+                <div className = 'newphase-section'>
+                    <label>Enter New Phase Name: </label>
+                    <input type = 'text' onChange = {(e) => this.updateNewPhaseName(e.target.value)}/>
+                </div>
+                <div className = 'newphase-section'>
+                    <label>Description: </label>
+                    <input className = 'description' type = 'text' onChange = {(e) => this.updateNewPhaseDesc(e.target.value)}/>
+                </div>
+                <div className = 'newphase-section'>
+                    <label>Due Date (yyyy-mm-dd): </label>
+                    <input type = 'text' placeholder = 'yyyy-mm-dd' onChange = {(e) => this.updateNewPhaseDueDate(e.target.value)}/>
+                </div>
+                <div className = 'newphase-section'>
+                    <button className = 'two-btns' onClick = {() =>  this.updateToPhases()}>Cancel</button>
+                    <button className = 'two-btns-2' onClick = {() => this.createPhaseFn()}>Save</button>
+                </div>
+            </div>
+            
+            
         </div> : null
 
         return ( 

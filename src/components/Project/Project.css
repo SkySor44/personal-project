@@ -212,3 +212,56 @@
     margin: 20px 0px 0px 0px;
 
 }
+
+.newphase-contain {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+.newphase-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    margin: 30px 0px;
+}
+
+.newphase-section label {
+    color: lightgray;
+    margin-right: 10px;
+}
+
+.newphase-section input {
+    background: lightgray;
+    border-radius: 6px;
+}
+
+.description {
+    height: 50px;
+}
+
+.two-btns-2 {
+    color: #e9ba00;
+    border: 2px solid #e9ba00;
+    background: #222629;
+    border-radius: 3px;
+    margin: 0px 50px;
+}
+
+.two-btns-2:hover {
+    color: #222629;
+    background: #e9ba00;
+}
+
+.newphase-contain p {
+    color: #6B6E70;
+    text-align: center;
+}
+
+.newphase-contain h6 {
+    color: #e9ba00;
+    text-align: center;
+}
