@@ -32,12 +32,15 @@ class AdminHome extends Component {
                     <h2>Get Started</h2>
                     <p>Click Below to Manage Employees and Projects</p>
                 </div>
+                <div className = 'pages-div'>
                 <Link className = 'projects-div' to = '/projects'><div>
                     <h1 className = 'section-2'>Projects</h1>
                 </div></Link>
                 <Link className = 'employees-div' to = '/employees'><div>
                     <h1 className = 'section-1'>Employees</h1>
                 </div></Link>
+                </div>
+                
             </div>
          )
     }

@@ -94,3 +94,9 @@
     
 }
 
+@media(min-width: 995px) {
+    .logo-menu {
+        width: 150px;
+    }
+}
+

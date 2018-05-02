@@ -30,11 +30,14 @@ class EmployeeHome extends Component {
                 </div>
                 <div className = 'get-started'>
                     <h2>Get Started</h2>
-                    <p>Click Below to Manage Employees and Projects</p>
+                    <p>Click Below to Manage Projects</p>
                 </div>
-                <Link className = 'projects-div' to = '/projects'><div>
-                    <h1 className = 'section-2'>Projects</h1>
-                </div></Link>
+                <div className = 'employee-projects'>
+                    <Link className = 'projects-div' to = '/projects'><div>
+                        <h1 className = 'section-2'>Projects</h1>
+                    </div></Link>
+                </div>
+                
             </div>
          )
     }
