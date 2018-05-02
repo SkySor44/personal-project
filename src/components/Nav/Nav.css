@@ -96,7 +96,24 @@
 
 @media(min-width: 995px) {
     .logo-menu {
-        width: 150px;
+        width: 175px;
     }
+
+    .links {
+        flex-direction: row;
+    }
+
+    .link {
+        margin: 20px;
+    }
+    .link-contain {
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+    
+    .link-contain:hover {
+        border-bottom: 2px solid lightgray;
+    }
+
 }
 
