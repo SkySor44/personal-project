@@ -23,9 +23,12 @@ class Projects extends Component {
            return(
             <div key = {i} className = 'project-contain'>
                 <img className = 'home-icon' src = {home} alt = 'home'/>
-                <Link className = 'project-link' to = {`/project/${project.project_id}`}><h1>{project.name}</h1></Link>
-                <label className = 'location'>Location: </label>
-                <h2 className = 'location'>{project.location}</h2>
+                <div className = 'project-info'>
+                    <Link className = 'project-link' to = {`/project/${project.project_id}`}><h1>{project.name}</h1></Link>
+                    <label className = 'location'>Location: </label>
+                    <h2 className = 'location'>{project.location}</h2>
+                </div>
+                
             </div>
            ) 
         })
@@ -37,8 +40,10 @@ class Projects extends Component {
                 <div className = 'projects-header'>
                     <h1>Current Projects:</h1>
                 </div>
+                <div className = 'projects-only'>
+                    {mappedProjects}
+                </div>
                 
-                {mappedProjects}
             </div>
          )
     }

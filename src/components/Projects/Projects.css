@@ -38,3 +38,56 @@
 .location {
     color: lightgray;
 }
+
+.project-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+@media (min-width: 995px){
+    .projects-header {
+        background: url('./blueprints.jpeg');
+        background-size: cover;
+        background-position: center;
+        height: 60vh;
+        color: white;
+        font-family: 'Gugi', cursive;
+    }
+
+    .projects-header h1 {
+        font-size: 50px;
+    }
+
+    .project-contain {
+        flex-direction: row;
+        width: 45%;
+        margin: 20px 0px;
+    }
+
+    .home-icon {
+        height: 20vw;
+    }
+
+    .projects-only {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        text-align: center;
+    }
+
+    .project-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        text-align: center;
+        margin: 20px auto;
+    }
+
+    .project-link:hover {
+        color: #e9ba00;
+}
+}
