@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import Nav from '../Nav/Nav';
 import {connect} from 'react-redux';
 import {getEmployeeProjects, getEmployee, getProjects, getPhases, assignProject, assignPhase} from '../../ducks/reducer';
+import './Employee.css';
 
 class Employee extends Component {
     constructor(props) {
         super(props);
         this.state = { 
             page: 'profile',
-            phases: [],
+            phases: []
          }
     }
 
@@ -46,29 +47,29 @@ class Employee extends Component {
         var phases = this.props.phases.map( (value, i) => {
             return (
                 value.done ?
-                <div key = {i}>
+                <div key = {i} className = 'employee-contain phases-contain'>
                     <h2>{value.phase_name}</h2>
-                    <h3>{value.due_date}</h3>
+                    <h3>Due: {value.due_date}</h3>
                     <h3>Status: Complete</h3>
-                    <p>{value.description}</p>
-                    <button onClick = {() => this.assignPhase(value.id)}>Assign</button>
+                    <p>Description: {value.description}</p>
+                    <button className = 'two-btns' onClick = {() => this.assignPhase(value.id)}>Assign</button>
                 </div> : 
-                <div key = {i}>
+                <div key = {i} className = 'employee-contain phases-contain'>
                     <h2>{value.phase_name}</h2>
-                    <h3>{value.due_date}</h3>
+                    <h3>Due: {value.due_date}</h3>
                     <h3>Status: Incomplete</h3>
-                    <p>{value.description}</p>
-                    <button>Assign</button>
+                    <p>Description: {value.description}</p>
+                    <button className = 'two-btns' onClick = {() => this.assignPhase(value.id)}>Assign</button>
                 </div>
             )
         })
 
         var projects = this.props.projects.map( (value, i) => {
             return (
-                <div key = {i}>
+                <div key = {i} className = 'projects-contain'>
                     <h2>{value.name}</h2>
                     <h3>{value.location}</h3>
-                    <button onClick = {() => this.selectProject(value.project_id)}>Select</button>
+                    <button className = 'two-btns' onClick = {() => this.selectProject(value.project_id)}>Select</button>
                 </div>
             )
         })
@@ -76,8 +77,8 @@ class Employee extends Component {
         var renders = this.props.employee_projects.map( (value, i) => {
            return (
         <div key = {i}>
-            <h2>{value.name}</h2>
-            <p>{value.location}</p>
+            <h2 className = 'white'>{value.name}</h2>
+            <p className = 'gray'>{value.location}</p>
         </div>
            ) 
         })
@@ -85,20 +86,24 @@ class Employee extends Component {
         var page = this.state.page === 'profile' ? 
         <div>
             <Nav />
+            <div className = 'employee-contain'>
                 <h1>{this.props.employee.displayname}</h1>
                 <h3>{this.props.employee.company}</h3>
                 <h4>ID: {this.props.employee.id}</h4>
-                <button onClick = {() => this.startAssignment()}>Assign Work</button>
+                <button className = 'two-btns' onClick = {() => this.startAssignment()}>Assign Work</button>
+                <h2 className = 'yellow' >Current Projects: </h2>
                 {renders}
+            </div>
+                
         </div> 
         : this.state.page === 'projects' ?
-        <div>
-            <h1>Select A Project To Assign Employee To</h1>
+        <div className = 'employee-contain'>
+            <h1 className = 'projects-head'>Select Project To Assign:</h1>
             {projects}
         </div> 
         : this.state.page === 'phases' ?
-        <div>
-            <h1>Select a Phase</h1>
+        <div className = 'employee-contain'>
+            <h1 className = 'phase-head' >Select a Phase:</h1>
             {phases}
         </div> : null
         return ( 

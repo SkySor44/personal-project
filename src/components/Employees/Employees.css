@@ -1,0 +1,28 @@
+.employees-contain {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.employees-contain h2 {
+    color: white;
+}
+
+.employees-contain h4 {
+    color: #e9ba00;
+}
+
+.employees-contain button {
+    background: transparent;
+    color: #6B6E70;
+    border: 2px solid #6B6E70;
+}
+
+.employees-contain button:hover {
+    background: #6B6E70;
+    color: #222629;
+}

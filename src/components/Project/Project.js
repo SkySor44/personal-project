@@ -388,7 +388,7 @@ var percentage = Math.round(complete / (total- 1) * 100);
         <div className = 'newlog-contain'>
             <Nav />
             <div className = 'log-back'>
-                <button className = 'two-btns' onClick = {() => this.updateToPhases()}>Back</button>
+                <button className = 'two-btns' onClick = {() => this.updateToProgress()}>Back</button>
                 <p>Back</p>
             </div>
             <label>Enter New Entry Here: </label>

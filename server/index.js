@@ -249,8 +249,12 @@ app.post('/assign_project', function(req, res, next){
     db.assign_project([project_id, employee_id]).then( () => {
         db.get_employee_projects([employee_id]).then( projects => {
             res.status(200).send(projects)
-        }).catch( () => res.status(500).send())
-    })
+        }).catch( (err) => {
+            console.log(err);
+            res.status(500).send(err)
+        }
+    )
+})
 })
 
 app.put('/assign_phase', function(req, res, next){
@@ -259,8 +263,12 @@ app.put('/assign_phase', function(req, res, next){
     db.assign_phase([employee_id, phase_id]).then( () => {
         db.get_employee_projects([employee_id]).then( projects => {
             res.status(200).send(projects)
-        }).catch(() => res.status(500).send())
-    })
+        }).catch((err) => {
+            console.log(err);
+        res.status(500).send(err)
+        }
+    )
+})
 })
 
 massive(CONNECTION_STRING).then(db => {

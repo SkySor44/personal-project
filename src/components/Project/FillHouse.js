@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import home from '../Projects/Home-yello.png';
 import ten from './Home10.png';
 import twenty from './Home20.png';
 import thirty from './Home30.png';
