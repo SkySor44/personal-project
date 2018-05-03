@@ -39,6 +39,16 @@
     color: #222629;
 }
 
+.person {
+    color: #e9ba00;
+    font-size: 100px;
+}
+
+.employees-contain {
+    border-bottom: 2px solid #6B6E70;
+    padding: 10px 0px;
+}
+
 @media (min-width: 995px){
     .employees-header {
         background: url('./crop-construction-workers.jpg');
@@ -68,8 +78,5 @@
         padding: 10px;
     }
 
-    .person {
-        color: #e9ba00;
-        font-size: 100px;
-    }
+    
 }
