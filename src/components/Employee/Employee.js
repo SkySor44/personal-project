@@ -3,6 +3,8 @@ import Nav from '../Nav/Nav';
 import {connect} from 'react-redux';
 import {getEmployeeProjects, getEmployee, getProjects, getPhases, assignProject, assignPhase} from '../../ducks/reducer';
 import './Employee.css';
+import IoAndroidPerson from 'react-icons/lib/io/android-person';
+import {Link} from 'react-router-dom';
 
 class Employee extends Component {
     constructor(props) {
@@ -77,7 +79,7 @@ class Employee extends Component {
         var renders = this.props.employee_projects.map( (value, i) => {
            return (
         <div key = {i}>
-            <h2 className = 'white'>{value.name}</h2>
+            <Link className = 'my-link' to = {`/project/${value.id}`}><h2 className = 'white'>{value.name}</h2></Link>
             <p className = 'gray'>{value.location}</p>
         </div>
            ) 
@@ -86,15 +88,32 @@ class Employee extends Component {
         var page = this.state.page === 'profile' ? 
         <div>
             <Nav />
-            <div className = 'employee-contain'>
-                <h1>{this.props.employee.displayname}</h1>
-                <h3>{this.props.employee.company}</h3>
-                <h4>ID: {this.props.employee.id}</h4>
-                <button className = 'two-btns' onClick = {() => this.startAssignment()}>Assign Work</button>
-                <h2 className = 'yellow' >Current Projects: </h2>
-                {renders}
+            <div className = 'log-back'>
+                <Link to = '/employees'><button className = 'two-btns'>Back</button></Link>
+                <p>Back</p>
+            </div>
+            <div className = 'employee-control'>
+            <div>
+                <div className = 'icon-div'>
+                    <IoAndroidPerson className = 'person-icon'/>
+                </div>
+                <div className = 'employee-contain'>
+                    <h1>{this.props.employee.displayname}</h1>
+                    <h3>{this.props.employee.company}</h3>
+                    <h4>ID: {this.props.employee.id}</h4>
+                    <button className = 'two-btns' onClick = {() => this.startAssignment()}>Assign Work</button>
+                    
+                </div>
             </div>
                 
+            </div>
+            <div className = 'employee-project-list'>
+                <h2 className = 'yellow' >Current Projects: </h2>
+                <div className = 'projects-list'>
+                    {renders}
+                </div>
+            </div>
+            
         </div> 
         : this.state.page === 'projects' ?
         <div className = 'employee-contain'>

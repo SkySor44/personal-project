@@ -57,3 +57,62 @@
 .employee-contain .gray {
     color: #6B6E70;
 }
+
+.my-link {
+    text-decoration: none;
+}
+
+.person-icon {
+    font-size: 100px;
+    color: #e9ba00;
+}
+
+.icon-div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+.employee-project-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+    margin: 20px 10px;
+}
+
+.yellow {
+    color: white;
+}
+
+.gray {
+    color: #6B6E70;
+}
+
+@media (min-width: 995px) {
+    .employee-control {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        text-align: center;
+    }
+
+    .person-icon {
+        font-size: 200px;
+        color: #e9ba00;
+    }
+
+    .icon-div {
+        border: 2px solid #6B6E70;
+    }
+
+    .projects-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        text-align: center;
+    }
+
+}
