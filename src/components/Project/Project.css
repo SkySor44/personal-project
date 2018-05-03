@@ -266,9 +266,20 @@
     text-align: center;
 }
 
+.phases-text {
+    text-align: center;
+    color: lightgray;
+}
+
 @media (min-width: 995px) {
     .home-icon-2 {
         height: 250px;
+    }
+
+    .btn-toggles {
+        background: none;
+        border: none;
+        outline: none;
     }
 
     .percent {
@@ -279,11 +290,6 @@
 
     .phase-btns {
         width: 100%;
-    }
-
-    .phases-text {
-        text-align: center;
-        color: lightgray;
     }
 
     .progression-control {
@@ -304,7 +310,7 @@
     }
 
      .trash, .edit-btn, .progression-contain button {
-        background: #222629;
+        background: none;
         margin: 0px 10px;
         padding: 0px;
         border: none;
