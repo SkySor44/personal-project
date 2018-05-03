@@ -319,7 +319,7 @@ var complete =0;
 var percentage = Math.round(complete / (total- 1) * 100);
        var progression = this.props.progress.map( (value, i) => {
           return(
-            <div classname = 'progression-contain' key = {i}>
+            <div className = 'progression-contain' key = {i}>
                 <p className = 'content'>{value.content}</p>
                 <p className = 'time-stamp'>{value.time_stamp}</p>
                 <div className = 'log-btns'>
@@ -346,6 +346,7 @@ var percentage = Math.round(complete / (total- 1) * 100);
                 <h1>{this.props.project.name}</h1>
                 <h2>{this.props.project.location}</h2>
             </div>
+            <h1 className = 'phases-text'>Phases: </h1>
             {phases}
         </div> : this.state.page === 'phases' && this.props.user.role === 'admin'? 
         <div>
@@ -364,7 +365,7 @@ var percentage = Math.round(complete / (total- 1) * 100);
                 <h2>{this.props.project.location}</h2>
                 <button className = 'two-btns' onClick = {() =>  this.updateToCreatePhase()}>Add Phase</button>
             </div>
-            
+            <h1 className = 'phases-text'>Phases: </h1>
             {phases}
         </div> : 
         this.state.page === 'progress' ?
@@ -381,7 +382,9 @@ var percentage = Math.round(complete / (total- 1) * 100);
                 <h2>{this.props.project.location}</h2>
                 
                 <button className = 'two-btns' onClick = {() => this.setState({page: 'newlog'})}>New Entry</button>
-                {progression}
+                <div className = 'progression-control'>
+                    {progression}
+                </div>
             </div>
             
         </div> : this.state.page === 'newlog' ?
@@ -396,7 +399,9 @@ var percentage = Math.round(complete / (total- 1) * 100);
                 <input className = 'description' type = '' value = {this.state.content} onChange = {(e) => this.updateContent(e.target.value)}/>
                 <button className = 'two-btns' onClick = {() => this.newLogFn()}>Add Entry</button>
             </div>
-            {progression}
+            <div className = 'progression-control'>
+                {progression}
+            </div>
         </div> : this.state.page === 'edit' ?
         <div>
             <Nav />
