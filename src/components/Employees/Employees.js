@@ -3,7 +3,8 @@ import {connect} from 'react-redux';
 import {getEmployees} from '../../ducks/reducer';
 import Nav from '../Nav/Nav';
 import {Link} from 'react-router-dom';
-import './Employees.css'
+import './Employees.css';
+import IoAndroidPerson from 'react-icons/lib/io/android-person';
 
 class Employees extends Component {
     constructor(props) {
@@ -21,16 +22,25 @@ class Employees extends Component {
         var renders = this.props.employees.map((value, i) => {
             return (
                 <div className = 'employees-contain' key = {i}>
-                    <h2>{value.displayname}</h2>
-                    <h4>{value.company}</h4>
-                    <Link to = {`/employee/${value.id}`}><button>View Projects</button></Link>
+                    <IoAndroidPerson className = 'person'/>
+                    <div className = 'person-info'>
+                        <h2>{value.displayname}</h2>
+                        <h4>{value.company}</h4>
+                        <Link to = {`/employee/${value.id}`}><button>View Projects</button></Link>
+                    </div>
+                    
                 </div>
             )
         })
         return ( 
             <div>
                 <Nav />
-                {renders}
+                <div className = 'employees-header'>
+                    <h1>My Employees: </h1>
+                </div>
+                <div className = 'employees-control'>
+                    {renders}
+                </div>
             </div>
          )
     }

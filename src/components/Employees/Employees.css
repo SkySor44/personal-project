@@ -8,6 +8,18 @@
     flex-direction: column;
 }
 
+.employees-header {
+        height: 200px;
+        width: 100%;
+        color: #222629;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        text-align: center;
+        background: #e9ba00;
+    
+}
+
 .employees-contain h2 {
     color: white;
 }
@@ -25,4 +37,39 @@
 .employees-contain button:hover {
     background: #6B6E70;
     color: #222629;
+}
+
+@media (min-width: 995px){
+    .employees-header {
+        background: url('./crop-construction-workers.jpg');
+        background-size: cover;
+        background-position: center;
+        color: white;
+        font-family: 'Gugi', cursive;
+        height: 60vh;
+    }
+
+    .employees-header h1 {
+        font-size: 50px;
+    }
+
+    .employees-control {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        text-align: center;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    .employees-contain {
+        border: 2px solid #6B6E70;
+        margin: 20px;
+        padding: 10px;
+    }
+
+    .person {
+        color: #e9ba00;
+        font-size: 100px;
+    }
 }
