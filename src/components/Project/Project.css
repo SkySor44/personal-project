@@ -42,9 +42,10 @@
 
 .phase-btns {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
+
 
 .two-btns {
     color: #6B6E70;
@@ -292,7 +293,7 @@
     height: auto;
     min-height: 50vh;
     overflow: auto;
-    width: 70%;
+    width: 80%;
     border-radius: 6px;
     background: lightgray;
     border: 2px solid #e9ba00;
@@ -302,15 +303,26 @@
 
 .new-message {
     margin: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    align-content: center;
 }
 
 .new-message input {
     border-radius: 6px;
     background: lightgray;
+    margin-left: 40px;
 }
 
 .new-message input:focus {
     outline-color: #e9ba00;
+    
+}
+
+.new-message button {
+    margin-top: 20px;
 }
 
 .myMessages {
@@ -323,18 +335,24 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
+    text-align: center;
 }
 
-.myMessages p, h3 {
-    margin: 0px;
+.myMessages .message-title, h3 {
+    margin: 0px 10px;
 }
 
-.messages p, h3 {
-    margin: 0px;
+.messages .message-title, h3 {
+    margin: 0px 10px 0px 10px;
+}
+
+.message-title p {
+    margin: 5px;
 }
 
 .messages {
-    background: #ff7b00;
+    background: #474B4F;
     height: auto;
     width: 50%;
     margin: 20px auto 20px 10px;
@@ -343,23 +361,27 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
+    text-align: center;
 }
 
 .message-title {
     display: flex;
     justify-content: space-around;
-
+    flex-direction: column;
 }
 
-.myMessages h3 {
-    margin-left: 10px;
-}
-
-.messages h3 {
-    margin-left: 10px;
-}
 
 @media (min-width: 995px) {
+
+    .myMessages {
+        width: 30%;
+    }
+
+    .messages {
+        width: 30%;
+    }
+
     .home-icon-2 {
         height: 250px;
     }

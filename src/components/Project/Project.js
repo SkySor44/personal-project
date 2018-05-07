@@ -248,17 +248,17 @@ class Project extends Component {
            return e.user_id === this.props.user.id ?
             <div className = 'myMessages'>
                 <div className = 'message-title'>
-                    <p>{e.displayname}</p>
+                    <h3>{e.displayname}</h3>
                     <p>{e.time_stamp}</p>
                 </div>
-                <h3>{e.message}</h3>
+                <p>{e.message}</p>
             </div> :
             <div className = 'messages' key = {i}>
                 <div className = 'message-title'>
-                    <p>{e.displayname}</p>
+                    <h3>{e.displayname}</h3>
                     <p>{e.time_stamp}</p>
                 </div>
-                <h3>{e.message}</h3>
+                <p>{e.message}</p>
                 
             </div>
             
@@ -426,9 +426,10 @@ var percentage = Math.round(complete / (total- 1) * 100);
             <div className = 'phases-contain'>
                 <div className = 'phase-btns'>
                     <Link to = '/projects'><button className = 'two-btns'>Back</button></Link>
-                    <button className = 'two-btns' onClick = {() => this.updateToChat()}>Chat</button>
                     <button  className = 'two-btns' onClick = {() => this.updateToProgress()}>Project Log</button>
                 </div>
+                <button className = 'two-btns chat-btn' onClick = {() => this.updateToChat()}>Chat</button>
+
                 <div className = 'percent-contain'>
                     <FillHouse percentage = {percentage}/>
                     {percentage ? <h1 className = 'percent'>{percentage}%</h1> : <h1></h1>}
@@ -445,9 +446,10 @@ var percentage = Math.round(complete / (total- 1) * 100);
             <div className = 'phases-contain'>
                 <div className = 'phase-btns'>
                     <Link to = '/projects'><button className = 'two-btns'>Back</button></Link>
-                    <button className = 'two-btns' onClick = {() => this.updateToChat()}>Chat</button>
                     <button  className = 'two-btns' onClick = {() => this.updateToProgress()}>Project Log</button>
                 </div>
+                <button className = 'two-btns chat-btn' onClick = {() => this.updateToChat()}>Chat</button>
+
                 <div className = 'percent-contain'>
                     <FillHouse percentage = {percentage}/>
                     {percentage ? <h1 className = 'percent'>{percentage}%</h1> : <h1></h1>}
