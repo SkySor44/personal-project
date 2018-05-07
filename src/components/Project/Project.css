@@ -295,6 +295,8 @@
     border-radius: 6px;
     background: lightgray;
     border: 2px solid #e9ba00;
+    display: flex;
+    flex-direction: column;
 }
 
 .new-message {
@@ -308,6 +310,52 @@
 
 .new-message input:focus {
     outline-color: #e9ba00;
+}
+
+.myMessages {
+    background: #e9ba00;
+    height: auto;
+    width: 30%;
+    margin: 20px 10px 20px auto;
+    float: right;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.myMessages p, h3 {
+    margin: 0px;
+}
+
+.messages p, h3 {
+    margin: 0px;
+}
+
+.messages {
+    background: #00aff5;
+    height: auto;
+    width: 30%;
+    margin: 20px auto 20px 10px;
+    float: left;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.message-title {
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.myMessages h3 {
+    margin-left: 10px;
+}
+
+.messages h3 {
+    margin-left: 10px;
 }
 
 @media (min-width: 995px) {

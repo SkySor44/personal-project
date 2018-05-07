@@ -32,17 +32,25 @@ class Project extends Component {
             newPhaseDesc: '',
             messages: []
          }
-         socket.on('generate response', data => {
-             const messages = [...this.state.messages, data];
-             this.setState({
-                 messages: messages
-             })
-         })
+        
     }
 
     sendMessage(message, type){
-        console.log('message', message);
-        socket.emit(`${type} message`, message)
+        var currentDate = new Date()
+        var time_stamp = (currentDate.getMonth()+1) + "/"
+        + currentDate.getDate() + "/" 
+        + currentDate.getFullYear() + " @ "  
+        + currentDate.getHours() + ":"  
+        + currentDate.getMinutes();
+
+        let resObj = {
+            message: message,
+            displayname: this.props.user.displayname,
+            time_stamp: time_stamp,
+            project_id: this.props.match.params.id,
+            user_id: this.props.user.id
+        }
+        socket.emit(`${type} message`, resObj)
         this.setState({
           newMessage: ''
         })
@@ -59,6 +67,12 @@ class Project extends Component {
         this.props.getProject(this.props.match.params.id, this.props.user.id);
         this.props.getProgress(this.props.match.params.id);
         this.props.getPhases(this.props.match.params.id)
+        socket.on(`chat${this.props.match.params.id}`, data => {
+            const messages = [...this.state.messages, data];
+            this.setState({
+                messages: messages
+            })
+        })
     }
 
     updateToPhases(){
@@ -207,14 +221,26 @@ class Project extends Component {
 
     render() { 
 
+       
 
         const mappedMessages = this.state.messages.map((e, i)=> {
-
-            return (
-              <div key = {i}>
-                <p>{e}</p>
-              </div>
-            )
+           return e.user_id === this.props.user.id ?
+            <div className = 'myMessages'>
+                <div className = 'message-title'>
+                    <p>{e.displayname}</p>
+                    <p>{e.time_stamp}</p>
+                </div>
+                <h3>{e.message}</h3>
+            </div> :
+            <div className = 'messages' key = {i}>
+                <div className = 'message-title'>
+                    <p>{e.displayname}</p>
+                    <p>{e.time_stamp}</p>
+                </div>
+                <h3>{e.message}</h3>
+                
+            </div>
+            
           })
                                         //================//
                                         //=====PHASES=====/ 
@@ -532,7 +558,7 @@ var percentage = Math.round(complete / (total- 1) * 100);
                 </div>
             <div className = 'new-message'>
                 <input type = 'text' placeholder = 'Enter New Message' value = {this.state.newMessage} onChange = {(e) => this.updateNewMessage(e.target.value)}/>
-                <button className = 'two-btns' onClick = {() => {this.sendMessage(this.state.newMessage, 'blast')}}>Post Message</button>
+                <button className = 'two-btns' onClick = {() => {this.sendMessage(this.state.newMessage, 'chat')}}>Post Message</button>
                 
             </div>
             </div>

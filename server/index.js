@@ -294,11 +294,17 @@ const io = socket(app.listen(SERVER_PORT, () => console.log(`I'm listening on po
 
 
 io.on('connection', socket => {
-    socket.on('blast message', input => {
-        io.sockets.emit('generate response', input);
+
+    socket.on('chat message', input => {
+        let {message, displayname, time_stamp, project_id, user_id} = input;
+        let resObj = {
+            message: message,
+            displayname: displayname,
+            time_stamp: time_stamp,
+            project_id: project_id,
+            user_id: user_id
+        }
+        io.sockets.emit(`chat${project_id}`, resObj);
     })
-    socket.on('emit message', input => {
-        console.log('emit');
-        socket.emit('generate response', input)
-    })
+    
 })
