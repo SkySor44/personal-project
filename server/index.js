@@ -293,6 +293,14 @@ app.post('/get_messages', function(req, res, next){
     }).catch( () => res.status(500).send())
 })
 
+app.post('/add_message', function(req, res, next){
+    const {message, user_id, project_id, time_stamp} = req.body;
+    const db = app.get('db');
+    db.add_message([message, user_id, project_id, time_stamp]).then( ()  => {
+        res.status(200).send();
+    }).catch( () => res.status(500).send())
+})
+
 massive(CONNECTION_STRING).then(db => {
     app.set('db', db);
     

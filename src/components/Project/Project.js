@@ -56,6 +56,15 @@ class Project extends Component {
         this.setState({
           newMessage: ''
         })
+        let newMessBod = {
+            message: message,
+            user_id: this.props.user.id,
+            project_id: this.props.match.params.id,
+            time_stamp: time_stamp
+        }
+        axios.post('http://localhost:3006/add_message', newMessBod).then(res => {
+            return res.data
+        })
       }
 
     updateNewMessage(newMessage){

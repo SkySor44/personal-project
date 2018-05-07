@@ -289,7 +289,8 @@
 }
 
 .chat-box {
-    height: 50vh;
+    height: auto;
+    min-height: 50vh;
     overflow: auto;
     width: 70%;
     border-radius: 6px;
@@ -315,7 +316,7 @@
 .myMessages {
     background: #e9ba00;
     height: auto;
-    width: 30%;
+    width: 50%;
     margin: 20px 10px 20px auto;
     float: right;
     border-radius: 6px;
@@ -333,9 +334,9 @@
 }
 
 .messages {
-    background: #00aff5;
+    background: #ff7b00;
     height: auto;
-    width: 30%;
+    width: 50%;
     margin: 20px auto 20px 10px;
     float: left;
     border-radius: 6px;
