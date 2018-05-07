@@ -244,8 +244,7 @@ app.post('/get_employee', function(req, res, next){
 
 app.post('/assign_project', function(req, res, next){
     const {employee_id, project_id} = req.body;
-    console.log(employee_id, project_id)
-    const {db} = app.get('db');
+    const db = app.get('db');
     db.assign_project([project_id, employee_id]).then( () => {
         db.get_employee_projects([employee_id]).then( projects => {
             res.status(200).send(projects)
@@ -254,12 +253,15 @@ app.post('/assign_project', function(req, res, next){
             res.status(500).send(err)
         }
     )
+}).catch( (err) => {
+    console.log(err);
+
 })
 })
 
 app.put('/assign_phase', function(req, res, next){
     const {employee_id, phase_id} = req.body;
-    const {db} = app.get('db');
+    const db = app.get('db');
     db.assign_phase([employee_id, phase_id]).then( () => {
         db.get_employee_projects([employee_id]).then( projects => {
             res.status(200).send(projects)

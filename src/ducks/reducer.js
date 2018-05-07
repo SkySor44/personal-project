@@ -39,6 +39,7 @@ export function assignProject(employee_id, project_id){
     }
 
    let assignProjAnswer = axios.post('http://localhost:3006/assign_project', assignProjBod).then(res => {
+       console.log(res.data)
        return res.data
    })
 
