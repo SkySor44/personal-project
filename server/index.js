@@ -285,6 +285,14 @@ app.post('/add_project', function(req, res, next){
     }).catch( () => res.status(500).send())
 })
 
+app.post('/get_messages', function(req, res, next){
+    const {project_id} = req.body;
+    const db = app.get('db');
+    db.get_messages([project_id]).then(messages => {
+        res.status(200).send(messages)
+    }).catch( () => res.status(500).send())
+})
+
 massive(CONNECTION_STRING).then(db => {
     app.set('db', db);
     

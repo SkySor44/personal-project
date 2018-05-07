@@ -34,6 +34,7 @@ const ASSIGN_PHASE = 'ASSIGN_PHASE';
 const DELETE_ASSIGNED_PROJECT = 'DELETE_ASSIGNED_PROJECT';
 const ADD_PROJECT = 'ADD_PROJECT';
 
+
 export function addProject(user_id, name, location){
     let addProjBod = {
         user_id: user_id,
@@ -42,7 +43,6 @@ export function addProject(user_id, name, location){
     }
 
     let addProjAns = axios.post('http://localhost:3006/add_project', addProjBod).then( res => {
-        console.log(res.data)
         return res.data
     })
 
@@ -463,6 +463,8 @@ export default function reducer(state = initialState, action){
 
         case ADD_PROJECT + '_FULFILLED':
             return Object.assign({}, state, {projects: action.payload})
+
+        
 
         default:
         return state;

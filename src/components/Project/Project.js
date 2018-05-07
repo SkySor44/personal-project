@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios'
 import {connect} from 'react-redux';
 import {getProject, getUser2, getProgress, deleteProgress, newLog, updateLog, getPhases, toggleDropdown, toggleDone, updatePhase, createPhase, deletePhase} from '../../ducks/reducer';
 import Nav from '../Nav/Nav';
@@ -12,6 +13,7 @@ import FaTrashO from 'react-icons/lib/fa/trash-o';
 import io from 'socket.io-client';
 import { ENGINE_METHOD_DIGESTS } from 'constants';
 const socket = io();
+
 
 class Project extends Component {
     constructor(props) {
@@ -63,6 +65,15 @@ class Project extends Component {
       }
 
     componentDidMount(){
+        let body = {
+            project_id: this.props.match.params.id
+        }
+        axios.post('http://localhost:3006/get_messages', body).then(res => {
+            console.log(res.data)
+            this.setState({
+                messages: res.data
+            })
+        })
         this.props.getUser2();
         this.props.getProject(this.props.match.params.id, this.props.user.id);
         this.props.getProgress(this.props.match.params.id);
@@ -73,6 +84,7 @@ class Project extends Component {
                 messages: messages
             })
         })
+        
     }
 
     updateToPhases(){
