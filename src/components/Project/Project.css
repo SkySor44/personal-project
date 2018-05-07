@@ -271,6 +271,15 @@
     color: lightgray;
 }
 
+.link-style {
+    text-decoration: none;
+    color: #6B6E70;
+}
+
+.link-style:hover {
+    color: #e9ba00;
+}
+
 @media (min-width: 995px) {
     .home-icon-2 {
         height: 250px;

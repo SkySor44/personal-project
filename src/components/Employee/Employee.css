@@ -30,7 +30,7 @@
     color: #e9ba00;
 }
 
-.phases-contain h2 {
+.phases-contain1 h2 {
     color: white;
 }
 
@@ -88,6 +88,20 @@
 
 .gray {
     color: #6B6E70;
+}
+
+.back-btn-div {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+}
+
+.invis-btn {
+    background: none;
+    border: none;
+    color: #222629;
 }
 
 @media (min-width: 995px) {

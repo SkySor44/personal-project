@@ -248,15 +248,8 @@ app.post('/assign_project', function(req, res, next){
     db.assign_project([project_id, employee_id]).then( () => {
         db.get_employee_projects([employee_id]).then( projects => {
             res.status(200).send(projects)
-        }).catch( (err) => {
-            console.log(err);
-            res.status(500).send(err)
-        }
-    )
-}).catch( (err) => {
-    console.log(err);
-
-})
+        }).catch( () => res.status(500).send())
+}).catch( () => res.status(500).send())
 })
 
 app.put('/assign_phase', function(req, res, next){
@@ -265,12 +258,18 @@ app.put('/assign_phase', function(req, res, next){
     db.assign_phase([employee_id, phase_id]).then( () => {
         db.get_employee_projects([employee_id]).then( projects => {
             res.status(200).send(projects)
-        }).catch((err) => {
-            console.log(err);
-        res.status(500).send(err)
-        }
-    )
+        }).catch( () => res.status(500).send())
+}).catch( () => res.status(500).send())
 })
+
+app.post('/delete_assigned_project', function(req, res, next){
+    const {project_id, employee_id} = req.body;
+    const db = app.get('db');
+    db.delete_assigned_project([project_id, +employee_id]).then ( () => {
+        db.get_employee_projects([employee_id]).then(projects => {
+            res.status(200).send(projects)
+        }).catch( () => res.status(500).send())
+    }).catch( () => res.status(500).send())
 })
 
 massive(CONNECTION_STRING).then(db => {

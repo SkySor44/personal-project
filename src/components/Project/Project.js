@@ -254,7 +254,7 @@ class Project extends Component {
             </div>
         </div>
         <p>Due: {value.due_date}</p>
-        <label>Assigned To Phase: {value.assigned_employee_id !== 17 ? value.displayname : <button>Go To Employees To Assign</button>}</label>
+        <label>Assigned To Phase: {value.assigned_employee_id !== 17 ? <Link className = 'link-style' to = {`/employee/${value.assigned_employee_id}`}>{value.displayname}</Link> : <Link to = '/employees'><button className = 'two-btns'>Go To Employees To Assign</button></Link>}</label>
         <label>{value.assigned_employee_id !== 17 ? <p>With: {value.company}</p> : <p></p>}</label>
         <p>Description: {value.description}</p>
         <button className = 'btn-toggles' onClick = {() => this.updateToPhaseUpdate(value.phase_name, value.due_date, value.description, value.id)}><FaEdit className = 'edit-btn'/></button>
@@ -273,7 +273,7 @@ class Project extends Component {
                 </div>
             </div>
         <p>Due: {value.due_date} </p>
-        <label>Assigned To Phase: {value.assigned_employee_id !== 17 ? value.displayname : <button>Go To Employees To Assign</button>} </label>
+        <label>Assigned To Phase: {value.assigned_employee_id !== 17 ? <Link className = 'link-style' to = {`/employee/${value.assigned_employee_id}`}>{value.displayname}</Link> : <Link to = '/employees'><button className = 'two-btns'>Go To Employees To Assign</button></Link>} </label>
         <label>{value.assigned_employee_id !== 17 ? <p>With: {value.company}</p> : <p></p>}</label>
         <p>Description: {value.description}</p>
         <button className = 'btn-toggles' onClick = {() => this.props.deletePhase(value.id, this.props.match.params.id)}><FaTrashO className = 'trash' /></button>
