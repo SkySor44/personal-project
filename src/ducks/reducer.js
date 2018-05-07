@@ -32,6 +32,25 @@ const GET_EMPLOYEE = 'GET_EMPLOYEE';
 const ASSIGN_PROJECT = 'ASSIGN_PROJECT';
 const ASSIGN_PHASE = 'ASSIGN_PHASE';
 const DELETE_ASSIGNED_PROJECT = 'DELETE_ASSIGNED_PROJECT';
+const ADD_PROJECT = 'ADD_PROJECT';
+
+export function addProject(user_id, name, location){
+    let addProjBod = {
+        user_id: user_id,
+        name: name,
+        location: location
+    }
+
+    let addProjAns = axios.post('http://localhost:3006/add_project', addProjBod).then( res => {
+        console.log(res.data)
+        return res.data
+    })
+
+    return {
+        type: ADD_PROJECT,
+        payload: addProjAns
+    }
+}
 
 export function deleteAssignedProject(project_id, employee_id){
     let delAssignBod = {
@@ -441,6 +460,9 @@ export default function reducer(state = initialState, action){
 
         case DELETE_ASSIGNED_PROJECT + '_FULFILLED':
             return Object.assign({}, state, {employee_projects: action.payload})
+
+        case ADD_PROJECT + '_FULFILLED':
+            return Object.assign({}, state, {projects: action.payload})
 
         default:
         return state;

@@ -11,7 +11,10 @@
     align-items: center;
     flex-direction: column;
     border: 2px solid #474B4F;
+    flex-wrap: wrap;
 }
+
+
 
 .projects-header{
     height: 200px;
@@ -47,7 +50,56 @@
     text-align: center;
 }
 
+.add-project-btn {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0px 20px 0px;
+}
+
+.new-proj-head {
+    color: #e9ba00;
+    text-align: center;
+}
+
+.new-proj-contain {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+.input-class {
+    color: #6B6E70;
+    margin: 20px 10px;
+
+}
+
+.input-class input {
+    background: lightgray;
+    border-radius: 6px;
+}
+
+.input-class input:focus {
+    outline-color: #e9ba00;
+}
+
 @media (min-width: 995px){
+    .add-project-btn {
+        margin: 20px 0px 0px 0px;
+    }
+
+    .projects-only {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        text-align: center;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
     .projects-header {
         background: url('./blueprints.jpeg');
         background-size: cover;
@@ -69,13 +121,6 @@
 
     .home-icon {
         height: 20vw;
-    }
-
-    .projects-only {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        text-align: center;
     }
 
     .project-info {

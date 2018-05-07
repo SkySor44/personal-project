@@ -239,8 +239,16 @@
     border-radius: 6px;
 }
 
+.newphase-section input:focus {
+    outline-color: #e9ba00;
+}
+
 .description {
     height: 50px;
+}
+
+.description:focus {
+    outline-color: #e9ba00;
 }
 
 .two-btns-2 {

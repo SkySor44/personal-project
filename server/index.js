@@ -272,6 +272,18 @@ app.post('/delete_assigned_project', function(req, res, next){
     }).catch( () => res.status(500).send())
 })
 
+app.post('/add_project', function(req, res, next){
+    const {user_id, name, location} = req.body;
+    const db = app.get('db');
+    db.add_project([name, location]).then(id => {
+        db.add_project_user([id[0].id, user_id]).then(() => {
+            db.get_user_projects([user_id]).then(projects => {
+                res.status(200).send(projects)
+            }).catch( () => res.status(500).send())
+        }).catch( () => res.status(500).send())
+    }).catch( () => res.status(500).send())
+})
+
 massive(CONNECTION_STRING).then(db => {
     app.set('db', db);
     app.listen(SERVER_PORT, () => console.log(`I'm listening on port ${SERVER_PORT}`));

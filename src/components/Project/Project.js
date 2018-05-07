@@ -341,8 +341,11 @@ var percentage = Math.round(complete / (total- 1) * 100);
                     <Link to = '/projects'><button className = 'two-btns'>Back</button></Link>
                     <button  className = 'two-btns' onClick = {() => this.updateToProgress()}>Project Log</button>
                 </div>
-                <FillHouse percentage = {percentage}/>
-                <h1>{percentage}%</h1>
+                <div className = 'percent-contain'>
+                    <FillHouse percentage = {percentage}/>
+                    {percentage ? <h1 className = 'percent'>{percentage}%</h1> : <h1></h1>}
+                </div>
+               
                 <h1>{this.props.project.name}</h1>
                 <h2>{this.props.project.location}</h2>
             </div>
@@ -358,7 +361,7 @@ var percentage = Math.round(complete / (total- 1) * 100);
                 </div>
                 <div className = 'percent-contain'>
                     <FillHouse percentage = {percentage}/>
-                    <h1 className = 'percent'>{percentage}%</h1>
+                    {percentage ? <h1 className = 'percent'>{percentage}%</h1> : <h1></h1>}
                 </div>
                 
                 <h1>{this.props.project.name}</h1>
@@ -375,7 +378,7 @@ var percentage = Math.round(complete / (total- 1) * 100);
             <button className = 'two-btns view-phases' onClick = {() => this.updateToPhases()}>View Phases</button>
                 <div className = 'percent-contain'>
                     <FillHouse percentage = {percentage}/>
-                    <h1 className = 'percent'>{percentage}%</h1>
+                    {percentage ? <h1 className = 'percent'>{percentage}%</h1> : <h1></h1>}
                 </div>
                 
                 <h1>{this.props.project.name}</h1>

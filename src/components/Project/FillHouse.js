@@ -9,6 +9,7 @@ import seventy from './Home70.png';
 import eighty from './Home80.png';
 import ninety from './Home90.png';
 import hundred from './Home100.png';
+import empty from './Home-yello.png'
 import './Project.css'
 
 
@@ -53,7 +54,10 @@ class FillHouse extends Component {
         </div> : nearestTenth === 100 ?
         <div>
             <img className = 'home-icon-2' src = {hundred} alt = 'home'/>
-        </div> : null
+        </div> :
+        <div>
+            <img className = 'home-icon-2' src = {empty} alt = 'home'/>
+        </div> 
 
         return ( 
             <div>
