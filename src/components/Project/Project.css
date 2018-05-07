@@ -288,6 +288,28 @@
     color: #e9ba00;
 }
 
+.chat-box {
+    height: 50vh;
+    overflow: auto;
+    width: 70%;
+    border-radius: 6px;
+    background: lightgray;
+    border: 2px solid #e9ba00;
+}
+
+.new-message {
+    margin: 20px;
+}
+
+.new-message input {
+    border-radius: 6px;
+    background: lightgray;
+}
+
+.new-message input:focus {
+    outline-color: #e9ba00;
+}
+
 @media (min-width: 995px) {
     .home-icon-2 {
         height: 250px;

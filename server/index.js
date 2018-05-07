@@ -6,6 +6,7 @@ const session = require('express-session');
 const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
 const cors = require('cors')
+const socket = require('socket.io');
 
 
 const app =  express();
@@ -286,5 +287,18 @@ app.post('/add_project', function(req, res, next){
 
 massive(CONNECTION_STRING).then(db => {
     app.set('db', db);
-    app.listen(SERVER_PORT, () => console.log(`I'm listening on port ${SERVER_PORT}`));
+    
+})
+
+const io = socket(app.listen(SERVER_PORT, () => console.log(`I'm listening on port ${SERVER_PORT}`)));
+
+
+io.on('connection', socket => {
+    socket.on('blast message', input => {
+        io.sockets.emit('generate response', input);
+    })
+    socket.on('emit message', input => {
+        console.log('emit');
+        socket.emit('generate response', input)
+    })
 })

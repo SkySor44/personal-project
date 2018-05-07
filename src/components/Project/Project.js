@@ -8,7 +8,10 @@ import {Link} from 'react-router-dom';
 import IoAndroidCheckboxOutline from 'react-icons/lib/io/android-checkbox-outline';
 import FaCaretSquareODown from 'react-icons/lib/fa/caret-square-o-down';
 import FaEdit from 'react-icons/lib/fa/edit';
-import FaTrashO from 'react-icons/lib/fa/trash-o'
+import FaTrashO from 'react-icons/lib/fa/trash-o';
+import io from 'socket.io-client';
+import { ENGINE_METHOD_DIGESTS } from 'constants';
+const socket = io();
 
 class Project extends Component {
     constructor(props) {
@@ -26,9 +29,30 @@ class Project extends Component {
             currPhaseId: 0,
             newPhaseName: '',
             newPhaseDueDate: '',
-            newPhaseDesc: ''
+            newPhaseDesc: '',
+            messages: []
          }
+         socket.on('generate response', data => {
+             const messages = [...this.state.messages, data];
+             this.setState({
+                 messages: messages
+             })
+         })
     }
+
+    sendMessage(message, type){
+        console.log('message', message);
+        socket.emit(`${type} message`, message)
+        this.setState({
+          newMessage: ''
+        })
+      }
+
+    updateNewMessage(newMessage){
+        this.setState({
+          newMessage
+        })
+      }
 
     componentDidMount(){
         this.props.getUser2();
@@ -174,8 +198,24 @@ class Project extends Component {
         })
     }
 
+    updateToChat(){
+        this.setState({
+            page: 'chat'
+        })
+    }
+
 
     render() { 
+
+
+        const mappedMessages = this.state.messages.map((e, i)=> {
+
+            return (
+              <div key = {i}>
+                <p>{e}</p>
+              </div>
+            )
+          })
                                         //================//
                                         //=====PHASES=====/ 
                                         //================//
@@ -339,6 +379,7 @@ var percentage = Math.round(complete / (total- 1) * 100);
             <div className = 'phases-contain'>
                 <div className = 'phase-btns'>
                     <Link to = '/projects'><button className = 'two-btns'>Back</button></Link>
+                    <button className = 'two-btns' onClick = {() => this.updateToChat()}>Chat</button>
                     <button  className = 'two-btns' onClick = {() => this.updateToProgress()}>Project Log</button>
                 </div>
                 <div className = 'percent-contain'>
@@ -357,6 +398,7 @@ var percentage = Math.round(complete / (total- 1) * 100);
             <div className = 'phases-contain'>
                 <div className = 'phase-btns'>
                     <Link to = '/projects'><button className = 'two-btns'>Back</button></Link>
+                    <button className = 'two-btns' onClick = {() => this.updateToChat()}>Chat</button>
                     <button  className = 'two-btns' onClick = {() => this.updateToProgress()}>Project Log</button>
                 </div>
                 <div className = 'percent-contain'>
@@ -470,7 +512,31 @@ var percentage = Math.round(complete / (total- 1) * 100);
             </div>
             
             
-        </div> : null
+        </div> : this.state.page === 'chat' ?
+        <div>
+            <Nav />
+            <div className = 'phases-contain'>
+                <div className = 'phase-btns'>
+                    <Link to = '/projects'><button className = 'two-btns'>Back</button></Link>
+                    <button  className = 'two-btns' onClick = {() => this.updateToProgress()}>Project Log</button>
+                </div>
+                <div className = 'percent-contain'>
+                    <FillHouse percentage = {percentage}/>
+                    {percentage ? <h1 className = 'percent'>{percentage}%</h1> : <h1></h1>}
+                </div>
+                
+                <h1>{this.props.project.name}</h1>
+                <h2>{this.props.project.location}</h2>
+                <div className = 'chat-box'>
+                    {mappedMessages}
+                </div>
+            <div className = 'new-message'>
+                <input type = 'text' placeholder = 'Enter New Message' value = {this.state.newMessage} onChange = {(e) => this.updateNewMessage(e.target.value)}/>
+                <button className = 'two-btns' onClick = {() => {this.sendMessage(this.state.newMessage, 'blast')}}>Post Message</button>
+                
+            </div>
+            </div>
+      </div> : null
 
         return ( 
             <div className = 'project-page'>
