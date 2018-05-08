@@ -6,7 +6,8 @@ import {Link} from 'react-router-dom';
 import home from './Home-yello.png';
 import './Projects.css';
 import {Parallax} from 'react-parallax';
-import image from './blueprints.jpeg'
+import image from './blueprints.jpeg';
+
 
 class Projects extends Component {
     constructor(props) {
@@ -68,7 +69,6 @@ class Projects extends Component {
                     <label className = 'location'>Location: </label>
                     <h2 className = 'location'>{project.location}</h2>
                 </div>
-                
             </div>
            ) 
         })

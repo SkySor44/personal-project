@@ -6,14 +6,6 @@
     width: 100%;
 }
 
-/* .nav-bar-open {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    flex-direction: column;
-} */
-
 .open-menu {
     display: flex;
     flex-direction: row;
@@ -34,9 +26,6 @@
     font-size: 20px;
     margin: 20px;
 }
-
-
-
 
 
 .invisible {
