@@ -4,6 +4,8 @@ import {getUser2} from '../../ducks/reducer';
 import Nav from '../Nav/Nav';
 import './Home.css';
 import {Link} from 'react-router-dom';
+import {Parallax} from 'react-parallax';
+import image from './construction-site-darker.png'
 
 class EmployeeHome extends Component {
     constructor(props) {
@@ -22,11 +24,10 @@ class EmployeeHome extends Component {
             <div>
                 <Nav />
                 <div className = 'main-img'>
-                    <div>
+                    <Parallax className = 'parallax' bgImage = {image} strength = {500} bgImageSize = {"cover"}><div>
                         <h1 className = 'main-text' >Saving Time and Money</h1>
                         <h2 className = 'sub-main-text'>With Construction Job Site Management</h2>
-                    </div>
-                    
+                    </div></Parallax>
                 </div>
                 <div className = 'get-started'>
                     <h2>Get Started</h2>

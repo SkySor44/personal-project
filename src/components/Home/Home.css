@@ -1,14 +1,21 @@
 @import url('https://fonts.googleapis.com/css?family=Gugi');
 
 .main-img {
-    background: url('./construction-site-darker.png');
-    background-size: cover;
     height: 200px;
     width: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: space-around;
+}
+
+.parallax {
+    width: 100%;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
 }
 
 .main-text {
