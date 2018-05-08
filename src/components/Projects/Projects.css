@@ -14,7 +14,15 @@
     flex-wrap: wrap;
 }
 
-
+.parallax-proj {
+    height: 200px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    border: 2px solid #222629;
+}
 
 .projects-header{
     height: 200px;
@@ -89,6 +97,17 @@
 
 
 @media (min-width: 995px){
+
+    .parallax-proj {
+        height: 400px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        text-align: center;
+        border: 2px solid #222629;
+    }
+
     .add-project-btn {
         margin: 20px 0px 0px 0px;
     }

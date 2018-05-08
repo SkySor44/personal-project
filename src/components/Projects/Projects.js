@@ -4,7 +4,9 @@ import {connect} from 'react-redux';
 import {getProjects, getUser2, addProject} from '../../ducks/reducer';
 import {Link} from 'react-router-dom';
 import home from './Home-yello.png';
-import './Projects.css'
+import './Projects.css';
+import {Parallax} from 'react-parallax';
+import image from './blueprints.jpeg'
 
 class Projects extends Component {
     constructor(props) {
@@ -75,8 +77,11 @@ class Projects extends Component {
             <div className = 'projects-wrap'>
                 <Nav />
                 <div className = 'projects-header'>
-                    <h1>Current Projects:</h1>
+                    <Parallax className = 'parallax-proj' bgImage = {image} strength = {500} bgImageSize = {"cover"}><div>
+                        <h1>Current Projects:</h1>
+                    </div></Parallax>
                 </div>
+                
                 {this.props.user.role === 'admin' ? <div className = 'add-project-btn'><button className = 'two-btns' onClick = {() => this.updateToNewProject()}>Add Project</button></div>: null}
                 <div className = 'projects-only'>
                     {mappedProjects}
