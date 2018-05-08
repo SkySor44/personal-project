@@ -7,6 +7,7 @@ const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
 const cors = require('cors')
 const socket = require('socket.io');
+const LanguageTranslatorV2 = require('watson-developer-cloud/language-translator/v2');
 
 
 const app =  express();
@@ -323,4 +324,26 @@ io.on('connection', socket => {
         io.sockets.emit(`chat${project_id}`, resObj);
     })
     
+})
+
+
+var languageTranslator = new LanguageTranslatorV2({
+        
+    username: process.env.USERNAME,
+    password: process.env.PASSWORD,
+    url: "https://gateway.watsonplatform.net/language-translator/api",
+})
+
+app.post('/translate', function(req, res, next){
+    const {message} = req.body;
+    languageTranslator.translate({
+        text: message, source: 'en', target: 'es'
+    }, function(err, translation){
+        if (err){
+            console.log('error:', err);
+        } else {
+            res.status(200).send(translation['translations'][0].translation)
+        }
+            
+    })
 })

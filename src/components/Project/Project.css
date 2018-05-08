@@ -11,6 +11,11 @@
     color: white;
 }
 
+.whole-contain {
+    height: 100%;
+    width: 100%;
+}
+
 .phase-done {
     height: auto;
     margin: 20px;
@@ -26,6 +31,8 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    height: 100%;
+    width: 100%;
 }
 
 .project-page {
@@ -290,8 +297,7 @@
 }
 
 .chat-box {
-    height: auto;
-    min-height: 50vh;
+    height: 50%;
     overflow: auto;
     width: 80%;
     border-radius: 6px;
@@ -327,7 +333,6 @@
 
 .myMessages {
     background: #e9ba00;
-    height: auto;
     width: 50%;
     margin: 20px 10px 20px auto;
     float: right;
@@ -349,6 +354,16 @@
 
 .message-title p {
     margin: 5px;
+    font-size: 14px;
+
+}
+
+.messages h3 {
+    font-size: 16px;
+}
+
+.myMessages h3 {
+    font-size: 16px;
 }
 
 .messages {
@@ -363,6 +378,7 @@
     justify-content: space-around;
     align-items: center;
     text-align: center;
+    
 }
 
 .message-title {
@@ -374,12 +390,28 @@
 
 @media (min-width: 995px) {
 
+    .chat-box {
+        height: 50%;
+        overflow: auto;
+        width: 80%;
+        border-radius: 6px;
+        background: lightgray;
+        border: 2px solid #e9ba00;
+        display: flex;
+        flex-direction: column;
+    }
+
     .myMessages {
         width: 30%;
     }
 
     .messages {
         width: 30%;
+
+    }
+
+    .message-title {
+        height: auto;
     }
 
     .home-icon-2 {

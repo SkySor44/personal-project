@@ -238,6 +238,27 @@ class Project extends Component {
         })
     }
 
+    translateToSpanish(message, index){
+        let reqBod = {
+            message: message
+        }
+        axios.post('http://localhost:3006/translate', reqBod).then(res => {
+          var newMessages = this.state.messages.map((e, i) => {
+              console.log('e', e)
+              if (i === index){
+                  console.log('message',e.message)
+                  e.message = res.data
+                  return e
+              }
+              else {return e}
+          })
+          console.log('translation',newMessages)
+          this.setState({
+              messages: newMessages
+          })
+        })
+    }
+
 
     render() { 
 
@@ -246,6 +267,7 @@ class Project extends Component {
         const mappedMessages = this.state.messages.map((e, i)=> {
            return e.user_id === this.props.user.id ?
             <div className = 'myMessages' key = {i}>
+            <button onClick = {() => this.translateToSpanish(e.message, i)}>ES</button>
                 <div className = 'message-title'>
                     <h3>{e.displayname}</h3>
                     <p>{e.time_stamp}</p>
@@ -257,6 +279,7 @@ class Project extends Component {
                     <h3>{e.displayname}</h3>
                     <p>{e.time_stamp}</p>
                 </div>
+                <button onClick = {() => this.translateToSpanish(e.message, i)}>ES</button>
                 <p>{e.message}</p>
                 
             </div>
@@ -561,7 +584,7 @@ var percentage = Math.round(complete / (total- 1) * 100);
             
             
         </div> : this.state.page === 'chat' ?
-        <div>
+        <div className = 'whole-contain'>
             <Nav />
             <div className = 'phases-contain'>
                 <div className = 'phase-btns'>
