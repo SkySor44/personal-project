@@ -5,7 +5,7 @@ import {getUser2} from '../../ducks/reducer';
 import './Home.css';
 import {Link} from 'react-router-dom';
 import {Parallax} from 'react-parallax';
-import image from './construction-site-darker.png'
+import image from './construction-site-darker.png';
 
 class AdminHome extends Component {
     constructor(props) {
@@ -42,7 +42,6 @@ class AdminHome extends Component {
                     <h1 className = 'section-1'>Employees</h1>
                 </div></Link>
                 </div>
-                
             </div>
          )
     }
