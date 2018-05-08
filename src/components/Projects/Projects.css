@@ -24,6 +24,11 @@
     border: 2px solid #222629;
 }
 
+.parallax-proj h1 {
+    color: white;
+    font-family: 'Gugi', cursive;
+}
+
 .projects-header{
     height: 200px;
     width: 100%;
@@ -99,7 +104,7 @@
 @media (min-width: 995px){
 
     .parallax-proj {
-        height: 400px;
+        height: 60vh;
         width: 100%;
         display: flex;
         align-items: center;

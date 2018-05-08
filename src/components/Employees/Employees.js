@@ -5,6 +5,8 @@ import Nav from '../Nav/Nav';
 import {Link} from 'react-router-dom';
 import './Employees.css';
 import IoAndroidPerson from 'react-icons/lib/io/android-person';
+import {Parallax} from 'react-parallax';
+import image from './crop-construction-workers.jpg'
 
 class Employees extends Component {
     constructor(props) {
@@ -36,7 +38,9 @@ class Employees extends Component {
             <div>
                 <Nav />
                 <div className = 'employees-header'>
-                    <h1>My Employees: </h1>
+                    <Parallax className = 'parallax-emp' bgImage = {image} strength = {500} bgImageSize = {"cover"}><div>
+                        <h1>My Employees:</h1>
+                    </div></Parallax>
                 </div>
                 <div className = 'employees-control'>
                     {renders}

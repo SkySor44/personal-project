@@ -49,7 +49,31 @@
     padding: 10px 0px;
 }
 
+.parallax-emp {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+.parallax-emp h1 {
+    color: white;
+    font-family: 'Gugi', cursive;
+}
+
 @media (min-width: 995px){
+
+    .parallax-emp {
+        width: 100%;
+        height: 60vh;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        text-align: center;
+    }
+
     .employees-header {
         background: url('./crop-construction-workers.jpg');
         background-size: cover;
