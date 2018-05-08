@@ -347,3 +347,17 @@ app.post('/translate', function(req, res, next){
             
     })
 })
+
+app.post('/translate-eng', function(req, res, next){
+    const {message} = req.body;
+    languageTranslator.translate({
+        text: message, source: 'es', target: 'en'
+    }, function(err, translation){
+        if (err){
+            console.log('error:', err);
+        } else {
+            res.status(200).send(translation['translations'][0].translation)
+        }
+            
+    })
+})

@@ -259,6 +259,27 @@ class Project extends Component {
         })
     }
 
+    translateToEnglish(message, index){
+        let reqBod = {
+            message: message
+        }
+        axios.post('http://localhost:3006/translate-eng', reqBod).then(res => {
+          var newMessages = this.state.messages.map((e, i) => {
+              console.log('e', e)
+              if (i === index){
+                  console.log('message',e.message)
+                  e.message = res.data
+                  return e
+              }
+              else {return e}
+          })
+          console.log('translation',newMessages)
+          this.setState({
+              messages: newMessages
+          })
+        })
+    }
+
 
     render() { 
 
@@ -267,10 +288,13 @@ class Project extends Component {
         const mappedMessages = this.state.messages.map((e, i)=> {
            return e.user_id === this.props.user.id ?
             <div className = 'myMessages' key = {i}>
-            <button onClick = {() => this.translateToSpanish(e.message, i)}>ES</button>
                 <div className = 'message-title'>
                     <h3>{e.displayname}</h3>
                     <p>{e.time_stamp}</p>
+                </div>
+                <div className = 'mytranslators'>
+                    <button onClick = {() => this.translateToSpanish(e.message, i)}>Spanish</button>
+                    <button onClick = {() => this.translateToEnglish(e.message, i)}>English</button>
                 </div>
                 <p>{e.message}</p>
             </div> :
@@ -279,7 +303,10 @@ class Project extends Component {
                     <h3>{e.displayname}</h3>
                     <p>{e.time_stamp}</p>
                 </div>
-                <button onClick = {() => this.translateToSpanish(e.message, i)}>ES</button>
+                <div className = 'translators'>
+                    <button onClick = {() => this.translateToSpanish(e.message, i)}>Spanish</button>
+                    <button onClick = {() => this.translateToEnglish(e.message, i)}>English</button>
+                </div>
                 <p>{e.message}</p>
                 
             </div>
