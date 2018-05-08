@@ -82,7 +82,7 @@ class Projects extends Component {
                     {mappedProjects}
                 </div>
         
-            </div> : this.state.page = 'new-project' ?
+            </div> : this.state.page === 'new-project' ?
             <div>
                 <Nav />
                 <div className = 'log-back'>

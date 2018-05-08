@@ -11,7 +11,6 @@ import FaCaretSquareODown from 'react-icons/lib/fa/caret-square-o-down';
 import FaEdit from 'react-icons/lib/fa/edit';
 import FaTrashO from 'react-icons/lib/fa/trash-o';
 import io from 'socket.io-client';
-import { ENGINE_METHOD_DIGESTS } from 'constants';
 const socket = io();
 
 
@@ -246,7 +245,7 @@ class Project extends Component {
 
         const mappedMessages = this.state.messages.map((e, i)=> {
            return e.user_id === this.props.user.id ?
-            <div className = 'myMessages'>
+            <div className = 'myMessages' key = {i}>
                 <div className = 'message-title'>
                     <h3>{e.displayname}</h3>
                     <p>{e.time_stamp}</p>
