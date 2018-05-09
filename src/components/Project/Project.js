@@ -460,7 +460,7 @@ var percentage = Math.round(complete / (total- 1) * 100);
           return(
             <div className = 'progression-contain' key = {i}>
                 <p className = 'content'>{value.content}</p>
-                {value.image_url ? <img src = {value.image_url} alt = 'pic'/> : null}
+                {value.image_url ? <a target='blank' href = {value.image_url}><img src = {value.image_url} alt = 'pic'/></a> : null}
                 <p className = 'time-stamp'>{value.time_stamp}</p>
                 <div className = 'log-btns'>
                     <h6 className = 'name' >- {value.displayname}</h6>
