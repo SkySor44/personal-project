@@ -303,6 +303,16 @@ app.post('/add_message', function(req, res, next){
     }).catch( () => res.status(500).send())
 })
 
+app.post('/toggle_show_client', function(req, res, next){
+    const {progress_id, project_id} = req.body;
+    const db = app.get('db');
+    db.toggle_show_client([progress_id]).then( () => {
+        db.get_progress([project_id]).then( progress => {
+            res.status(200).send(progress)
+        }).catch( () => res.status(500).send())
+    }).catch( () => res.status(500).send())
+})
+
 massive(CONNECTION_STRING).then(db => {
     app.set('db', db);
     

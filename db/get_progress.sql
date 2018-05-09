@@ -1,4 +1,4 @@
-select progress.project_id, content, displayname, progress.id, time_stamp, image_url from project_progress 
+select progress.project_id, content, displayname, progress.id, time_stamp, image_url, show_client from project_progress 
 right join progress on progress.id = project_progress.progress_id
 join users on users.id = progress.user_id 
 where progress.project_id = $1

@@ -33,6 +33,23 @@ const ASSIGN_PROJECT = 'ASSIGN_PROJECT';
 const ASSIGN_PHASE = 'ASSIGN_PHASE';
 const DELETE_ASSIGNED_PROJECT = 'DELETE_ASSIGNED_PROJECT';
 const ADD_PROJECT = 'ADD_PROJECT';
+const TOGGLE_SHOW_CLIENT = 'TOGGLE_SHOW_CLIENT';
+
+export function toggleShowClient(progress_id, project_id){
+    let showClientBod = {
+        progress_id: progress_id,
+        project_id: project_id
+    }
+
+    let showClientAns = axios.post('http://localhost:3006/toggle_show_client', showClientBod).then(res => {
+        return res.data
+    })
+
+    return {
+        type: TOGGLE_SHOW_CLIENT,
+        payload: showClientAns
+    }
+}
 
 
 export function addProject(user_id, name, location){
@@ -465,6 +482,8 @@ export default function reducer(state = initialState, action){
         case ADD_PROJECT + '_FULFILLED':
             return Object.assign({}, state, {projects: action.payload})
 
+        case TOGGLE_SHOW_CLIENT + '_FULFILLED':
+            return Object.assign({}, state, {progress: action.payload})
         
 
         default:

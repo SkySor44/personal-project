@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import {connect} from 'react-redux';
-import {getProject, getUser2, getProgress, deleteProgress, newLog, updateLog, getPhases, toggleDropdown, toggleDone, updatePhase, createPhase, deletePhase} from '../../ducks/reducer';
+import {getProject, getUser2, getProgress, deleteProgress, newLog, updateLog, getPhases, toggleDropdown, toggleDone, updatePhase, createPhase, deletePhase, toggleShowClient} from '../../ducks/reducer';
 import Nav from '../Nav/Nav';
 import './Project.css';
 import FillHouse from './FillHouse';
@@ -456,7 +456,32 @@ var complete =0;
 var percentage = Math.round(complete / (total- 1) * 100);
 
        var progression = this.props.progress.map( (value, i) => {
-          return(
+
+       var roleRender = this.props.user.role === 'admin' && value.show_client ?
+            <div className = 'progression-contain' key = {i}>
+                <p className = 'content'>{value.content}</p>
+                <button className = 'btn-toggles' onClick = {() => this.props.toggleShowClient(value.id, this.props.match.params.id)}>Don't Show Client <IoAndroidCheckboxOutline className = 'check-done'/></button>
+                {value.image_url ? <a target='blank' href = {value.image_url}><img src = {value.image_url} alt = 'pic'/></a> : null}
+                <p className = 'time-stamp'>{value.time_stamp}</p>
+                <div className = 'log-btns'>
+                    <h6 className = 'name' >- {value.displayname}</h6>
+                    <button onClick = {() => this.props.deleteProgress(value.id, value.project_id)}><FaTrashO className = 'trash'/></button>
+                    <button onClick = {() => this.updateToEdit(value.id, value.content, value.time_stamp, value.displayname)}><FaEdit className = 'edit-btn'/></button>
+                </div>
+            </div> 
+            : this.props.user.role === 'admin' && value.show_client === false ?
+            <div className = 'progression-contain' key = {i}>
+                <p className = 'content'>{value.content}</p>
+                <button className = 'btn-toggles' onClick = {() => this.props.toggleShowClient(value.id, this.props.match.params.id)}>Show Client <IoAndroidCheckboxOutline className = 'check'/></button>
+                {value.image_url ? <a target='blank' href = {value.image_url}><img src = {value.image_url} alt = 'pic'/></a> : null}
+                <p className = 'time-stamp'>{value.time_stamp}</p>
+                <div className = 'log-btns'>
+                    <h6 className = 'name' >- {value.displayname}</h6>
+                    <button onClick = {() => this.props.deleteProgress(value.id, value.project_id)}><FaTrashO className = 'trash'/></button>
+                    <button onClick = {() => this.updateToEdit(value.id, value.content, value.time_stamp, value.displayname)}><FaEdit className = 'edit-btn'/></button>
+                </div>
+            </div> 
+            : this.props.user.role === 'employee' ?
             <div className = 'progression-contain' key = {i}>
                 <p className = 'content'>{value.content}</p>
                 {value.image_url ? <a target='blank' href = {value.image_url}><img src = {value.image_url} alt = 'pic'/></a> : null}
@@ -466,7 +491,11 @@ var percentage = Math.round(complete / (total- 1) * 100);
                     <button onClick = {() => this.props.deleteProgress(value.id, value.project_id)}><FaTrashO className = 'trash'/></button>
                     <button onClick = {() => this.updateToEdit(value.id, value.content, value.time_stamp, value.displayname)}><FaEdit className = 'edit-btn'/></button>
                 </div>
-            </div> 
+            </div> : null
+          return(
+             <div className ='progression-control2'>
+                 {roleRender}
+             </div>
           )
           
        })
@@ -656,4 +685,4 @@ function mapStateToProps(state){
         phases: state.phases
     }
 }
-export default connect(mapStateToProps, {getUser2, getProject, getProgress, deleteProgress, newLog, updateLog, getPhases, toggleDropdown, toggleDone, updatePhase, createPhase, deletePhase})(Project);
+export default connect(mapStateToProps, {getUser2, getProject, getProgress, deleteProgress, newLog, updateLog, getPhases, toggleDropdown, toggleDone, updatePhase, createPhase, deletePhase, toggleShowClient})(Project);
