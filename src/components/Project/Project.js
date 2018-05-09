@@ -35,7 +35,7 @@ class Project extends Component {
             messages: []
          }
 
-         this.newLogFn = this.newLogFn.bind(this)
+         this.newLogFn = this.newLogFn.bind(this);
         
     }
 
@@ -94,7 +94,6 @@ class Project extends Component {
                 messages: messages
             })
         })
-        
     }
 
     updateToPhases(){
@@ -619,7 +618,7 @@ var percentage = Math.round(complete / (total- 1) * 100);
             <Nav />
             <div className = 'phases-contain'>
                 <div className = 'phase-btns'>
-                    <Link to = '/projects'><button className = 'two-btns'>Back</button></Link>
+                    <button className = 'two-btns' onClick = {() =>  this.updateToPhases()}>Back</button>
                     <button  className = 'two-btns' onClick = {() => this.updateToProgress()}>Project Log</button>
                 </div>
                 <div className = 'percent-contain'>

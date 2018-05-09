@@ -24,7 +24,6 @@ export default class FileUpload extends Component {
     handlePhoto(event){
         const reader = new FileReader()
             , file = event.target.files[0]
-            , _this = this
         
         reader.onload = photo => {
             this.setState({

@@ -303,9 +303,9 @@
 }
 
 .chat-box {
-    height: 50%;
+    height: 80vh;
     overflow: auto;
-    width: 80%;
+    width: 90%;
     border-radius: 6px;
     background: lightgray;
     border: 2px solid #e9ba00;
@@ -343,10 +343,6 @@
     margin: 20px 10px 20px auto;
     float: right;
     border-radius: 6px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
     text-align: center;
 }
 
@@ -381,10 +377,6 @@
     margin: 20px auto 20px 10px;
     float: left;
     border-radius: 6px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
     text-align: center;
     
 }
@@ -400,6 +392,7 @@
     justify-content: space-around;
     align-items: center;
     text-align: center;
+    height: 60px;
 }
 
 .mytranslators {
@@ -407,6 +400,7 @@
     justify-content: space-around;
     align-items: center;
     text-align: center;
+    height: 60px;
 }
 
 .mytranslators button {
@@ -446,8 +440,8 @@
 @media (min-width: 995px) {
 
     .chat-box {
-        height: 50%;
-        overflow: auto;
+        height: 80vh;
+        overflow-y: scroll;
         width: 80%;
         border-radius: 6px;
         background: lightgray;
@@ -458,17 +452,19 @@
 
     .myMessages {
         width: 30%;
+        padding: 10px;
     }
 
     .messages {
         width: 30%;
-
-    }
-
-    .message-title {
         height: auto;
     }
 
+    .message-title {
+        height: 40px;
+    }
+
+    
     .home-icon-2 {
         height: 250px;
     }
