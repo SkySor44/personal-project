@@ -262,12 +262,13 @@ export function updateLog(content, progress_id, project_id){
     }
 }
 
-export function newLog(content, user_id, project_id, time_stamp){
+export function newLog(content, user_id, project_id, time_stamp, img_url){
     let logObj = {
         content: content,
         user_id: user_id,
         project_id: project_id,
-        time_stamp: time_stamp
+        time_stamp: time_stamp,
+        img_url: img_url
     }
 
     let newLogAnswer = axios.post('http://localhost:3006/newlog', logObj).then(res => {

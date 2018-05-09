@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import axios from 'axios'
+import React, { Component } from 'react';
+import axios from 'axios';
+import './FileUpload.css'
 
 function sendToback(photo){
-    console.log(photo)
     return axios.post('/api/photoUpload', photo)
 }
 
@@ -13,7 +13,9 @@ export default class FileUpload extends Component {
         this.state={
             file: '',
             filename: '',
-            filetype: ''
+            filetype: '',
+            location: '',
+            content: ''
         }
         this.handlePhoto=this.handlePhoto.bind(this)
         this.sendPhoto=this.sendPhoto.bind(this)
@@ -38,7 +40,16 @@ export default class FileUpload extends Component {
         event.preventDefault()
 
         sendToback(this.state).then(response => {
-            console.log(response.data)
+            this.setState({
+                location: response.data.Location
+            })
+            this.props.newLogFn(response.data.Location)
+        })
+    }
+
+    updateContent(e){
+        this.setState({
+            content: e
         })
     }
 
@@ -46,13 +57,17 @@ export default class FileUpload extends Component {
         this.state.file && console.log(this.state.photo)
         return (
             <div className="FileUpload">
-                <input type="file" onChange={this.handlePhoto}/>
+                <input name = 'file' class = 'inputfile' type="file" onChange={this.handlePhoto}/>
                 <br/>
                 {
                 this.state.file &&
-                <img src={this.state.file} alt="" className="file-preview"/>  
+                <div className= 'preview-div'>
+                    <img src={this.state.file} alt="" className="file-preview"/>  
+                </div>
                 }
-                <button onClick={this.sendPhoto}>Upload</button>
+                <label>Today's Log Description: </label>
+                <input className = 'description desc-background' type = 'text' value = {this.state.content} onChange = {(e) => this.updateContent(e.target.value)}/>
+                <button className = 'two-btns' onClick={this.sendPhoto}>Upload</button>
             </div>
         )
     }

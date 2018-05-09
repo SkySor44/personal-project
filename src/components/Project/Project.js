@@ -34,6 +34,8 @@ class Project extends Component {
             newPhaseDesc: '',
             messages: []
          }
+
+         this.newLogFn = this.newLogFn.bind(this)
         
     }
 
@@ -78,7 +80,6 @@ class Project extends Component {
             project_id: this.props.match.params.id
         }
         axios.post('http://localhost:3006/get_messages', body).then(res => {
-            console.log(res.data)
             this.setState({
                 messages: res.data
             })
@@ -136,14 +137,14 @@ class Project extends Component {
         })
     }
 
-    newLogFn(){
+    newLogFn(img_location){
         var currentDate = new Date()
         var time_stamp = (currentDate.getMonth()+1) + "/"
         + currentDate.getDate() + "/" 
         + currentDate.getFullYear() + " @ "  
         + currentDate.getHours() + ":"  
         + currentDate.getMinutes();
-        this.props.newLog(this.state.content, this.props.user.id, this.props.match.params.id, time_stamp)
+        this.props.newLog(this.state.content, this.props.user.id, this.props.match.params.id, time_stamp, img_location)
         this.setState({
             page: 'progress',
             content: ''
@@ -454,10 +455,12 @@ var complete =0;
 
 
 var percentage = Math.round(complete / (total- 1) * 100);
+
        var progression = this.props.progress.map( (value, i) => {
           return(
             <div className = 'progression-contain' key = {i}>
                 <p className = 'content'>{value.content}</p>
+                {value.image_url ? <img src = {value.image_url} alt = 'pic'/> : null}
                 <p className = 'time-stamp'>{value.time_stamp}</p>
                 <div className = 'log-btns'>
                     <h6 className = 'name' >- {value.displayname}</h6>
@@ -538,11 +541,10 @@ var percentage = Math.round(complete / (total- 1) * 100);
                 <button className = 'two-btns' onClick = {() => this.updateToProgress()}>Back</button>
                 <p>Back</p>
             </div>
-            <FileUpload />
+            
             <label>Enter New Entry Here: </label>
             <div className= 'newlog-input'>
-                <input className = 'description' type = '' value = {this.state.content} onChange = {(e) => this.updateContent(e.target.value)}/>
-                <button className = 'two-btns' onClick = {() => this.newLogFn()}>Add Entry</button>
+                <FileUpload newLogFn = {this.newLogFn}/>
             </div>
             <div className = 'progression-control'>
                 {progression}

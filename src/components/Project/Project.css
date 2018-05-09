@@ -183,6 +183,12 @@
     text-align: center;
 }
 
+.progression-contain img {
+    width: 80%;
+    height: auto;
+    max-height: 300px;
+}
+
 .newlog-contain {
     display: flex;
     flex-direction: column;

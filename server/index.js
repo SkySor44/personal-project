@@ -135,9 +135,9 @@ app.delete('/deleteprogress', function(req, res, next){
 })
 
 app.post('/newlog', function(req, res, next){
-    const {content, time_stamp, project_id, user_id} = req.body
+    const {content, time_stamp, project_id, user_id, img_url} = req.body
     const db = app.get('db');
-    db.new_log([content, user_id, project_id, time_stamp]).then( log_id => { 
+    db.new_log([content, user_id, project_id, time_stamp, img_url]).then( log_id => { 
        db.new_log_junction([project_id, log_id[0].max]).then( () => {
         db.get_progress([project_id]).then( progress => {
             res.status(200).send(progress)

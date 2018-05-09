@@ -11,7 +11,6 @@ AWS.config.update({
 const S3 = new AWS.S3()
 
 function uploadPhoto(req, res) {
-    console.log('photo in back', req.body.filename, process.env.ACCESS_KEY_ID )
     /*
         req.body = {
             file: (base64 encoded image),
@@ -29,13 +28,10 @@ function uploadPhoto(req, res) {
             ACL: 'public-read'
         }
 
-    console.log(buf)
 
     S3.upload(params, (err, data) => {
-        console.log(err, data)
         err ? res.status(500).send(err) : 
         res.status(200).send(data)
-        console.log('S3 response', data)
     })
 }
 
