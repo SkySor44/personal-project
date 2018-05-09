@@ -295,10 +295,26 @@ app.post('/get_messages', function(req, res, next){
     }).catch( () => res.status(500).send())
 })
 
+app.post('/get_client_messages', function(req, res, next){
+    const {project_id} = req.body;
+    const db = app.get('db');
+    db.get_client_messages([project_id]).then(messages => {
+        res.status(200).send(messages)
+    }).catch( () => res.status(500).send())
+})
+
 app.post('/add_message', function(req, res, next){
     const {message, user_id, project_id, time_stamp} = req.body;
     const db = app.get('db');
     db.add_message([message, user_id, project_id, time_stamp]).then( ()  => {
+        res.status(200).send();
+    }).catch( () => res.status(500).send())
+})
+
+app.post('/add_client_message', function(req, res, next){
+    const {message, user_id, project_id, time_stamp, type} = req.body;
+    const db = app.get('db');
+    db.add_client_message([message, user_id, project_id, time_stamp, type]).then( () => {
         res.status(200).send();
     }).catch( () => res.status(500).send())
 })
@@ -333,6 +349,19 @@ io.on('connection', socket => {
             user_id: user_id
         }
         io.sockets.emit(`chat${project_id}`, resObj);
+    })
+
+    socket.on('client message', input => {
+        let {message, displayname, time_stamp, project_id, user_id, type} = input;
+        let clientObj = {
+            message: message,
+            displayname: displayname,
+            time_stamp: time_stamp,
+            project_id: project_id,
+            user_id: user_id,
+            type: type
+        }
+        io.sockets.emit(`client${project_id}`, clientObj);
     })
     
 })

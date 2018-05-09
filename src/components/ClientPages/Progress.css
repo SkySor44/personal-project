@@ -37,3 +37,11 @@
     text-align: center;
     margin-top: 20px;
 }
+
+.chat-whole-contain {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
