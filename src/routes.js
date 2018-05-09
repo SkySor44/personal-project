@@ -9,6 +9,7 @@ import CreateUser from './components/CreateUser/CreateUser';
 import AdminHome from './components/Home/AdminHome';
 import EmployeeHome from './components/Home/EmployeeHome';
 import Loading from './components/Loading/Loading';
+import ClientHome from './components/Home/ClientHome';
 
 export default (
     <HashRouter>
@@ -23,6 +24,7 @@ export default (
             <Route path = '/home/admin' component = {AdminHome} />
             <Route path = '/home/employee' component = {EmployeeHome} />
             <Route path = '/loading' component = {Loading} />
+            <Route path = '/home/client' component = {ClientHome} />
 
         </Switch>
     </HashRouter>

@@ -66,6 +66,13 @@ class CreateUser extends Component {
         })
     }
 
+    updateClient(){
+        this.setState({
+            role: 'client',
+            company: 'none'
+        })
+    }
+
     render() { 
       var rendering =  
       
@@ -83,6 +90,12 @@ class CreateUser extends Component {
             <input type = 'text' value = {this.state.company} onChange = {(e) => this.updateCompany(e.target.value)}/>
             <Link to = {`/home/${this.state.role}`}><button onClick = {() => this.finishCreationAdmin()}>SUBMIT</button></Link>
         </div> : 
+        this.state.role === 'client' ?
+        <div>
+            <label>Home Code (given to you by your contractor): </label>
+            <input type = 'text' value = {this.state.supervisor} onChange = {(e) => this.updateSupervisor(e.target.value)}/>
+            <Link to = {`/home/${this.state.role}`}><button onClick = {() => this.finishCreationEmp()}>SUBMIT</button></Link>
+        </div> :
         
         this.state.role === '' ? 
         <div>
@@ -90,6 +103,7 @@ class CreateUser extends Component {
                 <label>Role: </label>
                 <button onClick = {() => this.updateAdmin()}>Admin</button>
                 <button onClick = {() => this.updateEmployee()}>Employee</button>
+                <button onClick = {() => this.updateClient()}>Client</button>
         </div> : null
         return ( 
             <div>

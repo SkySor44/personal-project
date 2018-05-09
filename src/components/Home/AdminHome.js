@@ -31,6 +31,7 @@ class AdminHome extends Component {
                 </div>
                 
                 <div className = 'get-started'>
+                    <h2>MY ID: {this.props.user.id}</h2>
                     <h2>Get Started</h2>
                     <p>Click Below to Manage Employees and Projects</p>
                 </div>

@@ -68,6 +68,7 @@ class Projects extends Component {
                     <Link className = 'project-link' to = {`/project/${project.project_id}`}><h1>{project.name}</h1></Link>
                     <label className = 'location'>Location: </label>
                     <h2 className = 'location'>{project.location}</h2>
+                    {this.props.user.role === 'admin' ? <h2 className = 'location'>ID: {project.project_id}</h2>: null}
                 </div>
             </div>
            ) 
