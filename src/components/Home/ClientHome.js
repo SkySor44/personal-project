@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Nav from '../Nav/Nav';
 
 
 class ClientHome extends Component {
@@ -11,6 +12,7 @@ class ClientHome extends Component {
     render() { 
         return ( 
             <div>
+                <Nav />
                 ClientHome
             </div>
          )

@@ -71,7 +71,18 @@ class Nav extends Component {
             </ul>
         </nav>
     </div> 
-    : this.props.user.role === 'employee' && this.state.open === false ?
+    : this.props.user.role === 'client' ?
+            <div className = 'nav-bar'>
+                <FaBars className = 'invisible'/>
+                <Link to = '/home/employee'><img className = 'logo-menu' src = {Logo} alt = 'img'/></Link>
+            <nav>
+                <div className = 'link-contain1'>
+                    <a className = 'link' href = 'http://localhost:3006/logout'>Logout</a>
+                </div>           
+            </nav> 
+            </div> :
+    
+    this.props.user.role === 'employee' && this.state.open === false ?
     <div className = 'nav-bar'>
         <FaBars className = 'invisible'/>
         <Link to = '/home/employee'><img className = 'logo-menu' src = {Logo} alt = 'img'/></Link>
