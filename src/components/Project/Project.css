@@ -152,6 +152,7 @@
 
 .view-phases {
     margin-left: 60px;
+    margin-top: 20px;
 }
 
 .content {
@@ -439,6 +440,10 @@
     border: 2px solid #e9ba00;
 
 }
+
+.phase-btns {
+    margin-top: 20px;
+}
 @media (min-width: 995px) {
 
     .progression-control2 {
@@ -499,6 +504,7 @@
 
     .phase-btns {
         width: 100%;
+        margin-top: 20px;
     }
 
     .progression-control {

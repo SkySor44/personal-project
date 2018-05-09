@@ -1,0 +1,39 @@
+.client-contain {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+.client-contain .recent-updates {
+    color: #e9ba00;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+.client-contain h2{
+    color: white;
+}
+
+.client-contain h3 {
+    color: lightgray;
+    margin-top: 20px;
+}
+
+.log-contain {
+    margin: 20px;
+    border-top: 2px solid #474B4F;
+    width: 100%;
+}
+
+.my-progress-btns {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    margin-top: 20px;
+}

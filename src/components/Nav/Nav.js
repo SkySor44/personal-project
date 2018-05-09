@@ -74,7 +74,7 @@ class Nav extends Component {
     : this.props.user.role === 'client' ?
             <div className = 'nav-bar'>
                 <FaBars className = 'invisible'/>
-                <Link to = '/home/employee'><img className = 'logo-menu' src = {Logo} alt = 'img'/></Link>
+                <Link to = '/home/client'><img className = 'logo-menu' src = {Logo} alt = 'img'/></Link>
             <nav>
                 <div className = 'link-contain1'>
                     <a className = 'link' href = 'http://localhost:3006/logout'>Logout</a>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Nav from '../Nav/Nav';
 import {Parallax} from 'react-parallax';
-import image from './home.jpeg';
+import image from './home.jpg';
 import {Link} from 'react-router-dom';
 
 
