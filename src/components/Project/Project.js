@@ -11,6 +11,7 @@ import FaCaretSquareODown from 'react-icons/lib/fa/caret-square-o-down';
 import FaEdit from 'react-icons/lib/fa/edit';
 import FaTrashO from 'react-icons/lib/fa/trash-o';
 import io from 'socket.io-client';
+import FileUpload from '../FileUpload/FileUpload.js';
 const socket = io();
 
 
@@ -537,6 +538,7 @@ var percentage = Math.round(complete / (total- 1) * 100);
                 <button className = 'two-btns' onClick = {() => this.updateToProgress()}>Back</button>
                 <p>Back</p>
             </div>
+            <FileUpload />
             <label>Enter New Entry Here: </label>
             <div className= 'newlog-input'>
                 <input className = 'description' type = '' value = {this.state.content} onChange = {(e) => this.updateContent(e.target.value)}/>

@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-require('dotenv').config();
+require('dotenv').config({path: './.env.development.local'});
 const massive = require('massive');
 const session = require('express-session');
 const passport = require('passport');
@@ -8,6 +8,7 @@ const Auth0Strategy = require('passport-auth0');
 const cors = require('cors')
 const socket = require('socket.io');
 const LanguageTranslatorV2 = require('watson-developer-cloud/language-translator/v2');
+const s3 = require('./S3.js');
 
 
 const app =  express();
@@ -24,7 +25,7 @@ const {
 
 
 app.use(cors());
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit:'10mb'}));
 app.use(session({
     secret: SESSION_SECRET,
     resave: false,
@@ -361,3 +362,5 @@ app.post('/translate-eng', function(req, res, next){
             
     })
 })
+
+app.post('/api/photoUpload', s3.uploadPhoto)
