@@ -10,6 +10,8 @@ import AdminHome from './components/Home/AdminHome';
 import EmployeeHome from './components/Home/EmployeeHome';
 import Loading from './components/Loading/Loading';
 import ClientHome from './components/Home/ClientHome';
+import Progress from './components/ClientPages/Progress';
+import Chat from './components/ClientPages/Chat';
 
 export default (
     <HashRouter>
@@ -25,6 +27,8 @@ export default (
             <Route path = '/home/employee' component = {EmployeeHome} />
             <Route path = '/loading' component = {Loading} />
             <Route path = '/home/client' component = {ClientHome} />
+            <Route path = '/progress' component = {Progress} />
+            <Route path = '/chat' component = {Chat} />
 
         </Switch>
     </HashRouter>
