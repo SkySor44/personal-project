@@ -69,7 +69,7 @@ class Chat extends Component {
             time_stamp: time_stamp,
             type: 'client'
         }
-        axios.post(REACT_APP_ADD_CLIENT_MESSAGE, newMessBod).then(res => {
+        axios.post(process.env.REACT_APP_ADD_CLIENT_MESSAGE, newMessBod).then(res => {
             return res.data
         })
       }
