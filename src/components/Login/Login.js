@@ -7,7 +7,7 @@ export default function Login(props){
         <div className = 'outer-login'>
             <img className = 'logo' src = {Logo} alt = 'img'/>
             <div>
-                <a href = 'http://localhost:3006/auth'><button className = 'login-btn'>Login</button></a>
+                <a href = {process.env.REACT_APP_LOGIN}><button className = 'login-btn'>Login</button></a>
             </div>
             
 

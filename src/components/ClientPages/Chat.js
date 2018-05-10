@@ -23,7 +23,7 @@ class Chat extends Component {
         let body = {
             project_id: this.props.user.supervisor_id
         }
-        axios.post('http://localhost:3006/get_client_messages', body).then(res => {
+        axios.post(process.env.REACT_APP_GET_CLIENT_MESSAGES, body).then(res => {
             this.setState({
                 messages: res.data
             })
@@ -69,7 +69,7 @@ class Chat extends Component {
             time_stamp: time_stamp,
             type: 'client'
         }
-        axios.post('http://localhost:3006/add_client_message', newMessBod).then(res => {
+        axios.post(REACT_APP_ADD_CLIENT_MESSAGE, newMessBod).then(res => {
             return res.data
         })
       }

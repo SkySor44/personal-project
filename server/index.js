@@ -67,8 +67,8 @@ passport.deserializeUser( (id, done) => {
 
 app.get('/auth', passport.authenticate('auth0'));
 app.get('/auth/callback', passport.authenticate('auth0', {
-    successRedirect: `http://localhost:3000/#/loading`,
-    failureRedirect: 'http://localhost:3000/#/'
+    successRedirect: process.env.SUCCESS_REDIRECT,
+    failureRedirect: process.env.FAILURE_REDIRECT
 }));
 
 app.get('/auth/me', function(req, res, next){
@@ -218,7 +218,7 @@ app.delete('/delete_phase', function(req, res, next){
 
 app.get('/logout', function(req, res, next) {       //===How to logout===//
     req.logOut();
-    res.redirect('http://localhost:3000/#/');
+    res.redirect(process.env.LOGOUT_TO);
 })
 
 app.post('/get_employees', function(req, res, next){

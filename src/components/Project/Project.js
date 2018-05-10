@@ -64,7 +64,7 @@ class Project extends Component {
             project_id: this.props.match.params.id,
             time_stamp: time_stamp
         }
-        axios.post('http://localhost:3006/add_message', newMessBod).then(res => {
+        axios.post(process.env.REACT_APP_ADD_MESSAGE, newMessBod).then(res => {
             return res.data
         })
       }
@@ -79,7 +79,7 @@ class Project extends Component {
         let body = {
             project_id: this.props.match.params.id
         }
-        axios.post('http://localhost:3006/get_messages', body).then(res => {
+        axios.post(process.env.REACT_APP_GET_MESSAGES, body).then(res => {
             this.setState({
                 messages: res.data
             })
@@ -243,7 +243,7 @@ class Project extends Component {
         let reqBod = {
             message: message
         }
-        axios.post('http://localhost:3006/translate', reqBod).then(res => {
+        axios.post(process.env.REACT_APP_TO_SPANISH, reqBod).then(res => {
           var newMessages = this.state.messages.map((e, i) => {
               console.log('e', e)
               if (i === index){
@@ -264,7 +264,7 @@ class Project extends Component {
         let reqBod = {
             message: message
         }
-        axios.post('http://localhost:3006/translate-eng', reqBod).then(res => {
+        axios.post(process.env.REACT_APP_TO_ENGLISH, reqBod).then(res => {
           var newMessages = this.state.messages.map((e, i) => {
               console.log('e', e)
               if (i === index){

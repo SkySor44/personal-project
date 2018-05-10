@@ -41,7 +41,7 @@ export function toggleShowClient(progress_id, project_id){
         project_id: project_id
     }
 
-    let showClientAns = axios.post('http://localhost:3006/toggle_show_client', showClientBod).then(res => {
+    let showClientAns = axios.post(process.env.REACT_APP_TOGGLE_SHOW_CLIENT, showClientBod).then(res => {
         return res.data
     })
 
@@ -59,7 +59,7 @@ export function addProject(user_id, name, location){
         location: location
     }
 
-    let addProjAns = axios.post('http://localhost:3006/add_project', addProjBod).then( res => {
+    let addProjAns = axios.post(process.env.REACT_APP_ADD_PROJECT, addProjBod).then( res => {
         return res.data
     })
 
@@ -75,7 +75,7 @@ export function deleteAssignedProject(project_id, employee_id){
         employee_id: employee_id
     }
 
-    let delAssignAns = axios.post('http://localhost:3006/delete_assigned_project', delAssignBod).then(res => {
+    let delAssignAns = axios.post(process.env.REACT_APP_DELETE_ASSIGNED_PROJECT, delAssignBod).then(res => {
         return res.data
     })
 
@@ -91,7 +91,7 @@ export function assignProject(employee_id, project_id){
        employee_id: employee_id
     }
 
-   let assignProjAnswer = axios.post('http://localhost:3006/assign_project', assignProjBod).then(res => {
+   let assignProjAnswer = axios.post(process.env.REACT_APP_ASSIGN_PROJECT, assignProjBod).then(res => {
        return res.data
    })
 
@@ -107,7 +107,7 @@ export function assignPhase(employee_id, phase_id){
         phase_id: phase_id
     }
 
-    let assignPhaseAnswer = axios.put('http://localhost:3006/assign_phase', assignPhaseBod).then( res => {
+    let assignPhaseAnswer = axios.put(process.env.REACT_APP_ASSIGN_PHASE, assignPhaseBod).then( res => {
         return res.data
     })
 
@@ -122,7 +122,7 @@ export function getEmployee(employee_id){
         employee_id: employee_id
     }
 
-    let empAnswer = axios.post('http://localhost:3006/get_employee', empBody).then( res => {
+    let empAnswer = axios.post(process.env.REACT_APP_GET_EMPLOYEE, empBody).then( res => {
         return res.data
     })
 
@@ -137,7 +137,7 @@ export function getEmployeeProjects(employee_id){
         employee_id: employee_id
     }
 
-    let empProjAnswer = axios.post('http://localhost:3006/get_employee_projects', empProjBody).then(res => {
+    let empProjAnswer = axios.post(process.env.REACT_APP_GET_EMPLOYEE_PROJECTS, empProjBody).then(res => {
         return res.data
     })
 
@@ -152,7 +152,7 @@ export function getEmployees(user_id){
         user_id: user_id
     }
 
-   let employeesAnswer = axios.post('http://localhost:3006/get_employees', employeesBody).then( res => {
+   let employeesAnswer = axios.post(process.env.REACT_APP_GET_EMPLOYEES, employeesBody).then( res => {
         return res.data
     })
 
@@ -168,7 +168,7 @@ export function deletePhase(phase_id, project_id){
         project_id: project_id
     }
 
-    let delPhaseAnswer = axios.delete('http://localhost:3006/delete_phase', {data: delPhaseBody}).then(res => {
+    let delPhaseAnswer = axios.delete(process.env.REACT_APP_DELETE_PHASE, {data: delPhaseBody}).then(res => {
         return res.data
     })
 
@@ -186,7 +186,7 @@ export function createPhase(project_id, phase_name, due_date, description){
         description: description
     }
 
-    let createPhaseAnswer = axios.post('http://localhost:3006/create_phase', createBody).then( res => {
+    let createPhaseAnswer = axios.post(process.env.REACT_APP_CREATE_PHASE, createBody).then( res => {
         return res.data
     })
 
@@ -205,7 +205,7 @@ export function updatePhase(phase_name, due_date, description, phase_id, project
         project_id: project_id
     }
 
-    let upPhaseAnswer = axios.put('http://localhost:3006/update_phase', upPhaseBody).then( res => {
+    let upPhaseAnswer = axios.put(process.env.REACT_APP_UPDATE_PHASE, upPhaseBody).then( res => {
         return res.data
     })
 
@@ -221,7 +221,7 @@ export function toggleDone(phase_id, project_id){
         project_id: project_id
     }
 
-    let doneAnswer = axios.post('http://localhost:3006/toggle_done', doneBody).then(res => {
+    let doneAnswer = axios.post(process.env.REACT_APP_TOGGLE_DONE, doneBody).then(res => {
         return res.data
     })
 
@@ -237,7 +237,7 @@ export function toggleDropdown(phase_id, project_id){
         project_id: project_id
     }
 
-   let toggleAnswer = axios.post('http://localhost:3006/toggle_dropdown', toggleBody).then(res => {
+   let toggleAnswer = axios.post(process.env.REACT_APP_TOGGLE_DROPDOWN, toggleBody).then(res => {
         return res.data
     })
 
@@ -252,7 +252,7 @@ export function getPhases(project_id){
         project_id: project_id
     }
 
-   let phase = axios.post('http://localhost:3006/phases', reqBody).then(res => {
+   let phase = axios.post(process.env.REACT_APP_GET_PHASES, reqBody).then(res => {
         return res.data
     })
 
@@ -269,7 +269,7 @@ export function updateLog(content, progress_id, project_id){
         project_id: project_id
     }
 
-    let updateAnswer = axios.put('http://localhost:3006/updatelog', updateObj).then(res => {
+    let updateAnswer = axios.put(process.env.REACT_APP_UPDATE_LOG, updateObj).then(res => {
         return res.data
     })
 
@@ -288,7 +288,7 @@ export function newLog(content, user_id, project_id, time_stamp, img_url){
         img_url: img_url
     }
 
-    let newLogAnswer = axios.post('http://localhost:3006/newlog', logObj).then(res => {
+    let newLogAnswer = axios.post(process.env.REACT_APP_NEW_LOG, logObj).then(res => {
         return res.data
     })
 
@@ -303,7 +303,7 @@ export function deleteProgress(progress_id, project_id){
         progress_id: progress_id,
         project_id: project_id
     }
-    let delprogress = axios.delete('http://localhost:3006/deleteprogress', {data: delObj}).then(res => {
+    let delprogress = axios.delete(process.env.REACT_APP_DELETE_PROGRESS, {data: delObj}).then(res => {
         return res.data
     })
 
@@ -356,7 +356,7 @@ export function getProjects(){
 export function getUser(){
     let userData = axios.get('/auth/me').then(res => {
         if (res.data.role && res.data.company){
-            window.location.replace(`http://localhost:3000/#/home/${res.data.role}`);
+            window.location.replace(process.env.REACT_APP_GET_USER);
         }
         
         return res.data
@@ -387,7 +387,7 @@ export function finishEmployee(company, role, supervisor, id){
         id: id
     }
 
-    axios.post('http://localhost:3006/finish_employee', finBody).then( res => {
+    axios.post(process.env.REACT_APP_FINISH_EMPLOYEE, finBody).then( res => {
         return res.data
     })
 
@@ -405,7 +405,7 @@ export function finishCreation(company, role, id, user_id, displayname){
         user_id: user_id,
         displayname: displayname
     }
-    axios.post(`http://localhost:3006/finishprofile`, obj).then(res => {
+    axios.post(process.env.REACT_APP_FINISH_CREATION, obj).then(res => {
         return res.data
     })
     return {
