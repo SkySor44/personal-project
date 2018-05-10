@@ -39,7 +39,7 @@ class Nav extends Component {
                  <Link className = 'link' to = '/projects'><p>Projects</p></Link>
              </div>
              <div className = 'link-contain'>
-                 <a className = 'link' href = {process.env.REACT_APP_NAV_LOGOUT}>Logout</a>
+                 <a className = 'link' href = {process.env.REACT_APP_LOGOUT}>Logout</a>
              </div>
              
          </ul>
@@ -65,7 +65,7 @@ class Nav extends Component {
                     <Link className = 'link' to = '/employees'><p>Employees</p></Link>
                 </div>
                 <div className = 'link-contain'>
-                    <a className = 'link' href = {process.env.REACT_APP_NAV_LOGOUT}>Logout</a>
+                    <a className = 'link' href = {process.env.REACT_APP_LOGOUT}>Logout</a>
                 </div>
                 
             </ul>
@@ -77,7 +77,7 @@ class Nav extends Component {
                 <Link to = '/home/client'><img className = 'logo-menu' src = {Logo} alt = 'img'/></Link>
             <nav>
                 <div className = 'link-contain1'>
-                    <a className = 'link' href = {process.env.REACT_APP_NAV_LOGOUT}>Logout</a>
+                    <a className = 'link' href = {`${process.env.REACT_APP_LOGOUT}`}>Logout</a>
                 </div>           
             </nav> 
             </div> :

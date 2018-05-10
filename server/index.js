@@ -219,7 +219,7 @@ app.delete('/delete_phase', function(req, res, next){
 
 app.get('/logout', function(req, res, next) {       //===How to logout===//
     req.logOut();
-    res.redirect(process.env.LOGOUT_TO);
+    res.redirect(process.env.LOGOUT);
 })
 
 app.post('/get_employees', function(req, res, next){
