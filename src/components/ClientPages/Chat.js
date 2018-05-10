@@ -83,20 +83,12 @@ class Chat extends Component {
                      <h3>{e.displayname}</h3>
                      <p>{e.time_stamp}</p>
                  </div>
-                 <div className = 'mytranslators'>
-                     <button onClick = {() => this.translateToSpanish(e.message, i)}>Spanish</button>
-                     <button onClick = {() => this.translateToEnglish(e.message, i)}>English</button>
-                 </div>
                  <p>{e.message}</p>
              </div> :
              <div className = 'messages' key = {i}>
                  <div className = 'message-title'>
                      <h3>{e.displayname}</h3>
                      <p>{e.time_stamp}</p>
-                 </div>
-                 <div className = 'translators'>
-                     <button onClick = {() => this.translateToSpanish(e.message, i)}>Spanish</button>
-                     <button onClick = {() => this.translateToEnglish(e.message, i)}>English</button>
                  </div>
                  <p>{e.message}</p>
                  
