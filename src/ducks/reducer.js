@@ -356,7 +356,7 @@ export function getProjects(){
 export function getUser(){
     let userData = axios.get('/auth/me').then(res => {
         if (res.data.role && res.data.company){
-            window.location.replace(process.env.REACT_APP_GET_USER);
+            window.location.replace(`${process.env.REACT_APP_GET_USER}${res.data.role}`);
         }
         
         return res.data
