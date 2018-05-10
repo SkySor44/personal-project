@@ -23,6 +23,7 @@ const {
     CALLBACK_URL
 } = process.env;
 
+app.use( express.static( `${__dirname}/../build` ) );
 
 app.use(cors());
 app.use(bodyParser.json({limit:'10mb'}));
