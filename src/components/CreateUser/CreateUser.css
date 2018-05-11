@@ -27,20 +27,33 @@
     outline-color: #e9ba00;
 }
 
-
 .createuser-btns {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
     text-align: center;
+    margin: 20px;
 }
+
+.createuser-btns button {
+    margin: 15px;
+}
+
 
 .createuser-control {
     width: 100%;
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     text-align: center;
     align-items: center;
+}
+
+@media(min-width: 995px){
+    .createuser-btns {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        text-align: center;
+        margin: 20px;
+        
+    }
 }

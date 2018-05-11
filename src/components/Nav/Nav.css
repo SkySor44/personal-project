@@ -81,9 +81,15 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    text-align: center;
     border: 2px solid #e9ba00;
     transition: .3s;
     margin-right: 20px;
+    padding: 3px;
+}
+
+.link-contain1 .link {
+    font-size: 12px;
 }
 
 .link-contain1:hover {
