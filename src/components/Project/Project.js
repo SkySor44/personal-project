@@ -103,7 +103,7 @@ class Project extends Component {
             })
         })
         socket.on(`client${this.props.match.params.id}`, data => {
-            const messages = [...this.state.messages, data];
+            const messages = [...this.state.clientMessages, data];
             this.setState({
                 clientMessages: messages
             })
@@ -764,7 +764,7 @@ var percentage = Math.round(complete / (total- 1) * 100);
                 </div>
             <div className = 'new-message'>
                 <input type = 'text' placeholder = 'Enter New Message' value = {this.state.newClientMessage} onChange = {(e) => this.updateNewClientMessage(e.target.value)}/>
-                <button className = 'two-btns' onClick = {() => {this.sendClientMessage(this.state.newClientMessage, 'chat')}}>Post Message</button>
+                <button className = 'two-btns' onClick = {() => {this.sendClientMessage(this.state.newClientMessage, 'client')}}>Post Message</button>
                 
             </div>
             </div>
