@@ -32,7 +32,9 @@ class Project extends Component {
             newPhaseName: '',
             newPhaseDueDate: '',
             newPhaseDesc: '',
-            messages: []
+            messages: [],
+            clientMessages: [],
+            newClientMessage: ''
          }
 
          this.newLogFn = this.newLogFn.bind(this);
@@ -94,7 +96,57 @@ class Project extends Component {
                 messages: messages
             })
         })
+
+        axios.post(process.env.REACT_APP_GET_CLIENT_MESSAGES, body).then(res => {
+            this.setState({
+                clientMessages: res.data
+            })
+        })
+        socket.on(`client${this.props.match.params.id}`, data => {
+            const messages = [...this.state.messages, data];
+            this.setState({
+                clientMessages: messages
+            })
+        })
     }
+
+    updateNewClientMessage(e){
+        this.setState({
+            newClientMessage: e
+        })
+    }
+
+    sendClientMessage(message, type){
+        var currentDate = new Date()
+        var time_stamp = (currentDate.getMonth()+1) + "/"
+        + currentDate.getDate() + "/" 
+        + currentDate.getFullYear() + " @ "  
+        + currentDate.getHours() + ":"  
+        + currentDate.getMinutes();
+
+        let clientObj = {
+            message: message,
+            displayname: this.props.user.displayname,
+            time_stamp: time_stamp,
+            project_id: this.props.match.params.id,
+            user_id: this.props.user.id,
+            type: 'client'
+        }
+        socket.emit(`${type} message`, clientObj)
+        this.setState({
+          newClientMessage: ''
+        })
+        let newMessBod = {
+            message: message,
+            user_id: this.props.user.id,
+            project_id: this.props.match.params.id,
+            time_stamp: time_stamp,
+            type: 'client'
+        }
+        axios.post(process.env.REACT_APP_ADD_CLIENT_MESSAGE, newMessBod).then(res => {
+            return res.data
+        })
+      }
 
     updateToPhases(){
         this.setState({
@@ -239,6 +291,12 @@ class Project extends Component {
         })
     }
 
+    updateToClientChat(){
+        this.setState({
+            page: 'client-chat'
+        })
+    }
+
     translateToSpanish(message, index){
         let reqBod = {
             message: message
@@ -284,7 +342,24 @@ class Project extends Component {
 
     render() { 
 
-       
+       const mappedClientMessages = this.state.clientMessages.map((e, i) => {
+           return e.user_id == this.props.user.id ?
+           <div className = 'myMessages' key = {i}>
+                <div className = 'message-title'>
+                    <h3>{e.displayname}</h3>
+                    <p>{e.time_stamp}</p>
+                </div>
+                <p>{e.message}</p>
+            </div> :
+            <div className = 'messages' key = {i}>
+            <div className = 'message-title'>
+                <h3>{e.displayname}</h3>
+                <p>{e.time_stamp}</p>
+            </div>
+            <p>{e.message}</p>
+            
+        </div>
+       })
 
         const mappedMessages = this.state.messages.map((e, i)=> {
            return e.user_id === this.props.user.id ?
@@ -657,12 +732,39 @@ var percentage = Math.round(complete / (total- 1) * 100);
                 
                 <h1>{this.props.project.name}</h1>
                 <h2>{this.props.project.location}</h2>
+                <button className = 'two-btns' onClick = {() => this.updateToClientChat()}>View Client Chat</button>
                 <div className = 'chat-box'>
                     {mappedMessages}
                 </div>
             <div className = 'new-message'>
                 <input type = 'text' placeholder = 'Enter New Message' value = {this.state.newMessage} onChange = {(e) => this.updateNewMessage(e.target.value)}/>
                 <button className = 'two-btns' onClick = {() => {this.sendMessage(this.state.newMessage, 'chat')}}>Post Message</button>
+                
+            </div>
+            </div>
+      </div> 
+      : this.state.page === 'client-chat' ?
+      <div>
+        <Nav />
+            <div className = 'phases-contain'>
+                <div className = 'phase-btns'>
+                    <button className = 'two-btns' onClick = {() =>  this.updateToPhases()}>Back</button>
+                    <button  className = 'two-btns' onClick = {() => this.updateToProgress()}>Project Log</button>
+                </div>
+                <div className = 'percent-contain'>
+                    <FillHouse percentage = {percentage}/>
+                    {percentage ? <h1 className = 'percent'>{percentage}%</h1> : <h1></h1>}
+                </div>
+                
+                <h1>{this.props.project.name}</h1>
+                <h2>{this.props.project.location}</h2>
+                <button className = 'two-btns' onClick = {() => this.updateToChat()}>View Employee Chat</button>
+                <div className = 'chat-box'>
+                    {mappedClientMessages}
+                </div>
+            <div className = 'new-message'>
+                <input type = 'text' placeholder = 'Enter New Message' value = {this.state.newMessage} onChange = {(e) => this.updateNewClientMessage(e.target.value)}/>
+                <button className = 'two-btns' onClick = {() => {this.sendClientMessage(this.state.newMessage, 'chat')}}>Post Message</button>
                 
             </div>
             </div>
