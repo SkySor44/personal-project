@@ -411,15 +411,37 @@
     margin: 0px 10px;
 }
 
+.messages .message-title h3 {
+    margin: 0px 10px 0px 10px;
+    color: lightgray;
+}
+
 .messages .message-title, h3 {
     margin: 0px 10px 0px 10px;
+
 }
 
-.message-title p {
+.messages p:last-of-type {
+    color: lightgray;
+}
+
+.messages .message-title p {
     margin: 5px;
     font-size: 14px;
+    color: lightgray;
 
 }
+
+.messages .message-title .time_stamp-class {
+    color: #e9ba00;
+}
+
+.messages {
+    padding: 10px;
+}
+
+
+
 
 .messages h3 {
     font-size: 16px;
