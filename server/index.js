@@ -354,6 +354,7 @@ io.on('connection', socket => {
 
     socket.on('client message', input => {
         let {message, displayname, time_stamp, project_id, user_id, type} = input;
+        console.log(message, displayname, time_stamp, project_id, user_id, type)
         let clientObj = {
             message: message,
             displayname: displayname,

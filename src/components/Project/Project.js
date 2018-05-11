@@ -103,9 +103,10 @@ class Project extends Component {
             })
         })
         socket.on(`client${this.props.match.params.id}`, data => {
-            const messages = [...this.state.clientMessages, data];
+            console.log('data', data)
+            const clientMessages = [...this.state.clientMessages, data];
             this.setState({
-                clientMessages: messages
+                clientMessages: clientMessages
             })
         })
     }
