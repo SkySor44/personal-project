@@ -83,7 +83,7 @@ class Employee extends Component {
 
         var renders = this.props.employee_projects.map( (value, i) => {
            return (
-        <div key = {i}>
+        <div key = {i} className = 'profile-projects'>
             <Link className = 'my-link' to = {`/project/${value.project_id}`}><h2 className = 'white'>{value.name}</h2></Link>
             <p className = 'gray'>{value.location}</p>
             <button className = 'two-btns' onClick = {() => this.deleteMyAssignedProject(value.project_id)}>Unassign</button>

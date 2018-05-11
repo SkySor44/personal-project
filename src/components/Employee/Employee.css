@@ -12,6 +12,7 @@
 
 .employee-contain h3 {
     color: #e9ba00;
+    margin: 10px;
 }
 
 .employee-contain h4 {
@@ -22,17 +23,60 @@
     color: #6B6E70;
 }
 
+.projects-contain {
+    border: 2px solid #6B6E70;
+    margin: 10px;
+    width: 90%;
+}
+
 .projects-contain h2 {
     color: white;
+    margin: 10px;
 }
 
 .projects-contain h3 {
     color: #e9ba00;
+    margin: 10px;
+}
+
+.projects-contain button {
+    margin-bottom: 10px;
 }
 
 .phases-contain1 h2 {
     color: white;
+    margin: 10px;
 }
+
+.phases-contain1 button {
+    margin-bottom: 10px;
+}
+
+.log-back {
+    margin-top: 10px;
+}
+
+.phases-contain1 {
+    border: 2px solid #6B6E70;
+    margin: 10px;
+    width: 90%;
+}
+
+.profile-projects {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    border: 2px solid #6B6E70;
+    margin-top: 20px;
+}
+
+.profile-projects h2, .profile-projects p, .profile-projects button {
+    margin: 10px;
+}
+
+
 
 .employee-contain .phase-head {
     color: #6B6E70;
@@ -84,6 +128,7 @@
 
 .yellow {
     color: white;
+    font-size: 18px;
 }
 
 .gray {

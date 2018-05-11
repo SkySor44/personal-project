@@ -58,7 +58,7 @@
     color: white;
     text-decoration: none;
     font-size: 14px;
-    
+    margin-top: 5px;
     
 }
 
@@ -69,6 +69,7 @@
     align-items: center;
     border-bottom: 2px solid #e9ba00;
     transition: .3s;
+    margin-bottom: 5px;
 }
 
 .link-contain:hover {

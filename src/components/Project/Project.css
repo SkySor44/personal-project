@@ -491,7 +491,7 @@
 }
 
 .progression-contain p, .progression-contain button, .progression-contain div{
-    margin: 5px;
+    margin: 10px;
 }
 
 .btn-toggles {
@@ -502,7 +502,7 @@
 
 
 .btn-toggles:hover {
-    color: lightgray;
+    color: #e9ba00;
     outline: none;
 
 }
@@ -558,8 +558,8 @@
     }
     
 
-    .btn-toggles:hover {
-        color: lightgray;
+    .btn-toggles:focus {
+        color: #e9ba00;
     }
 
     .percent {
