@@ -175,4 +175,22 @@
         text-align: center;
     }
 
+    .profile-projects {
+        width: 30%;
+    }
+
+    .yellow {
+        font-size: 30px;
+        margin-bottom: 50px;
+        margin-top: 30px;
+    }
+
+    .projects-contain {
+        width: 30%;
+    }
+
+    .phases-contain1 {
+        width: 30%;
+    }
+
 }

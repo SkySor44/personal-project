@@ -229,6 +229,15 @@
     text-align: center;
     border-top: 2px solid #6B6E70;
     margin-top: 10px;
+    width: 100%;
+}
+
+.progression-control2 {
+    width: 100%;
+}
+
+.progression-control {
+    width: 100%;
 }
 
 .progression-contain img {
@@ -256,6 +265,10 @@
 .newlog-input input {
     border-radius: 6px;
     background: lightgray;
+}
+
+.project-page h1 {
+    font-weight: 700;
 }
 
 .log-back {
@@ -602,5 +615,9 @@
 
     .two-btns {
         outline: none;
+    }
+
+    .phase-no-dropdown {
+        font-size: 20px;
     }
 }

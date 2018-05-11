@@ -642,20 +642,23 @@ var percentage = Math.round(complete / (total- 1) * 100);
             </div>
             
         </div> : this.state.page === 'newlog' ?
-        <div className = 'newlog-contain'>
+        <div>
             <Nav />
-            <div className = 'log-back'>
-                <button className = 'two-btns' onClick = {() => this.updateToProgress()}>Back</button>
-                <p>Back</p>
+            <div className = 'newlog-contain'>
+                <div className = 'log-back'>
+                    <button className = 'two-btns' onClick = {() => this.updateToProgress()}>Back</button>
+                    <p>Back</p>
+                </div>
+            
+                <label>Enter New Entry Here: </label>
+                <div className= 'newlog-input'>
+                    <FileUpload newLogFn = {this.newLogFn}/>
+                </div>
+                <div className = 'progression-control'>
+                    {progression}
+                </div>
             </div>
             
-            <label>Enter New Entry Here: </label>
-            <div className= 'newlog-input'>
-                <FileUpload newLogFn = {this.newLogFn}/>
-            </div>
-            <div className = 'progression-control'>
-                {progression}
-            </div>
         </div> : this.state.page === 'edit' ?
         <div>
             <Nav />

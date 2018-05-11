@@ -91,6 +91,12 @@
 
 
 @media (min-width: 995px) {
+
+    .get-started h2 {
+        font-weight: 700;
+        font-size: 50px;
+    }
+
     .pages-div {
         display: flex;
 

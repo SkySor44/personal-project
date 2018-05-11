@@ -46,6 +46,10 @@
     background: #222629;
 }
 
+.projects-page-contain h1 {
+    font-weight: 700;
+}
+
 .project-link {
     text-decoration: none;
     color: white;

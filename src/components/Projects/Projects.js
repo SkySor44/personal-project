@@ -112,7 +112,7 @@ class Projects extends Component {
             </div> : null
                 
         return ( 
-            <div>
+            <div className = 'projects-page-contain'>
                 {renders}
             </div>
          )
