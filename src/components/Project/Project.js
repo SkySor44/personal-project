@@ -400,7 +400,7 @@ class Project extends Component {
             value.show_dropdown && value.done === false  && this.props.user.role === 'employee'? <div className = 'phase-not-done phase-dropdown' key = {i}>
             <div className = 'check-div'>
                 <label>{i +1}.{value.phase_name}</label>
-                <div>
+                <div className = 'project-btn-contain'>
                     <button className = 'btn-toggles' onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}><IoAndroidCheckboxOutline className = 'check'/></button>
                     <button className = 'btn-toggles' onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}><FaCaretSquareODown className = 'dropdown-open'/></button>
                 </div>
@@ -416,7 +416,7 @@ class Project extends Component {
        : value.show_dropdown && value.done  && this.props.user.role === 'employee' ? <div className = 'phase-done phase-dropdown' key = {i}>
             <div className = 'check-div'>
                 <label>{i +1}.{value.phase_name}</label>
-                <div>
+                <div className = 'project-btn-contain'>
                     <button className = 'btn-toggles' onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}><IoAndroidCheckboxOutline className = 'check-done'/></button>
                     <button className = 'btn-toggles' onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}><FaCaretSquareODown className = 'dropdown-open'/></button>
                 </div>
@@ -433,7 +433,7 @@ class Project extends Component {
        <div className = 'phase-not-done phase-no-dropdown' key = {i}>
             <div className = 'check-div'>
                 <label>{i +1}.{value.phase_name}</label>
-                <div>
+                <div className = 'project-btn-contain'>
                     <button className = 'btn-toggles' onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}><IoAndroidCheckboxOutline className = 'check'/></button>
                     <button className = 'btn-toggles' onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}><FaCaretSquareODown className = 'dropdown'/></button>
                 </div>
@@ -448,7 +448,7 @@ class Project extends Component {
        <div className = 'phase-done  phase-no-dropdown' key = {i}>
             <div className = 'check-div'>
                 <label>{i +1}.{value.phase_name}</label>
-                <div>
+                <div className = 'project-btn-contain'>
                     <button className = 'btn-toggles' onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}><IoAndroidCheckboxOutline className = 'check-done'/></button>
                     <button className = 'btn-toggles' onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}><FaCaretSquareODown className = 'dropdown'/></button>
                 </div>
@@ -461,7 +461,7 @@ class Project extends Component {
     <div className = 'phase-not-done phase-dropdown' key = {i}>
         <div className = 'check-div'>
             <label>{i +1}.{value.phase_name}</label>
-            <div>
+            <div className = 'project-btn-contain'>
                 <button className = 'btn-toggles' onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}><IoAndroidCheckboxOutline className = 'check'/></button>
                 <button className = 'btn-toggles' onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}><FaCaretSquareODown className = 'dropdown-open'/></button>
             </div>
@@ -470,8 +470,11 @@ class Project extends Component {
         <label>Assigned To Phase: {value.assigned_employee_id !== 17 ? <Link className = 'link-style' to = {`/employee/${value.assigned_employee_id}`}>{value.displayname}</Link> : <Link to = '/employees'><button className = 'two-btns'>Go To Employees To Assign</button></Link>}</label>
         <label>{value.assigned_employee_id !== 17 ? <p>With: {value.company}</p> : <p></p>}</label>
         <p>Description: {value.description}</p>
-        <button className = 'btn-toggles' onClick = {() => this.updateToPhaseUpdate(value.phase_name, value.due_date, value.description, value.id)}><FaEdit className = 'edit-btn'/></button>
-        <button className = 'btn-toggles' onClick = {() => this.props.deletePhase(value.id, this.props.match.params.id)}><FaTrashO className = 'trash'/></button>
+        <div className = 'admin-icons'>
+            <button className = 'btn-toggles' onClick = {() => this.updateToPhaseUpdate(value.phase_name, value.due_date, value.description, value.id)}><FaEdit className = 'edit-btn'/></button>
+            <button className = 'btn-toggles' onClick = {() => this.props.deletePhase(value.id, this.props.match.params.id)}><FaTrashO className = 'trash'/></button>
+        </div>
+
    </div> 
 
                             //ADMIN: SHOW DROPDOWN AND FINSIHED PHASE//
@@ -480,7 +483,7 @@ class Project extends Component {
    <div className = 'phase-done phase-dropdown' key = {i}>
         <div className = 'check-div'>
                 <label>{i +1}.{value.phase_name}</label>
-                <div>
+                <div className = 'project-btn-contain'>
                     <button className = 'btn-toggles' onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}><IoAndroidCheckboxOutline className = 'check-done'/></button>
                     <button className = 'btn-toggles' onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}><FaCaretSquareODown className = 'dropdown-open'/></button>
                 </div>
@@ -498,7 +501,7 @@ class Project extends Component {
    <div className = 'phase-not-done phase-no-dropdown' key = {i}>
         <div className = 'check-div'>
             <label>{i +1}.{value.phase_name}</label>
-            <div>
+            <div className = 'project-btn-contain'>
                 <button className = 'btn-toggles' onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}><IoAndroidCheckboxOutline className = 'check'/></button>
                 <button className = 'btn-toggles' onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}><FaCaretSquareODown className = 'dropdown'/></button>
             </div>
@@ -512,7 +515,7 @@ class Project extends Component {
    <div className = 'phase-done  phase-no-dropdown' key = {i}>
        <div className = 'check-div'>
                 <label>{i +1}.{value.phase_name}</label>
-                <div>
+                <div className = 'project-btn-contain'>
                     <button className = 'btn-toggles' onClick = {() => this.props.toggleDone(value.id, this.props.match.params.id)}><IoAndroidCheckboxOutline className = 'check-done'/></button>
                     <button className = 'btn-toggles' onClick = {() => this.props.toggleDropdown(value.id, this.props.match.params.id)}><FaCaretSquareODown className = 'dropdown'/></button>
                 </div>

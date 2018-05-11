@@ -9,6 +9,11 @@
     padding: 10px;
     border: 1px solid #e9ba00;
     color: white;
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
 }
 
 .whole-contain {
@@ -25,6 +30,22 @@
     padding: 10px;
     border: 2px dashed #e9ba00;
     color: white;
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+.phase-not-done p:first-of-type  {
+    color: #e9ba00;
+}
+
+.admin-icons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
 }
 
 .phases-contain {
@@ -33,6 +54,18 @@
     flex-direction: column;
     height: 100%;
     width: 100%;
+}
+
+.phases-contain h2{
+    margin: -10px 0px 20px 0px;
+}
+
+.phase-dropdown p, label, .link-style, button {
+    margin: 5px;
+}
+
+.phase-no-dropdown div, p {
+    margin: 0px 0px 10px 0px;
 }
 
 .project-page {
@@ -97,6 +130,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.check-div {
+    margin: 10px;
+}
+
+.project-btn-contain {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
 }
 
 .check-done {
@@ -174,6 +218,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    text-align: center;
 }
 
 .progression-contain {
@@ -444,6 +489,27 @@
 .phase-btns {
     margin-top: 20px;
 }
+
+.progression-contain p, .progression-contain button, .progression-contain div{
+    margin: 5px;
+}
+
+.btn-toggles {
+    background: transparent;
+    border: none;
+    color: #6B6E70;
+}
+
+
+.btn-toggles:hover {
+    color: lightgray;
+    outline: none;
+
+}
+
+.progress-contain h2{
+    margin-bottom: 10px;
+}
 @media (min-width: 995px) {
 
     .progression-control2 {
@@ -487,10 +553,10 @@
 
     .btn-toggles {
         background: none;
-        border: none;
         outline: none;
         color: #6B6E70;
     }
+    
 
     .btn-toggles:hover {
         color: lightgray;

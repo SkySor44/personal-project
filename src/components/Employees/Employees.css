@@ -44,6 +44,10 @@
     font-size: 100px;
 }
 
+.person-info h2, h4, button {
+    margin: 10px;
+}
+
 .employees-contain {
     border-bottom: 2px solid #6B6E70;
     padding: 10px 0px;
