@@ -763,8 +763,8 @@ var percentage = Math.round(complete / (total- 1) * 100);
                     {mappedClientMessages}
                 </div>
             <div className = 'new-message'>
-                <input type = 'text' placeholder = 'Enter New Message' value = {this.state.newMessage} onChange = {(e) => this.updateNewClientMessage(e.target.value)}/>
-                <button className = 'two-btns' onClick = {() => {this.sendClientMessage(this.state.newMessage, 'chat')}}>Post Message</button>
+                <input type = 'text' placeholder = 'Enter New Message' value = {this.state.newClientMessage} onChange = {(e) => this.updateNewClientMessage(e.target.value)}/>
+                <button className = 'two-btns' onClick = {() => {this.sendClientMessage(this.state.newClientMessage, 'chat')}}>Post Message</button>
                 
             </div>
             </div>
