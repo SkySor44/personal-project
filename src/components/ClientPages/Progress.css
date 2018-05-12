@@ -29,6 +29,14 @@
     width: 100%;
 }
 
+.log-contain h2 {
+    margin: 15px;
+}
+
+.log-contain img {
+    max-width: 90%;
+}
+
 .my-progress-btns {
     width: 100%;
     display: flex;
