@@ -751,7 +751,7 @@ var percentage = Math.round(complete / (total- 1) * 100);
             </div>
             </div>
       </div> 
-      : this.state.page === 'client-chat' ?
+      : this.state.page === 'client-chat' && this.props.user.role === 'admin' ?
       <div>
         <Nav />
             <div className = 'phases-contain'>
