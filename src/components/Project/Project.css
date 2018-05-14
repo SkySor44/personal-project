@@ -447,6 +447,7 @@
 
 .project-log-button {
     display: flex;
+    flex-wrap: nowrap;
 }
 
 .messages h3 {
