@@ -9,7 +9,7 @@
 }
 
 .employees-header {
-        height: 250px;
+        height: 30vh;
         width: 100%;
         color: #222629;
         display: flex;
@@ -55,7 +55,7 @@
 
 .parallax-emp {
     width: 100%;
-    height: 250px;
+    height: 30vh;
     display: flex;
     justify-content: space-around;
     align-items: center;

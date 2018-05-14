@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Gugi');
 
 .main-img {
-    height: 250px;
+    height: 40vh;
     width: 100%;
     display: flex;
     align-items: center;
@@ -11,7 +11,7 @@
 
 .parallax {
     width: 100%;
-    height: 250px;
+    height: 40vh;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -37,10 +37,12 @@
 .get-started {
     color: #6b6b6b;
     display: flex;
+    justify-content: space-around;
     flex-direction: column;
     align-items: center;
     margin: 30px 30px 0px 30px;
     text-align: center;
+    height: 25vh;
 }
 
 .get-started h2 {
@@ -54,7 +56,7 @@
 
 .projects-div {
     background: #e9ba00;
-    height: 150px;
+    height: 25vh;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -65,7 +67,7 @@
 }
 
 .employees-div {
-    height: 150px;
+    height: 25vh;
     display: flex;
     justify-content: space-around;
     align-items: center;

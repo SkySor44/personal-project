@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {getProgress, getUser2} from '../../ducks/reducer';
 import Nav from '../Nav/Nav';
-import {Parallax} from 'react-parallax';
-import image from './home.jpg';
 import './Progress.css';
 import {Link} from 'react-router-dom';
 
