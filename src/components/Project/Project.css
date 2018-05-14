@@ -445,7 +445,9 @@
 }
 
 
-
+.project-log-button {
+    display: flex;
+}
 
 .messages h3 {
     font-size: 16px;

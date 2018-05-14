@@ -587,7 +587,7 @@ var percentage = Math.round(complete / (total- 1) * 100);
             <div className = 'phases-contain'>
                 <div className = 'phase-btns'>
                     <Link to = '/projects'><button className = 'two-btns'>Back</button></Link>
-                    <button  className = 'two-btns' onClick = {() => this.updateToProgress()}>Project Log</button>
+                    <button  className = 'two-btns project-log-btn' onClick = {() => this.updateToProgress()}>Project Log</button>
                 </div>
                 <button className = 'two-btns chat-btn' onClick = {() => this.updateToChat()}>Chat</button>
 
@@ -607,7 +607,7 @@ var percentage = Math.round(complete / (total- 1) * 100);
             <div className = 'phases-contain'>
                 <div className = 'phase-btns'>
                     <Link to = '/projects'><button className = 'two-btns'>Back</button></Link>
-                    <button  className = 'two-btns' onClick = {() => this.updateToProgress()}>Project Log</button>
+                    <button  className = 'two-btns project-log-btn' onClick = {() => this.updateToProgress()}>Project Log</button>
                 </div>
                 <button className = 'two-btns chat-btn' onClick = {() => this.updateToChat()}>Chat</button>
 
@@ -731,7 +731,7 @@ var percentage = Math.round(complete / (total- 1) * 100);
             <div className = 'phases-contain'>
                 <div className = 'phase-btns'>
                     <button className = 'two-btns' onClick = {() =>  this.updateToPhases()}>Back</button>
-                    <button  className = 'two-btns' onClick = {() => this.updateToProgress()}>Project Log</button>
+                    <button  className = 'two-btns project-log-btn' onClick = {() => this.updateToProgress()}>Project Log</button>
                 </div>
                 <div className = 'percent-contain'>
                     <FillHouse percentage = {percentage}/>
@@ -757,7 +757,7 @@ var percentage = Math.round(complete / (total- 1) * 100);
             <div className = 'phases-contain'>
                 <div className = 'phase-btns'>
                     <button className = 'two-btns' onClick = {() =>  this.updateToPhases()}>Back</button>
-                    <button  className = 'two-btns' onClick = {() => this.updateToProgress()}>Project Log</button>
+                    <button  className = 'two-btns project-log-btn' onClick = {() => this.updateToProgress()}>Project Log</button>
                 </div>
                 <div className = 'percent-contain'>
                     <FillHouse percentage = {percentage}/>
