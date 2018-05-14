@@ -89,7 +89,7 @@ class Chat extends Component {
              <div className = 'messages' key = {i}>
                  <div className = 'message-title'>
                      <h3>{e.displayname}</h3>
-                     <p>{e.time_stamp}</p>
+                     <p className = 'time_stamp-class'>{e.time_stamp}</p>
                  </div>
                  <p>{e.message}</p>
                  
