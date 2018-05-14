@@ -32,6 +32,7 @@ class AdminHome extends Component {
                 
                 <div className = 'get-started'>
                     <h2>MY ID: {this.props.user.id}</h2>
+                    <p>(Give ID to Employees when they register)</p>
                     <h2>Get Started</h2>
                     <p>Click Below to Manage Employees and Projects</p>
                 </div>
