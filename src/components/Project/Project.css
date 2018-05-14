@@ -429,7 +429,12 @@
     margin: 5px;
     font-size: 14px;
     color: lightgray;
+    padding: 5px;
 
+}
+
+.messages p, .myMessages p {
+    padding: 5px;
 }
 
 .messages .message-title .time_stamp-class {
