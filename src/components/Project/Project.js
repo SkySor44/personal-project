@@ -82,8 +82,9 @@ class Project extends Component {
             project_id: this.props.match.params.id
         }
         axios.post(process.env.REACT_APP_GET_MESSAGES, body).then(res => {
+            var reversed = res.data.reverse().slice(0)
             this.setState({
-                messages: res.data
+                messages: reversed
             })
         })
         this.props.getUser2();
