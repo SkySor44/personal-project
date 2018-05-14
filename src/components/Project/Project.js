@@ -91,20 +91,20 @@ class Project extends Component {
         this.props.getProgress(this.props.match.params.id);
         this.props.getPhases(this.props.match.params.id)
         socket.on(`chat${this.props.match.params.id}`, data => {
-            const messages = [...this.state.messages, data];
+            const messages = [data, ...this.state.messages];
             this.setState({
                 messages: messages
             })
         })
 
         axios.post(process.env.REACT_APP_GET_CLIENT_MESSAGES, body).then(res => {
+            var dbMessages = res.data.reverse().slice(0)
             this.setState({
-                clientMessages: res.data
+                clientMessages: dbMessages
             })
         })
         socket.on(`client${this.props.match.params.id}`, data => {
-            console.log('data', data)
-            const clientMessages = [...this.state.clientMessages, data];
+            const clientMessages = [data, ...this.state.clientMessages];
             this.setState({
                 clientMessages: clientMessages
             })

@@ -24,12 +24,13 @@ class Chat extends Component {
             project_id: this.props.user.supervisor_id
         }
         axios.post(process.env.REACT_APP_GET_CLIENT_MESSAGES, body).then(res => {
+           var dbMessages = res.data.reverse().slice(0)
             this.setState({
-                messages: res.data
+                messages: dbMessages
             })
         })
         socket.on(`client${this.props.user.supervisor_id}`, data => {
-            const messages = [...this.state.messages, data];
+            const messages = [data, ...this.state.messages];
             this.setState({
                 messages: messages
             })
