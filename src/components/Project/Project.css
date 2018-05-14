@@ -402,7 +402,6 @@
     background: #e9ba00;
     width: 50%;
     margin: 20px 10px 20px auto;
-    float: right;
     border-radius: 6px;
     text-align: center;
 }
@@ -463,7 +462,6 @@
     height: auto;
     width: 50%;
     margin: 20px auto 20px 10px;
-    float: left;
     border-radius: 6px;
     text-align: center;
     
