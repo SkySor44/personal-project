@@ -740,7 +740,7 @@ var percentage = Math.round(complete / (total- 1) * 100);
                 
                 <h1>{this.props.project.name}</h1>
                 <h2>{this.props.project.location}</h2>
-                <button className = 'two-btns' onClick = {() => this.updateToClientChat()}>View Client Chat</button>
+                {this.props.user.rol === 'admin' ? <button className = 'two-btns' onClick = {() => this.updateToClientChat()}>View Client Chat</button> : null}
                 <div className = 'chat-box'>
                     {mappedMessages}
                 </div>
