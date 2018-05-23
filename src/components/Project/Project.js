@@ -41,6 +41,11 @@ class Project extends Component {
         
     }
 
+    //==========================================//
+    //============= SOCKET.IO METHODS ==========//
+    //==========================================//
+
+
     sendMessage(message, type){
         var currentDate = new Date()
         var time_stamp = (currentDate.getMonth()+1) + "/"
@@ -150,6 +155,22 @@ class Project extends Component {
         })
       }
 
+      updateToChat(){
+        this.setState({
+            page: 'chat'
+        })
+    }
+
+    updateToClientChat(){
+        this.setState({
+            page: 'client-chat'
+        })
+    }
+
+    //==========================================//
+    //=========== PROGRESS PAGE METHODS ==========//
+    //==========================================//
+
     updateToPhases(){
         this.setState({
             page: 'phases'
@@ -209,6 +230,10 @@ class Project extends Component {
             currContent: e
         })
     }
+
+    //==========================================//
+    //============ PHASE PAGE METHODS ============//
+    //==========================================//
 
     updateToPhaseUpdate(phase_name, due_date, description, phase_id){
         this.setState({
@@ -287,17 +312,9 @@ class Project extends Component {
         })
     }
 
-    updateToChat(){
-        this.setState({
-            page: 'chat'
-        })
-    }
-
-    updateToClientChat(){
-        this.setState({
-            page: 'client-chat'
-        })
-    }
+    //==========================================//
+    //========= WATSON TRANSLATE METHODS =========//
+    //==========================================//
 
     translateToSpanish(message, index){
         let reqBod = {
@@ -343,6 +360,10 @@ class Project extends Component {
 
 
     render() { 
+
+            //==========================================//
+            //=============== CHAT MAPPING ===============//
+            //==========================================//
 
        const mappedClientMessages = this.state.clientMessages.map((e, i) => {
            return e.user_id == this.props.user.id ?
@@ -390,13 +411,14 @@ class Project extends Component {
             </div>
             
           })
-                                        //================//
-                                        //=====PHASES=====/ 
-                                        //================//
+                                        //======================//
+                                        //======== PHASES =======// 
+                                        //======================//
+
         var phases = this.props.phases.map((value, i) => {
         return (
 
-                                //EMPLOYEE: SHOW DROPDOWN BUT NOT FINISHED PHASE//
+                                // EMPLOYEE: SHOW DROPDOWN BUT NOT FINISHED PHASE //
 
             value.show_dropdown && value.done === false  && this.props.user.role === 'employee'? <div className = 'phase-not-done phase-dropdown' key = {i}>
             <div className = 'check-div'>
@@ -412,7 +434,7 @@ class Project extends Component {
             <p>Description: {value.description}</p>
        </div> 
 
-                                //EMPLOYEE: SHOW DROPDOWN AND FINSIHED PHASE//
+                                // EMPLOYEE: SHOW DROPDOWN AND FINSIHED PHASE //
 
        : value.show_dropdown && value.done  && this.props.user.role === 'employee' ? <div className = 'phase-done phase-dropdown' key = {i}>
             <div className = 'check-div'>
@@ -428,7 +450,7 @@ class Project extends Component {
             <p>Description: {value.description}</p>
        </div>
 
-                                //EMPLOYEE: NOT SHOWING DROPDOWN AND NOT FINISHED PHASE//
+                                // EMPLOYEE: NOT SHOWING DROPDOWN AND NOT FINISHED PHASE //
 
        : value.show_dropdown === false && value.done === false  && this.props.user.role === 'employee'?
        <div className = 'phase-not-done phase-no-dropdown' key = {i}>
@@ -443,7 +465,7 @@ class Project extends Component {
             <p>Due: {value.due_date}</p>            
        </div>
        
-                                //EMPLOYEE: NOT SHOWING DROPDOWN AND FINISHED PHASE//
+                                // EMPLOYEE: NOT SHOWING DROPDOWN AND FINISHED PHASE //
 
        : value.show_dropdown === false && value.done === true && this.props.user.role === 'employee' ?
        <div className = 'phase-done  phase-no-dropdown' key = {i}>
@@ -456,7 +478,7 @@ class Project extends Component {
             </div>
             <p>Due: {value.due_date}</p>
         </div> 
-        :                          //ADMIN: SHOW DROPDOWN BUT NOT FINISHED PHASE//
+        :                          // ADMIN: SHOW DROPDOWN BUT NOT FINISHED PHASE //
 
         value.show_dropdown && value.done === false && this.props.user.role === 'admin' ? 
     <div className = 'phase-not-done phase-dropdown' key = {i}>
@@ -478,7 +500,7 @@ class Project extends Component {
 
    </div> 
 
-                            //ADMIN: SHOW DROPDOWN AND FINSIHED PHASE//
+                            // ADMIN: SHOW DROPDOWN AND FINSIHED PHASE //
 
    : value.show_dropdown && value.done && this.props.user.role === 'admin' ? 
    <div className = 'phase-done phase-dropdown' key = {i}>
@@ -496,7 +518,7 @@ class Project extends Component {
         <button className = 'btn-toggles' onClick = {() => this.props.deletePhase(value.id, this.props.match.params.id)}><FaTrashO className = 'trash' /></button>
    </div>
 
-                            //ADMIN: NOT SHOWING DROPDOWN AND NOT FINISHED PHASE//
+                            // ADMIN: NOT SHOWING DROPDOWN AND NOT FINISHED PHASE //
 
    : value.show_dropdown === false && value.done === false && this.props.user.role === 'admin' ?
    <div className = 'phase-not-done phase-no-dropdown' key = {i}>
@@ -510,7 +532,7 @@ class Project extends Component {
         <p>Due: {value.due_date}</p>
    </div>
    
-                            //ADMIN: NOT SHOWING DROPDOWN AND FINISHED PHASE//
+                            // ADMIN: NOT SHOWING DROPDOWN AND FINISHED PHASE //
 
    : value.show_dropdown === false && value.done === true && this.props.user.role === 'admin' ?
    <div className = 'phase-done  phase-no-dropdown' key = {i}>
@@ -526,6 +548,10 @@ class Project extends Component {
         )   
         })
 
+            //==========================================//
+            //========== CALCULATION ALOGORITHMS =========//
+            //==========================================//
+
 var total = 1;
 var complete =0;
         this.props.phases.map((value, i) => {
@@ -535,7 +561,15 @@ var complete =0;
 
 var percentage = Math.round(complete / (total- 1) * 100);
 
+
+            //==========================================//
+            //============= PROGRESS MAPPING =============//
+            //==========================================//
+
        var progression = this.props.progress.map( (value, i) => {
+
+        //====== ADMIN VIEW WITH SHOWING CLIENT AS TRUE ======//
+
 
        var roleRender = this.props.user.role === 'admin' && value.show_client ?
             <div className = 'progression-contain' key = {i}>
@@ -549,6 +583,9 @@ var percentage = Math.round(complete / (total- 1) * 100);
                     <button onClick = {() => this.updateToEdit(value.id, value.content, value.time_stamp, value.displayname)}><FaEdit className = 'edit-btn'/></button>
                 </div>
             </div> 
+
+            //====== ADMIN VIEW WITH SHOWING CLIENT AS FALSE ======//
+
             : this.props.user.role === 'admin' && value.show_client === false ?
             <div className = 'progression-contain' key = {i}>
                 <p className = 'content'>{value.content}</p>
@@ -561,6 +598,9 @@ var percentage = Math.round(complete / (total- 1) * 100);
                     <button onClick = {() => this.updateToEdit(value.id, value.content, value.time_stamp, value.displayname)}><FaEdit className = 'edit-btn'/></button>
                 </div>
             </div> 
+
+            //======== EMPLOYEE VIEW ========//
+
             : this.props.user.role === 'employee' ?
             <div className = 'progression-contain' key = {i}>
                 <p className = 'content'>{value.content}</p>
@@ -580,6 +620,12 @@ var percentage = Math.round(complete / (total- 1) * 100);
           
        })
        
+            //==========================================================//
+            //======== CONDITIONAL RENDERING BASE ON PAGE VALUE ========//
+            //==========================================================//
+
+
+            //====== EMPLOYEE PHASES PAGE ======//
 
         var renders = this.state.page === 'phases' && this.props.user.role === 'employee'? 
         <div>
@@ -601,7 +647,11 @@ var percentage = Math.round(complete / (total- 1) * 100);
             </div>
             <h1 className = 'phases-text'>Phases: </h1>
             {phases}
-        </div> : this.state.page === 'phases' && this.props.user.role === 'admin'? 
+        </div> : 
+        
+            //====== ADMIN PHASES PAGE ======//
+        
+        this.state.page === 'phases' && this.props.user.role === 'admin'? 
         <div>
             <Nav />
             <div className = 'phases-contain'>
@@ -623,6 +673,9 @@ var percentage = Math.round(complete / (total- 1) * 100);
             <h1 className = 'phases-text'>Phases: </h1>
             {phases}
         </div> : 
+
+            //========= PROGRESS PAGE =========//
+
         this.state.page === 'progress' ?
         <div>
             <Nav />
@@ -642,7 +695,11 @@ var percentage = Math.round(complete / (total- 1) * 100);
                 </div>
             </div>
             
-        </div> : this.state.page === 'newlog' ?
+        </div> :
+        
+            //====== NEW LOG ON PROGRESS PAGE ======//        
+        
+        this.state.page === 'newlog' ?
         <div>
             <Nav />
             <div className = 'newlog-contain'>
@@ -660,7 +717,11 @@ var percentage = Math.round(complete / (total- 1) * 100);
                 </div>
             </div>
             
-        </div> : this.state.page === 'edit' ?
+        </div> : 
+        
+            //====== EDIT LOG ON PROGRESS PAGE ======//
+
+        this.state.page === 'edit' ?
         <div>
             <Nav />
             <div className = 'newphase-contain'>
@@ -679,7 +740,11 @@ var percentage = Math.round(complete / (total- 1) * 100);
             
         </div> 
         
-        : this.state.page === 'update_phase' && this.props.user.role === 'admin' ?
+        : 
+        
+            //====== ADMIN UPDATE ON PHASES PAGE ======//        
+        
+        this.state.page === 'update_phase' && this.props.user.role === 'admin' ?
         <div>
             <Nav />
             <div className = 'newphase-contain'>
@@ -702,7 +767,11 @@ var percentage = Math.round(complete / (total- 1) * 100);
             </div>
             
         </div> 
-        : this.state.page === 'create_phase' && this.props.user.role === 'admin' ?
+        : 
+        
+            //====== ADMIN CREATE ON PHASES PAGE ======//        
+        
+        this.state.page === 'create_phase' && this.props.user.role === 'admin' ?
         <div>
             <Nav />
             <div className = 'newphase-contain'>
@@ -725,7 +794,11 @@ var percentage = Math.round(complete / (total- 1) * 100);
             </div>
             
             
-        </div> : this.state.page === 'chat' ?
+        </div> : 
+        
+            //========= CHAT PAGE =========//
+        
+        this.state.page === 'chat' ?
         <div className = 'whole-contain'>
             <Nav />
             <div className = 'phases-contain'>
@@ -751,7 +824,11 @@ var percentage = Math.round(complete / (total- 1) * 100);
             </div>
             </div>
       </div> 
-      : this.state.page === 'client-chat' && this.props.user.role === 'admin' ?
+      : 
+      
+            //====== ADMIN CLIENT CHAT PAGE ======//
+      
+      this.state.page === 'client-chat' && this.props.user.role === 'admin' ?
       <div>
         <Nav />
             <div className = 'phases-contain'>
