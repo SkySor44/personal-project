@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {getProgress, getUser2} from '../../ducks/reducer';
+import {getProgress} from '../../ducks/reducer';
 import Nav from '../Nav/Nav';
 import './Progress.css';
 import {Link} from 'react-router-dom';
@@ -14,7 +14,6 @@ class Progress extends Component {
     }
 
     componentDidMount(){
-        this.props.getUser2()
         this.props.getProgress(this.props.user.supervisor_id)
     }
 
@@ -57,4 +56,4 @@ function mapStateToProps(state){
         user: state.user
     }
 }
-export default connect(mapStateToProps, {getProgress, getUser2})(Progress);
+export default connect(mapStateToProps, {getProgress})(Progress);

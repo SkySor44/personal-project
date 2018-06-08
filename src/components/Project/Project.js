@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import {connect} from 'react-redux';
-import {getProject, getUser2, getProgress, deleteProgress, newLog, updateLog, getPhases, toggleDropdown, toggleDone, updatePhase, createPhase, deletePhase, toggleShowClient} from '../../ducks/reducer';
+import {getProject, getProgress, deleteProgress, newLog, updateLog, getPhases, toggleDropdown, toggleDone, updatePhase, createPhase, deletePhase, toggleShowClient} from '../../ducks/reducer';
 import Nav from '../Nav/Nav';
 import './Project.css';
 import FillHouse from './FillHouse';
@@ -92,7 +92,6 @@ class Project extends Component {
                 messages: reversed
             })
         })
-        this.props.getUser2();
         this.props.getProject(this.props.match.params.id, this.props.user.id);
         this.props.getProgress(this.props.match.params.id);
         this.props.getPhases(this.props.match.params.id)
@@ -211,14 +210,14 @@ class Project extends Component {
         })
     }
 
-    newLogFn(img_location){
+    newLogFn(img_location, content){
         var currentDate = new Date()
         var time_stamp = (currentDate.getMonth()+1) + "/"
         + currentDate.getDate() + "/" 
         + currentDate.getFullYear() + " @ "  
         + currentDate.getHours() + ":"  
         + currentDate.getMinutes();
-        this.props.newLog(this.state.content, this.props.user.id, this.props.match.params.id, time_stamp, img_location)
+        this.props.newLog(content, this.props.user.id, this.props.match.params.id, time_stamp, img_location)
         this.setState({
             page: 'progress',
             content: ''
@@ -872,4 +871,4 @@ function mapStateToProps(state){
         phases: state.phases
     }
 }
-export default connect(mapStateToProps, {getUser2, getProject, getProgress, deleteProgress, newLog, updateLog, getPhases, toggleDropdown, toggleDone, updatePhase, createPhase, deletePhase, toggleShowClient})(Project);
+export default connect(mapStateToProps, { getProject, getProgress, deleteProgress, newLog, updateLog, getPhases, toggleDropdown, toggleDone, updatePhase, createPhase, deletePhase, toggleShowClient})(Project);

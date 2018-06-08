@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Nav from '../Nav/Nav';
 import {connect} from 'react-redux';
-import {getProjects, getUser2, addProject} from '../../ducks/reducer';
+import {getProjects, addProject} from '../../ducks/reducer';
 import {Link} from 'react-router-dom';
 import home from './Home-yello.png';
 import './Projects.css';
@@ -21,7 +21,6 @@ class Projects extends Component {
 
     componentDidMount(){
         this.props.getProjects();
-        this.props.getUser2();
     }
 
     updateToNewProject(){
@@ -126,4 +125,4 @@ function mapStateToProps(state){
         user: state.user
     }
 }
-export default connect(mapStateToProps, {getProjects, getUser2, addProject})(Projects);
+export default connect(mapStateToProps, {getProjects, addProject})(Projects);

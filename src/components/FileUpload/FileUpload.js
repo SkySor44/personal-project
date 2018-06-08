@@ -37,12 +37,12 @@ export default class FileUpload extends Component {
 
     sendPhoto(event){
         event.preventDefault()
-
         sendToback(this.state).then(response => {
             this.setState({
                 location: response.data.Location
             })
-            this.props.newLogFn(response.data.Location)
+            console.log(response.data.Location)
+            this.props.newLogFn(response.data.Location, this.state.content)
         })
     }
 
@@ -56,7 +56,7 @@ export default class FileUpload extends Component {
         this.state.file && console.log(this.state.photo)
         return (
             <div className="FileUpload">
-                <input name = 'file' class = 'inputfile' type="file" onChange={this.handlePhoto}/>
+                <input name = 'file' className = 'inputfile' type="file" onChange={this.handlePhoto}/>
                 <br/>
                 {
                 this.state.file &&

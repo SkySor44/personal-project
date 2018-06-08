@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Nav from '../Nav/Nav';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {getUser2} from '../../ducks/reducer';
 import axios from 'axios';
 import io from 'socket.io-client';
 const socket = io();
@@ -19,7 +18,6 @@ class Chat extends Component {
     }
 
     componentDidMount(){
-        this.props.getUser2()
         let body = {
             project_id: this.props.user.supervisor_id
         }
@@ -127,4 +125,4 @@ function mapStateToProps(state){
         user: state.user
     }
 }
-export default connect(mapStateToProps, {getUser2})(Chat);
+export default connect(mapStateToProps)(Chat);
